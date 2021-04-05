@@ -4,7 +4,16 @@ import { Application, Textarea, Button } from 'react-rainbow-components';
 function login(){
 
     const conatinerStyles = {
-        maxWidth: 300
+        maxWidth: 400,
+        margin: 'auto'
+    }
+
+    const buttonConatinerStyle = {
+        backgroundColor: '#0645AE',
+        borderColor: '#0645AE',
+        color: '#ffffff',
+        margin: 'auto',
+        display:'block'
     }
 
     /*const theme = {
@@ -19,23 +28,21 @@ function login(){
     function handleSubmit(event)
     {
         event.preventDefault();
+        return this.setState({
+            username: this.state.username,
+            password: this.state.password
+        });
     }
 
-    const buttonStyle = {
-        backgroundColor: '#0645AE',
-        borderColor: '#0645AE',
-        color: '#ffffff'
-    }
-
-    /*need to center align*/
     return(
-        <div className='login'>
-            <p>Login</p>
-            <Textarea name='loginBox' rows='1' placeholder="scooby@doo.net" style={conatinerStyles}></Textarea>
-            <p>Password</p>
-            <Textarea name='pwBox' rows='1' placeholder="Shaggy12345!" style={conatinerStyles}></Textarea>
+        <div className='login' style={conatinerStyles}>
+            <h1 align='center'>SnailMail</h1>
+            <p align='center'>Login</p>
+            <Textarea name='textBox' rows='1' placeholder="scooby@doo.net" style={conatinerStyles} autofocus />
+            <p align='center'>Password</p>
+            <Textarea name='textBox' rows='1' placeholder="Shaggy12345!" style={conatinerStyles} />
             <br></br>
-            <Button name='loginButton' label="Submit" onClick={() => handleSubmit} style={buttonStyle}></Button>
+            <Button name='loginButton' size='medium' label="Submit" onClick={() => handleSubmit} style={buttonConatinerStyle}></Button>
         </div>
     );
 }
