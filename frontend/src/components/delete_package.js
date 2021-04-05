@@ -1,7 +1,6 @@
 import React from 'react';
 import { Textarea } from 'react-rainbow-components';
-
-import './deletepage.css';
+import style from './deletepage-styles.css';
 
 
 
@@ -14,24 +13,24 @@ function Delete_package()
     
           
     return(
-        <div className = "blah">
+        <div className ="delete">
             
             
 
-            <div class = "header">
-            <h1>Delete this</h1>
+            <div class = "header1">
+            <h1 className= "header">Delete This!</h1>
             </div>
            
   
-           <div class = "delete_box">
-            <Textarea
+           <div class = "box">
+            <Textarea className = "delete_box">
                 id="example-textarea-1"
                 label="Textarea Label"
                 rows={4}
                 placeholder="Delete_this"
                 style={containerStyles}
                 className = "text"
-            />
+            </Textarea>
             </div>
 
 
@@ -41,4 +40,4 @@ function Delete_package()
     )
 }
 
-export default Delete_package()
+export default Delete_package

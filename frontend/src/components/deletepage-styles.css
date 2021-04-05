@@ -1,5 +1,8 @@
 .header {
     text-align: center;
+    font-size:70px;
+    position: relative;
+    top:150px;
   }
 
   .Tracking_num
@@ -11,12 +14,14 @@
 
   .delete_box
   {
-    background: blue;
+    position: absolute;
+    
+    top: 300px;
+    right: 760px;
+    left: 760px;
+    bottom: 300px;
+    width: 400px;
     height: 100px;
-    width: 500px;
-    position:absolute;
-    top:30px;
-
   }
 
 
