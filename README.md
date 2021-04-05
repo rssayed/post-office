@@ -1,4 +1,4 @@
-## <Snail>mail
+## <Snail>Mail
 # Tech stack
  1. ReactJS for the frontend using Rainbow UI
  2. Flask for the backend
