@@ -1,0 +1,29 @@
+.header {
+    text-align: center;
+  }
+
+  .Tracking_num
+  {
+    top:50px;
+
+  }
+
+
+  .delete_box
+  {
+    background: blue;
+    height: 100px;
+    width: 500px;
+    position:absolute;
+    top:30px;
+
+  }
+
+
+  .button
+  {
+    height: 100px;
+    width: 500px;
+
+
+  }
