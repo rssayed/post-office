@@ -1,16 +1,40 @@
 import React from 'react';
-import { Textarea } from 'react-rainbow-components';
+import { Application, Textarea, Button } from 'react-rainbow-components';
 
 function login(){
 
     const conatinerStyles = {
-        maxWidth: 100
+        maxWidth: 300
     }
+
+    /*const theme = {
+        rainbow: {
+            palette: {
+                brand: '#0645AE',
+                
+            },
+        },
+    };*/
+    
+    function handleSubmit(event)
+    {
+        event.preventDefault();
+    }
+
+    const buttonStyle = {
+        backgroundColor: '#0645AE',
+        borderColor: '#0645AE'
+    }
+
+    /*need to center align*/
     return(
         <div className='login'>
-            <p>Login</p>
-            <Textarea name='loginBox' rows='1' placeholder="scooby@doo.net" style={conatinerStyles}></Textarea>
-            <p>Password</p>
+                <p>Login</p>
+                <Textarea name='loginBox' rows='1' placeholder="scooby@doo.net" style={conatinerStyles}></Textarea>
+                <p>Password</p>
+                <Textarea name='pwBox' rows='1' placeholder="Shaggy12345!" style={conatinerStyles}></Textarea>
+                <br></br>
+                <Button name='loginButton' label="Submit" onClick={() => handleSubmit} variant='brand' style={buttonStyle}></Button>
         </div>
     );
 }
