@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
+import React from 'react';
 import {Textarea, Lookup, Button} from 'react-rainbow-components';
 
 const customer_idContainerStyles = {

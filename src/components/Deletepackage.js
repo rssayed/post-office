@@ -1,11 +1,7 @@
 import React from 'react';
-import { Spinner, Textarea } from 'react-rainbow-components';
+import { Textarea } from 'react-rainbow-components';
 import './deletepage-styles.css';
 import { Button } from 'react-rainbow-components';
-import { render } from 'react-dom';
-
-
-
 
 class DeletePackage extends React.Component{
     
