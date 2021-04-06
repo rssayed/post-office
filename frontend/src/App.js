@@ -7,6 +7,7 @@ import Login from './components/login';
 import Deletepackage from './components/Deletepackage';
 import Profile from './components/profile';
 import Tracking_history from './components/Tracking_history';
+import Navigation from './components/Navigation';
 
 
 function App() {
@@ -26,6 +27,9 @@ function App() {
          
           */}
 
+          
+          
+          <Login />
           <Route path='/Login' component={Login} />
           <Route exact path='/Delete' component={Deletepackage} />
           <Route exact path='/Track' component={Tracking_history} />

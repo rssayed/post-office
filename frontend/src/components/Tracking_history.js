@@ -1,10 +1,10 @@
 import React from 'react';
 import { Spinner, Textarea } from 'react-rainbow-components';
-
 import style from './tracking_history-styles.css';
-
 import { Button } from 'react-rainbow-components';
 import { render } from 'react-dom';
+
+
 
 
 class Tracking_history extends React.Component{
@@ -46,9 +46,7 @@ class Tracking_history extends React.Component{
                
 
                  
-                    <div className = "nav_bar" align = "center"> 
-                    <h1> hello there</h1>
-                    </div>
+                   
                     <h1 
                         className = "header"
                         align='center'>
@@ -69,7 +67,7 @@ class Tracking_history extends React.Component{
             
                     <Button 
                         className = "button_2"
-                        label = "Tracking"
+                        label = "Track"
                      //   onClick = {() => this.setState({ input: document.getElementById("tracking_value").value})}
                         variant = "base"
                         

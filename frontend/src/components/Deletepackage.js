@@ -1,13 +1,13 @@
 import React from 'react';
 import { Spinner, Textarea } from 'react-rainbow-components';
-
 import style from './deletepage-styles.css';
-
 import { Button } from 'react-rainbow-components';
 import { render } from 'react-dom';
 
 
-class Deletepackage extends React.Component{
+
+
+class DeletePackage extends React.Component{
     
     constructor(props)
     {
@@ -39,16 +39,14 @@ class Deletepackage extends React.Component{
         
  
         return(
-            <div className ="container2">
+            <div className ="container">
             
             
 
                
 
                  
-                    <div className = "nav_bar" align = "center"> 
-                    <h1> hello there</h1>
-                    </div>
+                   
                     <h1 
                         className = "header"
                         align='center'>
@@ -89,4 +87,4 @@ class Deletepackage extends React.Component{
 
 }
 
-export default Deletepackage
+export default DeletePackage
