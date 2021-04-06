@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from './components/header';
 import Login from './components/login';
+
 import Deletepackage from './components/Deletepackage';
+import Profile from './components/profile';
+import Tracking_history from './components/Tracking_history';
 
 
 function App() {
@@ -11,19 +14,37 @@ function App() {
     <div className="App">
       <Router>
 
-        {/*
-         <Login />
-        */}
-          
+     
+          {/*
+              <Profile />
+              <Login />
+              <Deletepackage />
+              <Tracking_history />
 
-          
-         <Deletepackage />
+              //just type in the url.. localhost:300/Login for example.
+              //still need to route everything to a nav bar..
+         
+          */}
+
+          <Route path='/Login' component={Login} />
+          <Route exact path='/Delete' component={Deletepackage} />
+          <Route exact path='/Track' component={Tracking_history} />
+          <Route exact path='/Profile' component={Profile} />
+         
          
           
           
         
        
 
+         {/*
+         <Login />
+         <Deletepackage />
+         <Tracking_history />
+          {/*
+         <Profile />
+         */}
+          
       </Router> 
     </div>
   );

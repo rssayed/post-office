@@ -1,13 +1,13 @@
 import React from 'react';
 import { Spinner, Textarea } from 'react-rainbow-components';
 
-import style from './deletepage-styles.css';
+import style from './tracking_history-styles.css';
 
 import { Button } from 'react-rainbow-components';
 import { render } from 'react-dom';
 
 
-class Deletepackage extends React.Component{
+class Tracking_history extends React.Component{
     
     constructor(props)
     {
@@ -39,7 +39,7 @@ class Deletepackage extends React.Component{
         
  
         return(
-            <div className ="container2">
+            <div className ="container">
             
             
 
@@ -52,7 +52,7 @@ class Deletepackage extends React.Component{
                     <h1 
                         className = "header"
                         align='center'>
-                        Delete Delivery</h1>
+                        Tracking History</h1>
                
            
                     <Textarea
@@ -69,7 +69,7 @@ class Deletepackage extends React.Component{
             
                     <Button 
                         className = "button_2"
-                        label = "Delete"
+                        label = "Tracking"
                      //   onClick = {() => this.setState({ input: document.getElementById("tracking_value").value})}
                         variant = "base"
                         
@@ -89,4 +89,4 @@ class Deletepackage extends React.Component{
 
 }
 
-export default Deletepackage
+export default Tracking_history

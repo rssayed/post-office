@@ -5,7 +5,7 @@ function login(){
 
     const conatinerStyles = {
         maxWidth: 400,
-        margin: 'auto'
+        margin: 'auto',
     }
 
     const buttonConatinerStyle = {
@@ -37,7 +37,7 @@ function login(){
     return(
         <div className='login' style={conatinerStyles}>
             <h1 align='center'>SnailMail</h1>
-            <p align='center'>Login</p>
+            <p align='center'>Username</p>
             <Textarea name='textBox' rows='1' placeholder="scooby@doo.net" style={conatinerStyles} autofocus />
             <p align='center'>Password</p>
             <Textarea name='textBox' rows='1' placeholder="Shaggy12345!" style={conatinerStyles} />
