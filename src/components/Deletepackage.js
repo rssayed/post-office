@@ -1,6 +1,6 @@
 import React from 'react';
 import { Spinner, Textarea } from 'react-rainbow-components';
-import style from './deletepage-styles.css';
+import './deletepage-styles.css';
 import { Button } from 'react-rainbow-components';
 import { render } from 'react-dom';
 

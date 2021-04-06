@@ -1,11 +1,7 @@
 import React from 'react';
-import { Spinner, Textarea } from 'react-rainbow-components';
-import style from './tracking_history-styles.css';
+import { Textarea } from 'react-rainbow-components';
+import './tracking_history-styles.css';
 import { Button } from 'react-rainbow-components';
-import { render } from 'react-dom';
-
-
-
 
 class Tracking_history extends React.Component{
     

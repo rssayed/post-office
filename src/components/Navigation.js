@@ -1,8 +1,6 @@
 import React from 'react';
-import { AppBar } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { Tabs } from '@material-ui/core';
-import { Tab } from '@material-ui/core';
+import { AppBar, Tabs, Tab } from '@material-ui/core';
 
 class Navigation extends React.Component {
   render() {

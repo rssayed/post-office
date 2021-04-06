@@ -26,9 +26,8 @@ function App() {
          
           */}
 
-          
-          
-          <Login />
+          <Navigation />
+          {/*<Login />*/}
           <Route path='/Login' component={Login} />
           <Route exact path='/Delete' component={Deletepackage} />
           <Route exact path='/Track' component={Tracking_history} />
