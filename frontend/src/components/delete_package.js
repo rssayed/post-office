@@ -32,7 +32,7 @@ function Delete_package()
   
            <div class = "box">
                <h1 className = "Tracking_num">
-                   Tracking number:
+                   Tracking number
                </h1>
                 <Textarea className = "delete_box"
                     id="example-textarea-1"
