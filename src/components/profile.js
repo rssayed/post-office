@@ -212,15 +212,7 @@ class Profile extends React.Component{
                     placeholder='Orlando' 
                     style={cityContainerStyles}
                 />
-                <Lookup 
-                    label='State' 
-                    name='state'
-                    options={this.state.options} 
-                    value={this.state.option} 
-                    onChange={option => this.setState({option})} 
-                    onSearch={e => lookup_search(e.this.value)} 
-                    style={stateContainerStyles}
-                />
+                
                 <Textarea
                     label='Zipcode'
                     name='zipcode'

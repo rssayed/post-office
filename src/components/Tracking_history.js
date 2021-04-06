@@ -13,8 +13,6 @@ class Tracking_history extends React.Component{
             input: ""
         };
         
-        
-
         function handleClick()
         {
             
@@ -28,21 +26,8 @@ class Tracking_history extends React.Component{
 
     render() {
     
-
-     
-    
-       
-        
- 
         return(
-            <div className ="container">
-            
-            
-
-               
-
-                 
-                   
+            <div className ="container">  
                     <h1 
                         className = "header"
                         align='center'>
@@ -57,10 +42,7 @@ class Tracking_history extends React.Component{
 
                     >
                     </Textarea>
-               
 
-                
-            
                     <Button 
                         className = "button_2"
                         label = "Track"
@@ -70,13 +52,6 @@ class Tracking_history extends React.Component{
                     >
 
                     </Button>
-            
-
-               
-
-
-           
-
             </div>
         )
     }
