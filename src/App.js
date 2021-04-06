@@ -13,8 +13,6 @@ function App() {
   return (
     <div className="App">
       <Router>
-
-     
           {/*
               <Profile />
               <Login />
@@ -34,11 +32,6 @@ function App() {
           <Route exact path='/Profile' component={Profile} />
          
          
-          
-          
-        
-       
-
          {/*
          <Login />
          <Deletepackage />
