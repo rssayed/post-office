@@ -1,14 +1,14 @@
 import React from 'react';
 import { Textarea } from 'react-rainbow-components';
 import style from './deletepage-styles.css';
-
+import { Button } from 'react-rainbow-components';
 
 
 
 function Delete_package()
 {
     const containerStyles = {
-        maxWidth: 700
+        maxWidth: 500
     }
     
           
@@ -18,19 +18,45 @@ function Delete_package()
             
 
             <div class = "header1">
-            <h1 className= "header">Delete This!</h1>
+            
+            <div className = "fake_nav">
+                <h3>This is navbar</h3>
+
+
+                </div>
+            
+            
+            <h1 className= "header">Delete Delivery</h1>
             </div>
            
   
            <div class = "box">
-            <Textarea className = "delete_box">
-                id="example-textarea-1"
-                label="Textarea Label"
-                rows={4}
-                placeholder="Delete_this"
-                style={containerStyles}
-                className = "text"
-            </Textarea>
+               <h1 className = "Tracking_num">
+                   Tracking number:
+               </h1>
+                <Textarea className = "delete_box"
+                    id="example-textarea-1"
+                    rows={1}
+                    style={containerStyles}
+                
+                >
+                </Textarea>
+            </div>
+
+            <div class = "big_blue_butt">
+            
+                <Button
+                    shaded
+                    label = "Delete"
+                    onClick={() => alert('Deleted')}
+                    variant = "base"
+                    shaded = "true"
+                    className = "button"
+                >
+
+                </Button>
+            
+
             </div>
 
 

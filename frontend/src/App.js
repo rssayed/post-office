@@ -11,13 +11,13 @@ function App() {
     <div className="App">
       <Router>
 
-         
+         {/*
          <Login />
-         
+         */}
 
-          {/*
+         
          <Delete_package />
-          */}
+          
         
        
 

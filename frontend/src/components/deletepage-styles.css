@@ -1,13 +1,25 @@
 .header {
     text-align: center;
-    font-size:70px;
-    position: relative;
-    top:150px;
+    
+    font-size:40px;
+    position: absolute;
+    top:130px;
+    bottom: 130px;
+    left: 350px;
+    right: 500px;
+    
   }
 
   .Tracking_num
   {
-    top:50px;
+    position: absolute;
+    
+    top:310px;
+    bottom: 310px;
+    font-size:25px;
+    left: 550px;
+    right:550x;
+    
 
   }
 
@@ -16,19 +28,61 @@
   {
     position: absolute;
     
-    top: 300px;
+    top: 320px;
     right: 760px;
     left: 760px;
-    bottom: 300px;
-    width: 400px;
+    bottom: 330px;
+    width: 700px;
     height: 100px;
+
+    
+    
   }
 
 
   .button
   {
-    height: 100px;
-    width: 500px;
+    position: absolute;
+    background-color: darkblue;
+    border: .5px outset black;
+    text-align: auto;
+    color:white;
+    
+    top: 410px;
+    right: 760px;
+    left: 760px;
+    bottom: 480px;
+    
+    width:140px;
+    height:50px;
+
+    
+    border-radius:0 !important;
+
 
 
   }
+  
+  .button:sucess:hover
+  {
+
+    color: darkblue;
+  }
+
+ .fake_nav
+  {
+    position:absolute;
+
+    top: 0px;
+    right: 400px;
+    left: 0px;
+    bottom: 0px;
+
+    height: 125px;
+    width: 2000px;
+    
+    text-align: center;
+    color: white;
+    background-color: darkblue
+  }
+  
