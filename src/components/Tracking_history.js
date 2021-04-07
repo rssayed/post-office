@@ -1,7 +1,7 @@
 import React from 'react';
-import { Textarea } from 'react-rainbow-components';
+import Textarea from 'react-rainbow-components/components/Textarea';
 import './tracking_history-styles.css';
-import { Button } from 'react-rainbow-components';
+import Button from 'react-rainbow-components/components/Button';
 
 class Tracking_history extends React.Component{
     

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Textarea } from 'react-rainbow-components';
+import Textarea from 'react-rainbow-components/components/Textarea';
 import './deletepage-styles.css';
-import { Button } from 'react-rainbow-components';
+import Button from 'react-rainbow-components/components/Button';
 
 class DeletePackage extends React.Component{
     

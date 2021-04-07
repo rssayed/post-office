@@ -2,7 +2,6 @@ import React from 'react';
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from './components/login';
-
 import Deletepackage from './components/Deletepackage';
 import Profile from './components/profile';
 import Tracking_history from './components/Tracking_history';

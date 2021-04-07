@@ -1,5 +1,6 @@
 import React from 'react';
-import { Textarea, Button } from 'react-rainbow-components';
+import Textarea from 'react-rainbow-components/components/Textarea'
+import Button from 'react-rainbow-components/components/Button';
 
 function login(){
 

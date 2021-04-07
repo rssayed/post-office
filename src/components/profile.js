@@ -1,5 +1,7 @@
 import React from 'react';
-import {Textarea, Lookup, Button} from 'react-rainbow-components';
+import Textarea from 'react-rainbow-components/components/Textarea';
+import Lookup from 'react-rainbow-components/components/Lookup';
+import Button from 'react-rainbow-components/components/Button';
 
 const customer_idContainerStyles = {
     margin: 'auto',
