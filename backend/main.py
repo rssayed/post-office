@@ -77,10 +77,6 @@ def order_history():
         tracking_id = request.form.get('tracking_id')
         cur.execute('SELECT * FROM delivers WHERE tracking_id = ?', (tracking_id,)).fetchone()
         # This should return all the information we want to display based on the user input
-
-        # cur.execute('''SELECT delivers(tracking_id), time_in, time_out, facility_id
-        #                 FROM delivers, package
-        #                 WHERE package(tracking_id) = delivers(tracking_id)''')
     output = cur.fetchall()
     return str(output)
 
