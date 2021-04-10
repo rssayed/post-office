@@ -48,34 +48,71 @@ def profile():
     cur = mysql.connection.cursor()
 
     if request.method == 'POST':
-        if profile.validate():
+        customer_id = request.form.get('customer_id')
+        fname = request.form.get('fname')
+        lname = request.form.get('lname')
+        street_address = request.form.get('street_address')
+        city = request.form.get('city')
+        state = request.form.get('state')
+        zipcode = request.form.get('zipcode')
+        email = request.form.get('email')
+        customer_password = request.form.get('customer_password')
+        cur.execute("""UPDATE customers SET fname=%s, lname=%s, street_address=%s, city=%s, state=%s, zipcode=%s, 
+        email=%s, customer_password=%s WHERE customer_id=%s""", (fname, lname, street_address, city, state, zipcode,
+                                                                 email, generate_password_hash(customer_password),
+                                                                 customer_id))
+        mysql.connection.commit()
 
-            fname = request.form.get('fname')
-            lname = request.form.get('lname')
-            street_address = request.form.get('street_address')
-            city = request.form.get('city')
-            state = request.form.get('state')
-            zipcode = request.form.get('zipcode')
-            email = request.form.get('email')
-            password = request.form.get('password')
-            existing_user = cur.execute('SELECT * FROM customer WHERE email = ?', (email,)).fetchone()
-            if existing_user is None:
-                cur.execute("INSERT INTO customer(fname, lname, street_address, city, state, zipcode, password, "
-                            "email) VALUES (%s, %s, %s, %s, %s, %s, %s, %s", (fname, lname, street_address, city,
-                                                                              state, zipcode, generate_password_hash(
-                                                                                password), email))
-                return 'success'
-            flash('A user exists with that email address.')
-            return redirect(url_for('auth.login'))  # make sure this is correct
-    return render_template('/login')  # not sure if this is correct either
+    return render_template('/profile')  # Documentation shows rendering a .html file, not sure if this is correct
+
+    # leaving this original code I did commented out in case it is helpful for the login page
+
+    #     if profile.validate():
+    #
+    #         fname = request.form.get('fname')
+    #         lname = request.form.get('lname')
+    #         street_address = request.form.get('street_address')
+    #         city = request.form.get('city')
+    #         state = request.form.get('state')
+    #         zipcode = request.form.get('zipcode')
+    #         email = request.form.get('email')
+    #         customer_password = request.form.get('customer_password')
+    #         existing_user = cur.execute('SELECT * FROM customer WHERE email = ?', (email,)).fetchone()
+    #         if existing_user is None:
+    #             cur.execute("INSERT INTO customer(fname, lname, street_address, city, state, zipcode, password, "
+    #                         "email) VALUES (%s, %s, %s, %s, %s, %s, %s, %s", (fname, lname, street_address, city,
+    #                                                                           state, zipcode, generate_password_hash(
+    #                                                                             customer_password), email))
+    #             return 'success'
+    #         flash('A user exists with that email address.')
+    #         return redirect(url_for('auth.login'))  # make sure this is correct. Want to try to redirect to the login page if user already exists
+    # return render_template('/login')  # not sure if this is correct either. Documentation usually renders a static html file
 
 
-@app.route('/order_history', methods=['GET', 'POST'])
+@app.route('/orderHistory', methods=['GET', 'POST'])
 def order_history():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
         tracking_id = request.form.get('tracking_id')
-        cur.execute('SELECT * FROM delivers WHERE tracking_id = ?', (tracking_id,)).fetchone()
+        customer_id = request.form.get('customer_id')
+
+        cur.execute(
+            """SELECT package.%s, deliver_to, receiver.street_address, receiver.city, receiver.zipcode, 
+            shipping_date, expected_delivery 
+            FROM package, receiver, orders, customer'
+            WHERE customer.%s = orders.%s AND orders.%s = package.%s""",
+            (tracking_id, customer_id, customer_id, tracking_id, tracking_id))
+        # This should return all the information we want to display based on the user input
+    output = cur.fetchall()
+    return str(output)
+
+
+@app.route('/Tracking_history', methods=['GET', 'POST'])
+def tracking_history():
+    cur = mysql.connection.cursor()
+    if request.method == 'POST':
+        tracking_id = request.form.get('tracking_id')
+        cur.execute('SELECT * FROM delivers WHERE tracking_id = %s', (tracking_id,)).fetchone()
         # This should return all the information we want to display based on the user input
     output = cur.fetchall()
     return str(output)
