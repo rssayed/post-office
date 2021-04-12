@@ -1,0 +1,33 @@
+.container_update
+{
+    display: grid;
+    grid-template-rows: 45px,100px;
+    grid-template-columns: auto auto, auto, auto, auto;
+
+
+    grid-template-areas: 
+    " sp_update sp_update sp_update sp_update sp_update"
+    ". . header_update . ."
+
+}
+
+
+
+.sp_update
+{
+    grid-area:sp_update;
+}
+
+.header_update{
+    margin:auto;
+    grid-area:header_update;
+    text-align: center;
+    font-size:25px;
+    width: 250px;
+    margin-top: 100px;
+    
+  }
+
+
+
+ 

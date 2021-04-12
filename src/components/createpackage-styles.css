@@ -1,0 +1,29 @@
+.container_create
+{
+    display: grid;
+    
+    grid-template-rows: 45px,100px;
+    grid-template-columns: auto auto, auto, auto, auto;
+
+    grid-template-areas: 
+    " sp_create sp_create sp_create sp_create sp_create"
+    " . . header_create . ."
+
+}
+.sp_create
+{
+    grid-area:sp_create;
+}
+.header_create
+{
+    margin:auto;
+    grid-area:header_create;
+    text-align: center;
+    font-size:25px;
+    width: 250px;
+    margin-top: 100px;
+    
+  }
+
+
+ 

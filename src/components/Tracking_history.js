@@ -27,15 +27,16 @@ class Tracking_history extends React.Component{
     render() {
     
         return(
-            <div className ="container">  
+            <div className ="container_track">  
+                    
                     <h1 
-                        className = "header"
+                        className = "header_track"
                         align='center'>
                         Tracking History</h1>
                
            
                     <Textarea
-                        className = "delete_box"
+                        className = "delete_box_track"
                         id="tracking_value"
                         label = "Tracking number"
                         rows={1}
@@ -44,7 +45,7 @@ class Tracking_history extends React.Component{
                     </Textarea>
 
                     <Button 
-                        className = "button_2"
+                        className = "button_2_track"
                         label = "Track"
                      //   onClick = {() => this.setState({ input: document.getElementById("tracking_value").value})}
                         variant = "base"
