@@ -4,7 +4,6 @@ import './update_package-styles.css'
 import Button from 'react-rainbow-components/components/Button';
 
 
-
 class UpdatePackage extends React.Component{
     
     constructor(props)
@@ -14,8 +13,7 @@ class UpdatePackage extends React.Component{
         this.state = {  //initialize state properties to empty strings
             input: ""
         };
-        
-        
+              
 
         function handleClick()
         {
@@ -30,11 +28,7 @@ class UpdatePackage extends React.Component{
 
     render() {
     
-
-     
-    
-       
-        
+ 
  
         return(
             <div className ="container_update">
@@ -47,14 +41,7 @@ class UpdatePackage extends React.Component{
 
                         Testing up</h1>
 
-           
-            
-
-               
-
-
-           
-
+    
             </div>
         )
     }

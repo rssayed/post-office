@@ -14,7 +14,6 @@ class CreatePackage extends React.Component{
         };
         
         
-
         function handleClick()
         {
             
@@ -28,20 +27,11 @@ class CreatePackage extends React.Component{
 
     render() {
     
-
-     
-    
-       
-        
  
         return(
             <div className ="container_create">
             
-            
-
                
-
-                 
                    
                     <h1 
                         className = "header_create">
@@ -51,11 +41,7 @@ class CreatePackage extends React.Component{
                
            
                   
-
-               
-
-
-           
+  
 
             </div>
         )
