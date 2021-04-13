@@ -48,7 +48,7 @@
     margin: auto;
     width:200px;
     height: 46px;
-
+    top: 20px;
   }
 
   .button_2_delete:sucess:hover
