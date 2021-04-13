@@ -9,6 +9,7 @@ from flask_mysql_connector import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
+app.secret_key = 'super secret key' # lets cookies work so flash() can work
 
 # enter username and password
 app.config['MYSQL_USER'] = 'root'
@@ -116,6 +117,61 @@ def tracking_history():
         # This should return all the information we want to display based on the user input
     output = cur.fetchall()
     return str(output)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    cur = mysql.connection.cursor()
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        customerUsernames = cur.execute("SELECT mobile_number FROM customer")
+        employeeUsernames = cur.execute("SELECT employee_email FROM employee")
+        for i in customerUsernames
+            if username == i
+                customerPW = cur.execute("SELECT customer_password FROM customer WHERE mobile_number=%s",(username))
+                if password == customerPW
+                    return redirect('/profile')
+                return('Incorrect password')
+        for i in employeeUsernames
+            if username == i
+                employeePW = cur.execute("SELECT employee_password FROM employee WHERE employee_email=%s",(username))
+                if password == employeePW
+                    return redirect('/profile')
+                return('Incorrect password')
+        return ("login again")
+
+    mysql.connection.commit()
+    # cur.close() ?
+    return render_template('login.html') # example template for testing, change later
+
+
+@app.route('/delete', methods=['GET', 'POST'])
+def delete():
+    cur = mysql.connection.cursor()
+    if request.method == 'POST':
+        tracking_id = request.form['tracking_number']
+        orders = cur.execute("SELECT tracking_id from orders")
+        for i in orders
+            if tracking_id == i
+                cur.execute("DELETE FROM orders WHERE tracking_id=%s",(tracking_id))
+                return('Sucessfully deleted package')
+                # flash('Sucessfully deleted package')
+                # return render_template('delete.html')
+            else
+                return('Package not found')
+                # flash('Package not found')
+                # return render_template('delete.html')
+        return('tracking id not found')
+
+    mysql.connection.commit()
+    # cur.close() ?
+    return render_template('delete.html') # replace with actual one
+
+
+# @app.route('/')
+# def home():
+#     return ("hello world") # render_template('home.html') # snailmail homepage here
 
 
 if __name__ == '__main__':
