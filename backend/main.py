@@ -166,7 +166,7 @@ def delete():
 
     mysql.connection.commit()
     # cur.close() ?
-    return render_template('delete.js') # replace with actual one
+    return render_template('DeletePackage.js') # replace with actual one
 
 
 # @app.route('/')
