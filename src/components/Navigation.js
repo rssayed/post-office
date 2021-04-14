@@ -18,21 +18,17 @@ class Navigation extends React.Component {
   
 
     return (
-
-
             <AppBar position = "sticky" style={styles.appBar}>
             <Tabs style={styles.tabs}>
-            <Tab label='Delete'  to='/Delete' component={Link} />
-            <Tab label='Track'  to='/Track' component={Link} />
-            <Tab label='Profile'  to='/Profile' component={Link} />
-            <Tab label='Create'  to='/CreatePackage' component={Link} />
-            <Tab label='Update'  to='/UpdatePackage' component={Link} />
+            <Tab label='Track Package'  to='/Track' component={Link} />
+            <Tab label='Create Package'  to='/CreatePackage' component={Link} /> 
+            <Tab label='Update Status'  to='/UpdatePackage' component={Link} />
+            <Tab label='Delete Package'  to='/Delete' component={Link} />
+            <Tab label='Order History' to='/OrderHistory' component={Link} />
+            <Tab label='Edit Profile'  to='/Profile' component={Link} />
             <Tab label='Logout'  to='/Login' component={Link} />
             </Tabs>
             </AppBar>
-
-       
-     
     );
   }
 }

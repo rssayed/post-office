@@ -41,6 +41,7 @@ function App() {
           <Route exact path='/Profile' component={Profile} />
           <Route exact path='/CreatePackage' component={CreatePackage} />
           <Route exact path='/UpdatePackage' component={UpdatePackage} />
+          <Route exact path='/OrderHistory' component={OrderHistory} />
       </Router> 
     </div>
   );

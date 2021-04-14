@@ -2,41 +2,69 @@ import React from 'react';
 import Textarea from 'react-rainbow-components/components/Textarea';
 import Lookup from 'react-rainbow-components/components/Lookup';
 import Button from 'react-rainbow-components/components/Button';
+import Select from 'react-rainbow-components/components/Select';
 
 const customer_idContainerStyles = {
     margin: 'auto',
-    maxWidth: 150,
-    top: 150
+    maxWidth: 150
 }
 
 const fnameContainerStyles = {
     margin: 'auto',
     maxWidth: 300,
-    top: 175
+    top: 25
 }
 
 const lnameContainerStyles = {
     margin: 'auto',
     maxWidth: 300,
-    top: 200
+    top: 50
 }
 
 const addressContainerStyles = {
     margin: 'auto',
     maxWidth: 700,
-    top: 225
+    top: 75
 }
 
 const cityContainerStyles ={
     margin: 'auto',
     maxWidth: 200,
-    top: 250
+    top: 100
 }
 
 const stateContainerStyles = {
     margin: 'auto',
     maxWidth: 200,
-    top: 300
+    top: 125
+}
+
+const zipcodeContainerStyles = {
+    margin: 'auto',
+    maxWidth: 200,
+    top: 150
+}
+
+const emailContainerStyles = {
+    margin: 'auto',
+    maxWidth: 300,
+    top:175
+}
+
+const passwordContainerStyles = {
+    margin: 'auto',
+    maxWidth: 300,
+    top: 200
+}
+
+const buttonContainerStyle = {
+    backgroundColor: '#0645AE',
+    borderColor: '#0645AE',
+    color: '#ffffff',
+    margin: 'auto',
+    display:'block',
+    top: 225,
+    bottom: 200     /*does not work, need space below button*/
 }
 
 const lookup_data = [
@@ -124,34 +152,6 @@ function lookup_search(value){
     }
 }
 
-const zipcodeContainerStyles = {
-    margin: 'auto',
-    maxWidth: 200,
-    top: 325
-}
-
-const emailContainerStyles = {
-    margin: 'auto',
-    maxWidth: 300,
-    top:350
-}
-
-const passwordContainerStyles = {
-    margin: 'auto',
-    maxWidth: 300,
-    top: 375
-}
-
-const buttonContainerStyle = {
-    backgroundColor: '#0645AE',
-    borderColor: '#0645AE',
-    color: '#ffffff',
-    margin: 'auto',
-    display:'block',
-    top: 400,
-    bottom: 200     /*does not work, need space below button*/
-}
-
 function handleSubmit(event)
     {
         event.preventDefault();
@@ -177,6 +177,7 @@ class Profile extends React.Component{
     render(){
         return(
             <form className='profile'>
+                <h1 align='center'>Profile Settings</h1>
                 <Textarea 
                     label='Customer ID' 
                     name='customer_id' 
@@ -214,7 +215,12 @@ class Profile extends React.Component{
                     placeholder='Orlando' 
                     style={cityContainerStyles}
                 />
-                
+                <Select
+                    label='State'
+                    name='state'
+                    options={lookup_data}
+                    style={stateContainerStyles}
+                />
                 <Textarea
                     label='Zipcode'
                     name='zipcode'
