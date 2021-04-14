@@ -29,21 +29,102 @@ class CreatePackage extends React.Component{
     
  
         return(
-            <div className ="container_create">
+
+
+            <div> 
+                <div className ="containerCreate">
             
-               
-                   
-                    <h1 
-                        className = "header_create">
-                        Creating a Package!!</h1>
+                <h1 className = "header_create"> Create Package</h1>
+                </div>
+            
+            
+            <div className ="gridCreate">
 
 
-               
-           
-                  
-  
+                        <Textarea
+                        className = "textUp1"
+                        id="box 1"
+                        label = "Shipping date"
+                        rows={1}
 
-            </div>
+                         >
+                        </Textarea>
+                        <Textarea
+                        className = "textUp2"
+                        id="box 2"
+                        label = "Shipping Type"
+                        rows={1}
+
+                         >
+                        </Textarea>
+                        <Textarea
+                        className = "textUp3"
+                        id="box 3"
+                        label = "Weight"
+                        rows={1}
+
+                         >
+                        </Textarea>
+                        <Textarea
+                        className = "textUp4"
+                        id="box 4"
+                        label = "CustomerID"
+                        rows={1}
+
+                         >
+                        </Textarea>
+                        <Textarea
+                        className = "textUp5"
+                        id="box 5"
+                        label = "Name"
+                        rows={1}
+
+                         >
+                        </Textarea>
+
+                        <Textarea
+                        className = "textUp6"
+                        id="box 6"
+                        label = "Street Address"
+                        rows={1}
+
+                         >
+                        </Textarea>
+                        <Textarea
+                        className = "textUp7"
+                        id="up7"
+                        label = "City"
+                        rows={1}
+
+                         >
+                        </Textarea>
+                        <Textarea
+                        className = "textUp8"
+                        id="up 8"
+                        label = "State"
+                        rows={1}
+
+                         >
+                        </Textarea>
+                        <Textarea
+                        className = "textUp9"
+                        id="up 9"
+                        label = "Zipcode"
+                        rows={1}
+
+                         >
+                        </Textarea>
+
+
+                        <Button 
+                        className = "buttonCreate"
+                        label = "Update"
+                        variant = "base"
+                        ></Button>
+                        </div>
+                    
+                    </div>
+            
         )
     }
 

@@ -31,18 +31,67 @@ class UpdatePackage extends React.Component{
  
  
         return(
+            
+            <div> 
             <div className ="container_update">
             
-
-  
-                        <h1 
-                        className = "header_update">
-        
-
-                        Testing up</h1>
-
-    
+            <h1 className = "header_update"> Update Tracking History</h1>
             </div>
+            
+            
+            <div className ="text_grid">
+
+
+                        <Textarea
+                        className = "text_box1"
+                        id="box 1"
+                        label = "Tracking number"
+                        rows={1}
+
+                         >
+                        </Textarea>
+                        <Textarea
+                        className = "text_box2"
+                        id="box 2"
+                        label = "Post office ID"
+                        rows={1}
+
+                         >
+                        </Textarea>
+                        <Textarea
+                        className = "text_box3"
+                        id="box 3"
+                        label = "Time in"
+                        rows={1}
+
+                         >
+                        </Textarea>
+                        <Textarea
+                        className = "text_box4"
+                        id="box 4"
+                        label = "Time out"
+                        rows={1}
+
+                         >
+                        </Textarea>
+                        <Textarea
+                        className = "text_box5"
+                        id="box 5"
+                        label = "Delivery Status"
+                        rows={1}
+
+                         >
+                        </Textarea>
+
+                        <Button 
+                        className = "button_update"
+                        label = "Track"
+                        variant = "base"
+                        ></Button>
+                        </div>
+                    
+                    </div>
+            
         )
     }
 
