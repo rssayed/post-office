@@ -21,8 +21,8 @@
     margin:auto;
     grid-area: header_delete;
     text-align: center;
-    font-size:25px;
-    width: 250px;
+    font-size:35px;
+    width: 500px;
     
   }
 
@@ -46,8 +46,8 @@
     color: #ffffff;
     
     margin: auto;
-    width:200px;
-    height: 46px;
+    width:150px;
+    height:46px;
     top: 20px;
   }
 
