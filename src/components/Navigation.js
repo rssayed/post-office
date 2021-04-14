@@ -9,7 +9,9 @@ class Navigation extends React.Component {
 
     var styles = {
         appBar: {
-          flexWrap: 'wrap'
+          flexWrap: 'wrap',
+          color: '#ffffff',
+          bgcolor: '#0645AE'    /*doesn't work, neither does color'*/
         },
         tabs: {
           width: '100%'
@@ -18,7 +20,7 @@ class Navigation extends React.Component {
   
 
     return (
-            <AppBar position = "sticky" style={styles.appBar}>
+            <AppBar position= "sticky" style={styles.appBar}>
             <Tabs style={styles.tabs}>
             <Tab label='Track Package'  to='/Track' component={Link} />
             <Tab label='Create Package'  to='/CreatePackage' component={Link} /> 
