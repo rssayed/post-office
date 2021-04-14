@@ -1,0 +1,13 @@
+table#orderHistoryTable {
+    table-layout: fixed;
+    width: 97%;
+    border: 1px black solid;
+    align-self: 'center';
+}
+
+table#orderHistoryTable td {
+    width: 25%;
+    border: 1px black solid;
+    align-content: center;
+    padding: 10px;
+}
