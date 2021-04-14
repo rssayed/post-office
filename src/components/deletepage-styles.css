@@ -1,4 +1,4 @@
-.container
+.container_delete
 {
     display: grid;
     grid-template-rows: 45px 80px 80px 46px;
@@ -6,61 +6,52 @@
 
 
     grid-template-areas: 
-    " sp sp sp sp sp"
-    ". . header . ."
-    ". . delete_box . ."
-    ". . button_2 . ."
+    " sp_delete sp_delete sp_delete sp_delete sp_delete"
+    ". . header_delete . ."
+    ". . delete_box_delete . ."
+    ". . button_2_delete . ."
 }
 
-
-
-.sp
+.sp_delete
 {
-    grid-area: sp
+    grid-area: sp_delete
 }
 
-.header {
+.header_delete {
     margin:auto;
-    grid-area: header;
+    grid-area: header_delete;
     text-align: center;
-    font-size:25px;
-    width: 250px;
+    font-size:35px;
+    width: 500px;
     
   }
 
- 
-  .delete_box
+  .delete_box_delete
   {
    
     margin:auto;
-    grid-area: delete_box;
+    grid-area: delete_box_delete;
     width: 400px;
     height: 100px;
     font-size: 25px;
-
-    
+   
   }
-
-
-  .button_2
+  
+  .button_2_delete
   {
    
-    grid-area: button_2;
+    grid-area: button_2_delete;
     background: #0645AE;
     border: #0645AE;
     color: #ffffff;
     
     margin: auto;
-    width:200px;
-    height: 46px;
-    
-    
-
-
-
+    width:150px;
+    height:46px;
+    top: 20px;
   }
 
-  .button:sucess:hover
+  .button_2_delete:sucess:hover
   {
     background:darkblue;
   }

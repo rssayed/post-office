@@ -35,7 +35,7 @@ class DeletePackage extends React.Component{
         
  
         return(
-            <div className ="container">
+            <div className ="container_delete">
             
             
 
@@ -44,13 +44,13 @@ class DeletePackage extends React.Component{
                  
                    
                     <h1 
-                        className = "header"
+                        className = "header_delete"
                         align='center'>
-                        Delete Delivery</h1>
+                        Delete</h1>
                
            
                     <Textarea
-                        className = "delete_box"
+                        className = "delete_box_delete"
                         id="tracking_value"
                         label = "Tracking number"
                         rows={1}
@@ -62,7 +62,7 @@ class DeletePackage extends React.Component{
                 
             
                     <Button 
-                        className = "button_2"
+                        className = "button_2_delete"
                         label = "Delete"
                      //   onClick = {() => this.setState({ input: document.getElementById("tracking_value").value})}
                         variant = "base"

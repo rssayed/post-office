@@ -15,7 +15,7 @@ class Navigation extends React.Component {
           width: '100%'
         }
     }
-
+  
 
     return (
 
@@ -25,6 +25,8 @@ class Navigation extends React.Component {
             <Tab label='Delete'  to='/Delete' component={Link} />
             <Tab label='Track'  to='/Track' component={Link} />
             <Tab label='Profile'  to='/Profile' component={Link} />
+            <Tab label='Create'  to='/CreatePackage' component={Link} />
+            <Tab label='Update'  to='/UpdatePackage' component={Link} />
             <Tab label='Logout'  to='/Login' component={Link} />
             </Tabs>
             </AppBar>
