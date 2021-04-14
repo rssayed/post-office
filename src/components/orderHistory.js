@@ -7,7 +7,11 @@ const conatinerStyles = {
 function orderHistory(){
 
     return(
-        null
+        <div className='orderHistoryForm'>
+            <table>
+                
+            </table>
+        </div>
     );
 }
 
