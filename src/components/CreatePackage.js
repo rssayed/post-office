@@ -90,8 +90,7 @@ class CreatePackage extends React.Component{
                         label = "Update"
                         variant = "base"
                     />
-                </div>
-                    
+                </div>      
             </div>
         )
     }
