@@ -18,7 +18,6 @@ class Navigation extends React.Component {
         }
     }
   
-
     return (
             <AppBar position= "sticky" style={styles.appBar}>
             <Tabs style={styles.tabs}>
