@@ -8,23 +8,24 @@ class DeletePackage extends React.Component{
     constructor(props)
     {
         super(props);
-    
-        this.state = {  //initialize state properties to empty strings
-            input: ""
-        };
-        
-        
-
-        function handleClick()
-        {
+        this.handleClick = this.handleClick.bind(this);
+        this.state = {
             
-            this.setState(state => {
-                var inputVal = document.getElementById("tracking_value").value;
-                return {input: inputVal}
-            })
-            console.log(this.state.input)
+            loggedIn: "testing",
+            currentState: "not-panic",
+            
+            // Note: think carefully before initializing
+            // state based on props!
+            someInitialValue: this.props.initialValue
+          }
         }
-    }
+        componentDidMount() {
+           
+          }
+          componentWillUnmount() {
+          }
+
+      
 
     render() {
     

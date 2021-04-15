@@ -41,46 +41,48 @@ class CreatePackage extends React.Component{
             <div className ="gridCreate">
 
 
-                        <Textarea
-                        className = "textUp1"
-                        id="box 1"
-                        label = "Shipping date"
-                        rows={1}
+            <Textarea
+            className = "textUp1"
+            id="box 1"
+            label = "Shipping date"
+            rows={1}
 
-                         >
-                        </Textarea>
-                        <Textarea
-                        className = "textUp2"
-                        id="box 2"
-                        label = "Shipping Type"
-                        rows={1}
+            >
+            </Textarea>
+                        
+            <Textarea
+            className = "textUp2"
+            id="box 2"
+            label = "Shipping Type"
+            rows={1}
 
-                         >
-                        </Textarea>
-                        <Textarea
-                        className = "textUp3"
-                        id="box 3"
-                        label = "Weight"
-                        rows={1}
+            >
+            </Textarea>
+            <Textarea
+            className = "textUp3"
+            id="box 3"
+            label = "Weight"
+            rows={1}
 
-                         >
-                        </Textarea>
-                        <Textarea
-                        className = "textUp4"
-                        id="box 4"
-                        label = "CustomerID"
-                        rows={1}
+            >
+            </Textarea>
+                        
+            <Textarea
+            className = "textUp4"
+            id="box 4"
+            label = "CustomerID"
+            rows={1}
 
-                         >
-                        </Textarea>
-                        <Textarea
-                        className = "textUp5"
-                        id="box 5"
-                        label = "Name"
-                        rows={1}
+            >
+            </Textarea>
+            <Textarea
+            className = "textUp5"
+            id="box 5"
+            label = "Name"
+            rows={1}
 
-                         >
-                        </Textarea>
+            >
+            </Textarea>
 
                         <Textarea
                         className = "textUp6"
@@ -118,7 +120,7 @@ class CreatePackage extends React.Component{
 
                         <Button 
                         className = "buttonCreate"
-                        label = "Update"
+                        label = "Create"
                         variant = "base"
                         ></Button>
                         </div>
