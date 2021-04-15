@@ -26,8 +26,7 @@ class UpdatePackage extends React.Component{
         return(    
             <div> 
             <div className ="container_update">
-            
-            <h1 className = "header_update"> Update Tracking History</h1>
+                <h1 className = "header_update"> Update Tracking History</h1>
             </div>
 
             <div className ="text_grid">
