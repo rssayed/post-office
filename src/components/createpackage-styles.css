@@ -7,11 +7,6 @@
     grid-template-areas: 
     " sp_create sp_create sp_create sp_create sp_create"
     ". . header_create . .";
-
-    
-  
-    
-
 }
 
 .sp_create
@@ -20,22 +15,20 @@
 }
 
 
-.header_create{
-
+.header_create
+{
     margin:auto;
     text-align:center;
     grid-area:header_create;
     font-size:35px;
-    width: 500px;
-   
-    
-  }
+    width: 500px;   
+}
 
-.gridCreate {
+.gridCreate 
+{
     display: grid;
     justify-content: center;
-    align-content: center;
-    
+    align-content: center;  
     grid-template-areas: 
     " textUp1 . textUp5 "
     " textUp2 . textUp6 "
@@ -43,27 +36,16 @@
     " textUp4 . textUp8 "
     "    .    . textUp9 "
     " buttonCreate buttonCreate buttonCreate";
-
-
-
   gap: 5px;
   grid-template-columns: repeat(2, 150px);
   grid-template-rows: repeat(6, 100px);
-
 }
 
-
   .textUp1
-  {
-    
+  { 
     width: 260px;
     height: 100px;
     grid-area:textUp1;
-   
-
-
-
-
   }
 
   .textUp2
@@ -72,10 +54,6 @@
     grid-area:textUp2;
     width: 200px;
     height: 100px;
-
-
-
-
   }
 
   .textUp3
@@ -84,23 +62,14 @@
     grid-area:textUp3;
     width: 260px;
     height: 100px;
-
-
-
-
   }
 
   .textUp4
   {
-
     margin:auto;
     grid-area:textUp4;
     width: 260px;
     height: 100px;
-
-
-
-
   }
 
   .textUp5
@@ -109,10 +78,6 @@
     grid-area:textUp5;
     width: 300px;
     height: 100px;
-
-
-
-
   }
 
   .textUp6
@@ -121,10 +86,6 @@
     grid-area:textUp6;
     width: 300px;
     height: 100px;
-
-
-
-
   }
 
   .textUp7
@@ -133,10 +94,6 @@
     grid-area:textUp7;
     width: 260px;
     height: 100px;
-
-
-
-
   }
 
   .textUp8
@@ -145,10 +102,6 @@
     grid-area:textUp8;
     width: 200px;
     height: 100px;
-
-
-
-
   }
 
   .textUp9
@@ -157,10 +110,6 @@
     grid-area:textUp9;
     width: 260px;
     height: 100px;
-
-
-
-
   }
 
   .buttonCreate
@@ -169,8 +118,7 @@
     grid-area: buttonCreate;
     background: #0645AE;
     border: #0645AE;
-    color: #ffffff;
-    
+    color: #ffffff; 
     width:160px;
     height: 55px;
   }
@@ -179,5 +127,3 @@
   {
     background:darkblue;
   }
- 
- 

@@ -8,14 +8,12 @@ class Tracking_history extends React.Component{
     constructor(props)
     {
         super(props);
-    
         this.state = {  //initialize state properties to empty strings
             input: ""
         };
         
         function handleClick()
-        {
-            
+        { 
             this.setState(state => {
                 var inputVal = document.getElementById("tracking_value").value;
                 return {input: inputVal}
@@ -28,35 +26,22 @@ class Tracking_history extends React.Component{
     
         return(
             <div className ="container_track">  
-                    
-                    <h1 
-                        className = "header_track"
-                        align='center'>
-                        Tracking History</h1>
-               
-           
-                    <Textarea
+                <h1 className = "header_track" align='center'>Tracking History</h1>
+                <Textarea
                         className = "delete_box_track"
                         id="tracking_value"
                         label = "Tracking number"
                         rows={1}
-
-                    >
-                    </Textarea>
-
-                    <Button 
-                        className = "button_2_track"
-                        label = "Track"
+                />
+                <Button 
+                    className = "button_2_track"
+                    label = "Track"
                      //   onClick = {() => this.setState({ input: document.getElementById("tracking_value").value})}
-                        variant = "base"
-                        
-                    >
-
-                    </Button>
+                    variant = "base"                    
+                />
             </div>
         )
     }
-
 }
 
 export default Tracking_history
