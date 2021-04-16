@@ -3,8 +3,6 @@
     display: grid;
     grid-template-rows: 45px 100px 80px 46px;
     grid-template-columns: auto auto auto auto;
-
-
     grid-template-areas: 
     " sp_track sp_track sp_track sp_track sp_track"
     ". . header_track . ."
@@ -53,4 +51,3 @@
   {
     background:darkblue;
   }
- 

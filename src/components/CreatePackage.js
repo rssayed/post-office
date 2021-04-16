@@ -14,31 +14,17 @@ class CreatePackage extends React.Component{
         };
         
         
-        function handleClick()
-        {
-            
-            this.setState(state => {
-                var inputVal = document.getElementById("tracking_value").value;
-                return {input: inputVal}
-            })
-            console.log(this.state.input)
-        }
     }
 
-    render() {
-    
- 
+    render() { 
         return(
-
-
-            <div> 
-                <div className ="containerCreate">
+    <div> 
+        <div className ="containerCreate">
             
-                <h1 className = "header_create"> Create Package</h1>
-                </div>
-            
-            
-            <div className ="gridCreate">
+        <h1 className = "header_create"> Create Package</h1>
+        </div>
+  
+        <div className ="gridCreate">
 
 
             <Textarea
@@ -56,80 +42,71 @@ class CreatePackage extends React.Component{
             label = "Shipping Type"
             rows={1}
 
-            >
-            </Textarea>
+            > </Textarea>     
+            
             <Textarea
             className = "textUp3"
             id="box 3"
             label = "Weight"
             rows={1}
 
-            >
-            </Textarea>
-                        
+            > </Textarea>
+                         
             <Textarea
             className = "textUp4"
             id="box 4"
             label = "CustomerID"
             rows={1}
 
-            >
-            </Textarea>
+            > </Textarea>
+            
             <Textarea
             className = "textUp5"
             id="box 5"
             label = "Name"
             rows={1}
 
-            >
-            </Textarea>
-
-                        <Textarea
-                        className = "textUp6"
-                        id="box 6"
-                        label = "Street Address"
-                        rows={1}
-
-                         >
-                        </Textarea>
-                        <Textarea
-                        className = "textUp7"
-                        id="up7"
-                        label = "City"
-                        rows={1}
-
-                         >
-                        </Textarea>
-                        <Textarea
-                        className = "textUp8"
-                        id="up 8"
-                        label = "State"
-                        rows={1}
-
-                         >
-                        </Textarea>
-                        <Textarea
-                        className = "textUp9"
-                        id="up 9"
-                        label = "Zipcode"
-                        rows={1}
-
-                         >
-                        </Textarea>
-
-
-                        <Button 
-                        className = "buttonCreate"
-                        label = "Create"
-                        variant = "base"
-                        ></Button>
-                        </div>
-                    
-                    </div>
+            > </Textarea>
             
+            <Textarea
+            className = "textUp6"
+            id="box 6"
+            label = "Street Address"
+            rows={1}
+            > </Textarea>
+             
+            <Textarea
+            className = "textUp7"
+            id="up7"
+            label = "City"
+            rows={1}
+            > </Textarea>
+             
+            <Textarea
+            className = "textUp8"
+            id="up 8"
+            label = "State"
+            rows={1}
+            ></Textarea>
+               
+            <Textarea
+            className = "textUp9"
+            id="up 9"
+            label = "Zipcode"
+            rows={1}
+            > </Textarea>
+            
+            <Button 
+            className = "buttonCreate"
+            label = "Create"
+            variant = "base"
+            > Create </Button>                 
+        
+        </div>
+                    
+</div>           
         )
     }
-
 }
 
 export default CreatePackage

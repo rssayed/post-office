@@ -7,10 +7,6 @@
     grid-template-areas: 
     " sp_update sp_update sp_update sp_update sp_update"
     ". . header_update . ."
-
-  
-    
-
 }
 
 .text_grid {
@@ -37,9 +33,7 @@
     text-align:center;
     grid-area:header_update;
     font-size:35px;
-    width: 500px;
-   
-    
+    width: 500px;  
   }
 
 
@@ -49,49 +43,30 @@
     grid-area:text_box1;
     width: 400px;
     height: 100px;
-
-
-
-
   }
 
   .text_box2
   {
-
     margin: auto;
     grid-area:text_box2;
     width: 400px;
     height: 100px;
-
-
-
-
   }
 
   .text_box3
   {
-
-    margin: auto;
+  margin: auto;
     grid-area:text_box3;
     width: 270px;
     height: 100px;
-
-
-
-
   }
 
   .text_box4
   {
-
     margin: auto;
     grid-area:text_box4;
     width: 270px;
     height: 100px;
-
-
-
-
   }
 
   .text_box5
@@ -100,21 +75,14 @@
     grid-area:text_box5;
     width: 270px;
     height: 100px;
-
-
-
-
   }
-
 
   .button_update
   {
-   
     grid-area: button_update;
     background: #0645AE;
     border: #0645AE;
-    color: #ffffff;
-    
+    color: #ffffff; 
     margin: auto;
     width:150px;
     height: 46px;
@@ -125,9 +93,3 @@
   {
     background:darkblue;
   }
- 
- 
-
-
-
- 
