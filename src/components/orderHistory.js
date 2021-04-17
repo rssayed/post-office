@@ -45,7 +45,9 @@ const useStyles = makeStyles({
     }
 });
 
-export default function OrderHistory(){
+
+//passing in props to the orderHistory..
+export default function OrderHistory(props){
     
     const classes = useStyles();
 

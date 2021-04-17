@@ -2,6 +2,8 @@ import React from 'react';
 import Textarea from 'react-rainbow-components/components/Textarea'
 import Button from 'react-rainbow-components/components/Button';
 
+
+
 function login(){
 
     const conatinerStyles = {
@@ -26,6 +28,7 @@ function login(){
         },
     };*/
     
+    //need to use axios..
     function handleSubmit(event)
     {
         event.preventDefault();
@@ -33,6 +36,8 @@ function login(){
             username: this.state.username,
             password: this.state.password
         });
+        console.log(this.state.username)
+        console.log(this.state.password)
     }
 
     return(

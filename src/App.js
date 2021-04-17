@@ -19,18 +19,23 @@ export default class App extends Component {
   constructor() {
     super();
 
+    //user is either logged in or not
     this.state = {
-      loggedInStatus: "NOT_LOGGED_IN",
-      user: {}
+      loggedInStatus: "NOT_LOGGED_IN", 
+      user: {},
+      role: {}
     };
 
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
 
+  //axios uses http requests to see if someone is logged in..
+
+
   checkLoginStatus() {
     axios
-      .get("http://localhost:3001/logged_in", { withCredentials: true })
+      .get("http://localhost:3000/logged_in", { withCredentials: true })
       .then(response => {
         if (
           response.data.logged_in &&
@@ -55,10 +60,14 @@ export default class App extends Component {
       });
   }
 
+
+
+  //sets the state for the login using loginstatus
   componentDidMount() {
     this.checkLoginStatus();
   }
 
+  //logs out
   handleLogout() {
     this.setState({
       loggedInStatus: "NOT_LOGGED_IN",
@@ -66,6 +75,7 @@ export default class App extends Component {
     });
   }
 
+  //log's in the user, receive what ever user data.
   handleLogin(data) {
     this.setState({
       loggedInStatus: "LOGGED_IN",
@@ -73,7 +83,10 @@ export default class App extends Component {
     });
   }
 
+  //any child props should be able to use these functions and..
+  //manipulate some of the data..
   render() {
+    const {state} = this.state;
     return (
       <div className="App">
         <div /* BrowserRouter is used for dynamic web pages 

@@ -8,43 +8,45 @@ import Button from 'react-rainbow-components/components/Button';
 
 class DeletePackage extends React.Component{
     
-    constructor(props)
-    {        
-        super(props);
+    constructor(props) {
+        super(props)
         this.state = {
-            value: "",
-            // Note: think carefully before initializing
-            // state based on props!
-            someInitialValue: this.props.initialValue
-          }
-          this.handleSubmit = this.handleSubmit.bind(this);
-          this.handleChange = this.handleChange.bind(this);   
+          textareaValue: '',
+          savedVar: ''
+        }
+      
+    }
+   
+    
+    handleSubmit(e) {
+        this.setState({ savedVar: this.state.textareaValue}, () => {
+            console.log("                       ");
+            console.log("Printing out this submit.."+ this.state.savedVar);
+            console.log("                       ");
+          });
+    }
+
+    handleChange(e) {
+        this.setState({ textareaValue: e.target.value}, () => {
+            console.log("Printing out this change.."+ e.target.value);
+          });
+        
+
     }
 
     componentDidMount() {
+
+    //thinking about using axios..
     fetch("https://blahblah").then(results => {
     // Do something with the results
     
     })}    
                  
     componentWillUnmount() {
-          
-        
+            
     }
-                  
-    handleSubmit(e){
-        // pass the onclick through the handle submit function.
-        e.preventDefault();
-        console.log('A value was submitted: ' + this.state.value); 
-    }
-          
 
-     handleChange(e){
-            this.setState({value: e.target.value});
-     }
-     // const [count,setCount] = useState(0);
-     
-     render() {
+        render() {
     
         return(
             <div className ="container_delete">
@@ -61,14 +63,14 @@ class DeletePackage extends React.Component{
                 id="tracking_value"
                 label = "Tracking number"
                 rows={1}
-                value = {this.state.value}
-                onChange = {(e) => this.handleChange(e.target.value)}
+                //value = {this.state.textareaValue}
+                onChange={(e) => this.handleChange(e)}
                 > </Textarea>
                 
                 <Button 
                  className = "button_2_delete"
                  label = "Delete"
-                 onClick = {(e) => this.handleSubmit(e.target.value)}
+                 onClick={(e) => this.handleSubmit(e)}
                  variant = "base"
                 >Delete</Button>
 
