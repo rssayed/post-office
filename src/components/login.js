@@ -1,56 +1,83 @@
 import React from 'react';
 import Textarea from 'react-rainbow-components/components/Textarea'
 import Button from 'react-rainbow-components/components/Button';
-
-
-
-function login(){
-
-    const conatinerStyles = {
-        maxWidth: 400,
-        margin: 'auto',
-    }
-
-    const buttonConatinerStyle = {
-        backgroundColor: '#0645AE',
-        borderColor: '#0645AE',
-        color: '#ffffff',
-        margin: 'auto',
-        display:'block'
-    }
-
-    /*const theme = {
-        rainbow: {
-            palette: {
-                brand: '#0645AE',
-                
-            },
-        },
-    };*/
-    
-    //need to use axios..
-    function handleSubmit(event)
-    {
-        event.preventDefault();
-        return this.setState({
-            username: this.state.username,
-            password: this.state.password
-        });
-        console.log(this.state.username)
-        console.log(this.state.password)
-    }
-
-    return(
-        <div className='login' style={conatinerStyles}>
-            <h1 align='center'>SnailMail</h1>
-            <p align='center'>Username</p>
-            <Textarea name='textBox' rows='1' placeholder="scooby@doo.net" style={conatinerStyles} autofocus />
-            <p align='center'>Password</p>
-            <Textarea name='textBox' rows='1' placeholder="Shaggy12345!" style={conatinerStyles} />
-            <br></br>
-            <Button name='loginButton' size='medium' label="Submit" onClick={() => handleSubmit} style={buttonConatinerStyle}></Button>
-        </div>
-    );
+const containerStyles = {
+    maxWidth: 400,
+    margin: 'auto',
 }
 
-export default login;
+const buttoncontainerStyle = {
+    backgroundColor: '#0645AE',
+    borderColor: '#0645AE',
+    color: '#ffffff',
+    margin: 'auto',
+    display:'block'
+}
+
+
+class login extends React.Component{
+    
+    constructor(props) {
+        super(props)
+        this.state = {
+          textUser: '',
+          saveUser: '',
+          textPass: '',
+          savePass: ''
+        }
+      
+    }
+    
+   
+    handleSubmit(e) {
+        e.preventDefault();
+        this.setState({ saveUser: this.state.textUser, savePass: this.state.textPass}, () => {
+            console.log("                       ");
+            console.log("This is the saved username.. " + this.state.saveUser)
+            console.log("This is the saved password.. " + this.state.savePass)
+            console.log("                       ");
+          });
+    }
+
+    handleChange(e) {
+        this.setState({ textUser: e.target.value}, () => {
+            console.log("                       ");
+            console.log("Printing out this user: "+ e.target.value);
+            console.log("                       ");
+          });
+    }
+
+    handleChange2(e) {
+        this.setState({ textPass: e.target.value}, () => {
+            console.log("                       ");
+            console.log("Printing out this pass: "+ e.target.value);
+            console.log("                       ");
+          });
+    }
+
+    componentDidMount() {
+    
+    }    
+  
+    componentWillUnmount() {     
+    
+    }
+    
+    render()
+    {
+        return(
+
+        <div className='containerStyles' style = {containerStyles}>
+            <h1 align='center'>SnailMail</h1>
+            <p align='center'>Username</p>
+            <Textarea name='textBox' rows='1' onChange={(e) => this.handleChange(e)} placeholder="scooby@doo.net" style = {containerStyles}  autofocus />
+            <p align='center'>Password</p>
+            <Textarea name='textBox' rows='1' onChange={(e) => this.handleChange2(e)} placeholder="Shaggy12345!" style = {containerStyles} />
+            <br></br>
+            <Button name='loginButton' size='medium' label="Submit" onClick={(e) => this.handleSubmit(e)} style = {buttoncontainerStyle} ></Button>
+        </div> );
+        
+    }
+}
+    
+export default login
