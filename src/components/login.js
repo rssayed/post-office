@@ -13,7 +13,7 @@ const buttoncontainerStyle = {
     margin: 'auto',
     display:'block'
 }
-
+    const variable = '';
 
 class login extends React.Component{
     
@@ -28,6 +28,16 @@ class login extends React.Component{
       
     }
     
+
+    async authRouteHome(event)
+    {
+
+        
+    }
+
+    
+       
+    
    
     handleSubmit(e) {
         e.preventDefault();
@@ -37,6 +47,9 @@ class login extends React.Component{
             console.log("This is the saved password.. " + this.state.savePass)
             console.log("                       ");
           });
+          
+
+          console.log("This is variable.. " + variable)
     }
 
     handleChange(e) {
@@ -70,12 +83,18 @@ class login extends React.Component{
         <div className='containerStyles' style = {containerStyles}>
             <h1 align='center'>SnailMail</h1>
             <p align='center'>Username</p>
-            <Textarea name='textBox' rows='1' onChange={(e) => this.handleChange(e)} placeholder="scooby@doo.net" style = {containerStyles}  autofocus />
+            <Textarea name='textBox' rows={1} onChange={(e) => this.handleChange(e)} placeholder="scooby@doo.net" style = {containerStyles}  autofocus />
             <p align='center'>Password</p>
-            <Textarea name='textBox' rows='1' onChange={(e) => this.handleChange2(e)} placeholder="Shaggy12345!" style = {containerStyles} />
+            <Textarea name='textBox' rows={1} onChange={(e) => this.handleChange2(e)} placeholder="Shaggy12345!" style = {containerStyles} />
             <br></br>
             <Button name='loginButton' size='medium' label="Submit" onClick={(e) => this.handleSubmit(e)} style = {buttoncontainerStyle} ></Button>
         </div> );
+
+
+        //i need to map everything together still oi vey..
+        variable = this.props.loggedIn
+        
+        //still need to work on it..
         
     }
 }

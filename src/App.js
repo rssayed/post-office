@@ -15,6 +15,7 @@ import UpdatePackage from './components/UpdatePackage';
 import Nav2 from './components/Nav2';
 
 
+
 export default class App extends Component {
   constructor() {
     super();
@@ -35,7 +36,7 @@ export default class App extends Component {
 
   checkLoginStatus() {
     axios
-      .get("http://localhost:3000/logged_in", { withCredentials: true })
+      .get("http://localhost:3000/Home", { withCredentials: true })
       .then(response => {
         if (
           response.data.logged_in &&
