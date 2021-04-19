@@ -59,7 +59,7 @@ def profile():
         email = request.form.get('email')
         customer_password = request.form.get('customer_password')
         cur.execute("""UPDATE customers SET fname=%s, lname=%s, street_address=%s, city=%s, state=%s, zipcode=%s, 
-        email=%s, customer_password=%s WHERE customer_id=%s""", (fname, lname, street_address, city, state, zipcode,
+        email=%s, customer_password=%s WHERE customer.customer_id=%s""", (fname, lname, street_address, city, state, zipcode,
                                                                  email, generate_password_hash(customer_password),
                                                                  customer_id))
         mysql.connection.commit()
@@ -75,10 +75,11 @@ def order_history():
         customer_id = request.form.get('customer_id')
 
         cur.execute(
-            """SELECT package.tracking_id, deliver_to, shipping_date, expected_delivery 
-            FROM package, receiver, orders, customer'
+            """SELECT DISTINCT package.tracking_id, deliver_to, shipping_date, expected_delivery, post_office.facility_id 
+            FROM package, receiver, orders, customer, delivers, post_office
             WHERE tracking_id=%s AND customer_id=%s AND
-            customer.customer_id = orders.customer_id AND orders.tracking_id = package.tracking_id""",
+            customer.customer_id=orders.customer_id AND orders.tracking_id=package.tracking_id AND 
+            delivers.facility_id=post_office.facility_id""",
             (tracking_id, customer_id))
         # This should return all the information we want to display based on the user input
     output = cur.fetchall()
@@ -90,7 +91,7 @@ def tracking_history():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
         tracking_id = request.form.get('tracking_id')
-        cur.execute('SELECT * FROM delivers WHERE tracking_id = %s', (tracking_id,)).fetchone()
+        cur.execute('SELECT * FROM delivers WHERE delivers.tracking_id = %s', (tracking_id,)).fetchone()
         # This should return all the information we want to display based on the user input
     output = cur.fetchall()
     return str(output)
