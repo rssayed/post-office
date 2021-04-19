@@ -109,4 +109,4 @@ class CreatePackage extends React.Component{
     }
 }
 
-export default CreatePackage
+export default CreatePackage;
