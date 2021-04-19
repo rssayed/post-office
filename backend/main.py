@@ -4,6 +4,7 @@ from flask import request
 import mysql.connector
 import json
 import datetime
+import connection
 
 from flask_mysql_connector import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -11,37 +12,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 app.secret_key = 'super secret key'  # lets cookies work so flash() can work
 
-# enter username and password
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_HOST'] = '127.0.0.1'
-app.config['MYSQL_PORT'] = '3306'
-app.config['MYSQL_DATABASE'] = 'post_office'
 mysql = MySQL(app)
-
-# EXAMPLE_SQL = 'SELECT * from post_office.package'
-#
-#
-# # cursor = mysql.connector.cursor()
-#
-# @app.route('/new_cursor')
-# def new_cursor():
-#     # cur = mysql.new_cursor(dictionary=True)
-#     cur = mysql.connection.cursor()
-#     cur.execute(EXAMPLE_SQL)
-#     output = cur.fetchall()
-#
-#     return str(output)
-#
-#
-# @app.route('/connection')
-# def connection():
-#     conn = mysql.connection
-#     cur = conn.cursor()
-#     cur.execute(EXAMPLE_SQL)
-#     output = cur.fetchall()
-#
-#     return str(output)
 
 
 @app.route('/profile', methods=['GET', 'POST'])
@@ -131,7 +102,7 @@ def create_package():
         zipcode = request.form['zipcode']
 
 # not sure if these will be valid as it doesn't fulfill all of the fields for creating each one of these
-        cur.execute("""INSERT INTO package(shipping_date, type, weight, delCoiver_to)
+        cur.execute("""INSERT INTO package(shipping_date, type, weight, deliver_to)
                     VALUES (%s, %s, %s, %s)""", (shipping_date, shipping_type, weight, name))
         cur.execute("""INSERT INTO receiver(name, street_address, city, state, zipcode)
                     VALUES (%s, %s, %s, %s, %s)""", (name, street_address, city, state, zipcode))
@@ -147,17 +118,24 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        customerUsernames = cur.execute("SELECT mobile_number FROM customer")
-        employeeUsernames = cur.execute("SELECT employee_email FROM employee")
+        customerUsernames = cur.execute("SELECT customer_id FROM customer")
+        employeeUsernames = cur.execute("SELECT employee_id FROM employee")
+        managerUsernames = cur.execute("SELECT employee_id FROM employee, post_office WHERE employee.employee_id = post_office.po_manager_eid")
         for i in customerUsernames:
             if username == i:
-                customerPW = cur.execute("SELECT customer_password FROM customer WHERE mobile_number=%s", (username))
+                customerPW = cur.execute("SELECT customer_password FROM customer WHERE customer_id=%s", (username))
+                if password == customerPW:
+                    return redirect('/profile')
+                return ('Incorrect password')
+        for i in managerUsernames:
+            if username == i:
+                customerPW = cur.execute("SELECT employee_password FROM employee WHERE employee_id=%s", (username))
                 if password == customerPW:
                     return redirect('/profile')
                 return ('Incorrect password')
         for i in employeeUsernames:
             if username == i:
-                employeePW = cur.execute("SELECT employee_password FROM employee WHERE employee_email=%s", (username))
+                employeePW = cur.execute("SELECT employee_password FROM employee WHERE employee_id=%s", (username))
                 if password == employeePW:
                     return redirect('/profile')
                 return ('Incorrect password')
@@ -189,11 +167,6 @@ def delete():
     mysql.connection.commit()
     # cur.close() ?
     return render_template('DeletePackage.js')  # replace with actual one
-
-
-# @app.route('/')
-# def home():
-#     return ("hello world") # render_template('home.html') # snailmail homepage here
 
 
 if __name__ == '__main__':
