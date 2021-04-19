@@ -19,29 +19,29 @@ app.config['MYSQL_PORT'] = '3306'
 app.config['MYSQL_DATABASE'] = 'post_office'
 mysql = MySQL(app)
 
-EXAMPLE_SQL = 'SELECT * from post_office.package'
-
-
-# cursor = mysql.connector.cursor()
-
-@app.route('/new_cursor')
-def new_cursor():
-    # cur = mysql.new_cursor(dictionary=True)
-    cur = mysql.connection.cursor()
-    cur.execute(EXAMPLE_SQL)
-    output = cur.fetchall()
-
-    return str(output)
-
-
-@app.route('/connection')
-def connection():
-    conn = mysql.connection
-    cur = conn.cursor()
-    cur.execute(EXAMPLE_SQL)
-    output = cur.fetchall()
-
-    return str(output)
+# EXAMPLE_SQL = 'SELECT * from post_office.package'
+#
+#
+# # cursor = mysql.connector.cursor()
+#
+# @app.route('/new_cursor')
+# def new_cursor():
+#     # cur = mysql.new_cursor(dictionary=True)
+#     cur = mysql.connection.cursor()
+#     cur.execute(EXAMPLE_SQL)
+#     output = cur.fetchall()
+#
+#     return str(output)
+#
+#
+# @app.route('/connection')
+# def connection():
+#     conn = mysql.connection
+#     cur = conn.cursor()
+#     cur.execute(EXAMPLE_SQL)
+#     output = cur.fetchall()
+#
+#     return str(output)
 
 
 @app.route('/profile', methods=['GET', 'POST'])
@@ -131,7 +131,7 @@ def create_package():
         zipcode = request.form['zipcode']
 
 # not sure if these will be valid as it doesn't fulfill all of the fields for creating each one of these
-        cur.execute("""INSERT INTO package(shipping_date, type, weight, deliver_to)
+        cur.execute("""INSERT INTO package(shipping_date, type, weight, delCoiver_to)
                     VALUES (%s, %s, %s, %s)""", (shipping_date, shipping_type, weight, name))
         cur.execute("""INSERT INTO receiver(name, street_address, city, state, zipcode)
                     VALUES (%s, %s, %s, %s, %s)""", (name, street_address, city, state, zipcode))
