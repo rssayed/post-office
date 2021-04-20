@@ -4,8 +4,6 @@ import './tracking_history-styles.css';
 import Button from 'react-rainbow-components/components/Button';
 
 
-
-
 //still need to fix the formatting for this!!
 class Trackinghistory extends React.Component{
     

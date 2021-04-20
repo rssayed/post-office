@@ -15,7 +15,7 @@ app.secret_key = 'super secret key'  # lets cookies work so flash() can work
 mysql = MySQL(app)
 
 
-@app.route('/profile', methods=['GET', 'POST'])
+@app.route('/backend/profile', methods=['GET', 'POST'])
 def profile():
     cur = mysql.connection.cursor()
 
@@ -50,7 +50,7 @@ def profile():
     # return render_template('/profile.js')  # Documentation shows rendering a .html file, not sure if this is correct
 
 
-@app.route('/orderHistory', methods=['GET', 'POST'])
+@app.route('/backend/orderHistory', methods=['GET', 'POST'])
 def order_history():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
@@ -71,7 +71,7 @@ def order_history():
     return jsonify(output)
 
 
-@app.route('/Tracking_history', methods=['GET', 'POST'])
+@app.route('/backend/Tracking_history', methods=['GET', 'POST'])
 def tracking_history():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
@@ -83,7 +83,7 @@ def tracking_history():
     return jsonify(output)
 
 
-@app.route('/Update_Package', methods=['GET', 'POST'])
+@app.route('/backend/Update_Package', methods=['GET', 'POST'])
 def update_package():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
@@ -110,7 +110,7 @@ def update_package():
     # return render_template('/Update_Package.js')
 
 
-@app.route('/CreatePackage', methods=['GET', 'POST'])
+@app.route('/backend/CreatePackage', methods=['GET', 'POST'])
 def create_package():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
@@ -146,7 +146,7 @@ def create_package():
     return render_template('/CreatePackage.js')
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/backend/login', methods=['GET', 'POST'])
 def login():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
@@ -181,7 +181,7 @@ def login():
     return render_template('login.html')  # example template for testing, change later
 
 
-@app.route('/delete', methods=['GET', 'POST'])
+@app.route('/backend/delete', methods=['GET', 'POST'])
 def delete():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
