@@ -1,6 +1,7 @@
 import React from 'react';
 import Textarea from 'react-rainbow-components/components/Textarea'
 import Button from 'react-rainbow-components/components/Button';
+import { useHistory } from 'react-router-dom';
 const containerStyles = {
     maxWidth: 400,
     margin: 'auto',
@@ -15,32 +16,34 @@ const buttoncontainerStyle = {
 }
     const variable = '';
 
-class login extends React.Component{
+export default function Login(){
     
-    constructor(props) {
-        super(props)
+    /*constructor(props) {
+        super(props);
         this.state = {
           textUser: '',
           saveUser: '',
           textPass: '',
           savePass: ''
-        }
+        };
       
-    }
-    
+    };*/
 
-    async authRouteHome(event)
+    const history = useHistory();
+
+    async function authRouteHome(event)
     {
 
         
-    }
+    };
 
-    
-       
-    
+    function validateForm()
+    {
+
+    };
    
-    handleSubmit(e) {
-        e.preventDefault();
+    function handleSubmit(event) {
+        event.preventDefault();
         this.setState({ saveUser: this.state.textUser, savePass: this.state.textPass}, () => {
             console.log("                       ");
             console.log("This is the saved username.. " + this.state.saveUser)
@@ -49,46 +52,65 @@ class login extends React.Component{
           });
           
 
-          console.log("This is variable.. " + variable)
+          console.log("This is variable.. " + variable);
     }
 
-    handleChange(e) {
-        this.setState({ textUser: e.target.value}, () => {
+    function handleChange(event) {
+        this.setState({ textUser: event.target.value}, () => {
             console.log("                       ");
-            console.log("Printing out this user: "+ e.target.value);
+            console.log("Printing out this user: "+ event.target.value);
             console.log("                       ");
           });
     }
 
-    handleChange2(e) {
-        this.setState({ textPass: e.target.value}, () => {
+    function handleChange2(event) {
+        this.setState({ textPass: event.target.value}, () => {
             console.log("                       ");
-            console.log("Printing out this pass: "+ e.target.value);
+            console.log("Printing out this pass: "+ event.target.value);
             console.log("                       ");
           });
     }
 
-    componentDidMount() {
+    /*componentDidMount() {
     
-    }    
+    }
   
     componentWillUnmount() {     
     
-    }
+    }*/
     
-    render()
-    {
+    //render()
+    //{
         return(
 
-        <div className='containerStyles' style = {containerStyles}>
-            <h1 align='center'>SnailMail</h1>
-            <p align='center'>Username</p>
-            <Textarea name='textBox' rows={1} onChange={(e) => this.handleChange(e)} placeholder="scooby@doo.net" style = {containerStyles}  autofocus />
-            <p align='center'>Password</p>
-            <Textarea name='textBox' rows={1} onChange={(e) => this.handleChange2(e)} placeholder="Shaggy12345!" style = {containerStyles} />
-            <br></br>
-            <Button name='loginButton' size='medium' label="Submit" onClick={(e) => this.handleSubmit(e)} style = {buttoncontainerStyle} ></Button>
-        </div> );
+            <div className='containerStyles' style = {containerStyles}>
+                <h1 align='center'>SnailMail</h1>
+                <p align='center'>Username</p>
+                <Textarea name='textBox' 
+                    rows={1} 
+                    onChange={(e) => this.handleChange(e)} 
+                    placeholder="scooby@doo.net" 
+                    style = {containerStyles}  
+                    autofocus 
+                />
+                <p align='center'>
+                    Password
+                </p>
+                <Textarea name='textBox' 
+                    rows={1} 
+                    onChange={(e) => this.handleChange2(e)} 
+                    placeholder="Shaggy12345!" 
+                    style = {containerStyles} 
+                />
+                <br></br>
+                <Button name='loginButton' 
+                    size='medium' 
+                    label="Submit" 
+                    onClick={(e) => this.handleSubmit(e)} 
+                    style = {buttoncontainerStyle} 
+                />
+            </div> 
+        );
 
 
         //i need to map everything together still oi vey..
@@ -96,7 +118,5 @@ class login extends React.Component{
         
         //still need to work on it..
         
-    }
+    //}
 }
-    
-export default login
