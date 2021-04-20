@@ -1,5 +1,4 @@
 import React from 'react';
-
 //import useState from 'react';
 import Textarea from 'react-rainbow-components/components/Textarea';
 import './deletepage-styles.css';
@@ -11,26 +10,36 @@ class DeletePackage extends React.Component{
     constructor(props) {
         super(props)
         this.state = {
-          tracking_value: ''
+          tracking_value: ""
         }
-      
+        this.onSubmit= this.onSubmit.bind(this);
     }
    
-    
-    onSubmit(e) {
-        this.setState({ savedVar: this.state.textareaValue}, () => {
+    validateForm()
+    {
+        return this.state.tracking_value != null;
+    }
+
+    onSubmit(event) {
+        /*this.setState({ savedVar: this.state.textareaValue}, () => {
             console.log("                       ");
             console.log("Printing out this submit.."+ this.state.savedVar);
             console.log("                       ");
-          });
-    }
-
-    onChange(e) {
-        this.setState({ textareaValue: e.target.value}, () => {
-            console.log("Printing out this change.."+ e.target.value);
-          });
-        
-
+          });*/
+          if(this.validateForm)
+          {
+            event.preventDefault();
+            const state= this.setState;
+            this.state.tracking_value= event.tracking_value;
+            this.setState(state);
+            /*backend axios code for HTTP request*/
+            
+            console.log("this.state.tracking_value");
+            alert("Delivery deleted");
+          }
+          else{
+              alert("Tracking Number missing, please enter tracking number for delivery");
+          }
     }
 
     /*componentDidMount() {
@@ -45,26 +54,25 @@ class DeletePackage extends React.Component{
             
     }*/
 
-        render() {
-    
+    render() {
         return(
             <form className ="container_delete">
-                <h1 className = "header_delete" align='center'>Delete</h1>
+                <h1 className = "header_delete" align='center'>Delete Package</h1>
            
                 <Textarea
                 className = "delete_box_delete"
+                type= 'tracking_value'
+                value = {this.state.tracking_value}
+                onChange= {e => this.setState({tracking_value: e.target.value})}
                 id="tracking_value"
-                label = "Tracking number"
+                label = "Tracking Number"
                 rows={1}
-                value = {this.state.textareaValue}
-                onChange={(e) => this.handleChange(e)}
                 />
-                
-                <Button className = "button_2_delete" label = "Delete" onClick={(e) => this.handleSubmit(e)} variant = "base">Delete</Button>
+ 
+                <Button className="button_2_delete" label="Delete" disabled={!this.validateForm()} onClick={this.onSubmit} variant = "base">Delete</Button>
             </form>
         )
     }
-
 }
 
-export default DeletePackage
+export default DeletePackage;

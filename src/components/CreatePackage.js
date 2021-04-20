@@ -3,6 +3,7 @@ import Textarea from 'react-rainbow-components/components/Textarea';
 import './createpackage-styles.css';
 import Button from 'react-rainbow-components/components/Button';
 
+
 class CreatePackage extends React.Component{
     
     constructor(props)
@@ -20,11 +21,11 @@ class CreatePackage extends React.Component{
             state: "",
             zipcode: ""
         };
-        this.onSubmit= this.onSubmit.bind(this)   
+        this.onSubmit= this.onSubmit.bind(this);  
     }
 
     validateForm() {
-        return this.state.date != 0 && this.state.weight > 0 && this.state.weight < 300 && this.state.customer_id > 0 && this.name.length > 2 && this.state.address.length > 0 && this.state.city.length > 0 && this.state.zipcode.length > 0 && this.state.zipcode.length < 9 && this.state.gallons !== 0;
+        return this.state.date != 0 && this.state.weight > 0 && this.state.weight < 300 && this.state.customer_id > 0 && this.state.name.length > 2 && this.state.address.length > 0 && this.state.city.length > 0 && this.state.zipcode.length > 0 && this.state.zipcode.length < 9 && this.state.gallons !== 0;
     }
 
     onSubmit(event)
@@ -140,7 +141,7 @@ class CreatePackage extends React.Component{
             label = "Zipcode"
             rows={1}
             />
-            <Button className = "buttonCreate" label = "Create" variant = "base" disabled={!this.validateForm} onClick={this.onSubmit}>Create </Button>                 
+            <Button className= "buttonCreate" label= "Create" variant= "base" disabled={!this.validateForm()} onClick={this.onSubmit}>Create</Button>                 
         </form>                
     </div>           
         )
