@@ -103,14 +103,12 @@ export default function Login(){
                     style = {containerStyles}  
                     autofocus 
                 />
-                <p align='center'>
-                    Password
-                </p>
+                <p align='center'>Password</p>
                 <Textarea name='textBox' 
                     rows={1} 
                     type= 'password'
                     value= {password}
-                    onChange={(e) => e.setPassword(e.target.value)} 
+                    onChange={(e) => setPassword(e.target.value)} 
                     placeholder="Shaggy12345!" 
                     style = {containerStyles} 
                 />
