@@ -11,14 +11,13 @@ class DeletePackage extends React.Component{
     constructor(props) {
         super(props)
         this.state = {
-          textareaValue: '',
-          savedVar: ''
+          tracking_value: ''
         }
       
     }
    
     
-    handleSubmit(e) {
+    onSubmit(e) {
         this.setState({ savedVar: this.state.textareaValue}, () => {
             console.log("                       ");
             console.log("Printing out this submit.."+ this.state.savedVar);
@@ -26,7 +25,7 @@ class DeletePackage extends React.Component{
           });
     }
 
-    handleChange(e) {
+    onChange(e) {
         this.setState({ textareaValue: e.target.value}, () => {
             console.log("Printing out this change.."+ e.target.value);
           });
@@ -34,7 +33,7 @@ class DeletePackage extends React.Component{
 
     }
 
-    componentDidMount() {
+    /*componentDidMount() {
 
     //thinking about using axios..
     fetch("https://blahblah").then(results => {
@@ -44,37 +43,25 @@ class DeletePackage extends React.Component{
                  
     componentWillUnmount() {
             
-    }
+    }*/
 
         render() {
     
         return(
-            <div className ="container_delete">
-              
-                <h1 
-                    className = "header_delete"
-                    align='center'>
-                    Delete
-                </h1>
-               
+            <form className ="container_delete">
+                <h1 className = "header_delete" align='center'>Delete</h1>
            
                 <Textarea
                 className = "delete_box_delete"
                 id="tracking_value"
                 label = "Tracking number"
                 rows={1}
-                //value = {this.state.textareaValue}
+                value = {this.state.textareaValue}
                 onChange={(e) => this.handleChange(e)}
-                > </Textarea>
+                />
                 
-                <Button 
-                 className = "button_2_delete"
-                 label = "Delete"
-                 onClick={(e) => this.handleSubmit(e)}
-                 variant = "base"
-                >Delete</Button>
-
-            </div>
+                <Button className = "button_2_delete" label = "Delete" onClick={(e) => this.handleSubmit(e)} variant = "base">Delete</Button>
+            </form>
         )
     }
 

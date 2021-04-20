@@ -111,7 +111,7 @@ export default class App extends Component {
         <BrowserRouter> 
           <Switch>   
             
-          <Route
+        {/*  <Route
               exact
               path ="/" >
               <Redirect to="/Login" />
@@ -129,9 +129,9 @@ export default class App extends Component {
                   loggedInStatus={this.state.loggedInStatus}
                 />
               )}
-            />
+              />*/}
             <Navigation />
-          {/*  <Route
+            <Route
               exact
               path={"/Home"}
               render={props => (
@@ -140,8 +140,8 @@ export default class App extends Component {
                   loggedInStatus={this.state.loggedInStatus}
                 />
               )}
-            />*/}
-            <Route
+            />
+          {/*  <Route
               exact
               path={"/Delete"}
               render={props => (
@@ -170,16 +170,16 @@ export default class App extends Component {
                   loggedInStatus={this.state.loggedInStatus}
                 />
               )}
-            />
+            />*/}
           <Route
               exact
               path={"/CreatePackage"}
-              render={props => (
+              /*render={props => (
                 <CreatePackage
                   {...props}
                   loggedInStatus={this.state.loggedInStatus}
                 />
-              )}
+              )}*/
             /> 
           <Route
               exact

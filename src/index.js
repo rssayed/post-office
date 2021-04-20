@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Backup_App from './backup_app';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Backup_App />      {/*App, using backup to test my forms*/}
   </React.StrictMode>,
   document.getElementById('root')
 );

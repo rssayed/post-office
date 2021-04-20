@@ -8,9 +8,8 @@ import Navigation from './components/Navigation';
 import OrderHistory from './components/orderHistory';
 import CreatePackage from './components/CreatePackage';
 import UpdatePackage from './components/UpdatePackage';
-import Nav2 from './components/Nav2';
 
-function App() {
+function Backup_App() {
   return (
     <div className="App">
       <Router>
@@ -47,4 +46,4 @@ function App() {
   );
 }
 
-export default App;
+export default Backup_App;
