@@ -17,17 +17,6 @@ const buttoncontainerStyle = {
 }
 
 export default function Login(){
-    
-    /*constructor(props) {
-        super(props);
-        this.state = {
-          textUser: '',
-          saveUser: '',
-          textPass: '',
-          savePass: ''
-        };
-      
-    };*/
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -38,23 +27,24 @@ export default function Login(){
     {
 
         
-    };
+    }
 
     function validateForm()
     {
         return username.length > 0 && password.length > 0;
-    };
+    }
    
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         if (validateForm)
         {
             event.preventDefault();
-        this.setState({ saveUser: this.state.textUser, savePass: this.state.textPass}, () => {
+        /*this.setState({ saveUser: this.state.textUser, savePass: this.state.textPass}, () => {
             console.log("                       ");
             console.log("This is the saved username.. " + this.state.saveUser)
             console.log("This is the saved password.. " + this.state.savePass)
             console.log("                       ");
-          });
+          });*/
+          history.push('/track');       //what page to redirect to after login
         }
         else
         {
@@ -117,7 +107,7 @@ export default function Login(){
                     size='medium' 
                     label="Submit" 
                     disabled= {!validateForm()}
-                    onClick={(e) => this.handleSubmit(e)} 
+                    onClick={(e) => handleSubmit(e)} 
                     style = {buttoncontainerStyle} 
                 />
             </div> 

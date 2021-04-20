@@ -8,7 +8,7 @@ import Login from './components/login';
 import DeletePackage from './components/DeletePackage';
 import Profile from './components/profile';
 import Trackinghistory from './components/Trackinghistory';
-//import Navigation from './components/Navigation';
+import Navigation from './components/Navigation';
 import OrderHistory from './components/orderHistory';
 import CreatePackage from './components/CreatePackage';
 import UpdatePackage from './components/UpdatePackage';
@@ -130,8 +130,8 @@ export default class App extends Component {
                 />
               )}
             />
-            
-            <Route
+            <Navigation />
+          {/*  <Route
               exact
               path={"/Home"}
               render={props => (
@@ -140,7 +140,7 @@ export default class App extends Component {
                   loggedInStatus={this.state.loggedInStatus}
                 />
               )}
-            />
+            />*/}
             <Route
               exact
               path={"/Delete"}
