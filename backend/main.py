@@ -4,7 +4,7 @@ from flask import request
 import mysql.connector
 import json
 import datetime
-import connection
+import backend.connection
 
 from flask_mysql_connector import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -38,13 +38,14 @@ def profile():
         zipcode = request.get_json()['zipcode']
         email = request.get_json()['email']
         customer_password = request.get_json()['customer_password']
-        profile_query = cur.execute("""UPDATE customers SET fname=%s, lname=%s, street_address=%s, city=%s, state=%s, zipcode=%s, 
+        cur.execute("""UPDATE customers SET fname=%s, lname=%s, street_address=%s, city=%s, state=%s, zipcode=%s, 
         email=%s, customer_password=%s WHERE customer.customer_id=%s""",
-                    (fname, lname, street_address, city, state, zipcode,
-                     email, generate_password_hash(customer_password),
-                     customer_id))
+                                    (fname, lname, street_address, city, state, zipcode,
+                                     email, generate_password_hash(customer_password),
+                                     customer_id))
         mysql.connection.commit()
 
+    profile_query = cur.fetchall()
     return jsonify(profile_query)
     # return render_template('/profile.js')  # Documentation shows rendering a .html file, not sure if this is correct
 
@@ -97,14 +98,16 @@ def update_package():
         time_out = request.get_json()['time_out']
         delivery_status = request.get_json()['is_delivered']
 
-        update_query = cur.execute("""UPDATE delivers 
+        cur.execute("""UPDATE delivers 
                         SET time_in=%s, time_out=%s, is_delivered=%s
                         WHERE package.tracking_id=%s AND post_office.facility_id=%s AND 
                         orders.tracking_id=package.tracking_id AND orders.customer_id=customer.customer_id""",
-                                   (time_in, time_out, delivery_status, tracking_id, post_office_id))
+                    (time_in, time_out, delivery_status, tracking_id, post_office_id))
         mysql.connection.commit()
+
+    update_query = cur.fetchall()
     return jsonify(update_query)
-    #return render_template('/Update_Package.js')
+    # return render_template('/Update_Package.js')
 
 
 @app.route('/CreatePackage', methods=['GET', 'POST'])
@@ -139,7 +142,7 @@ def create_package():
                     VALUES (customer_id)""", customer_id)
         mysql.connection.commit()
 
-        #not sure how to return these multiple queries just yet
+        # not sure how to return these multiple queries just yet
     return render_template('/CreatePackage.js')
 
 
@@ -202,7 +205,7 @@ def delete():
     mysql.connection.commit()
     # cur.close() ?
     return jsonify(output)
-    #return render_template('DeletePackage.js')  # replace with actual one
+    # return render_template('DeletePackage.js')  # replace with actual one
 
 
 if __name__ == '__main__':
