@@ -1,16 +1,23 @@
 from flask import Flask, render_template, flash, redirect, url_for
 from flask import jsonify
 from flask import request
-import mysql.connector
+#import mysql.connector
 import json
 import datetime
-import backend.connection
+#import connection
+from flask_mysqldb import MySQL
 
-from flask_mysql_connector import MySQL
+#from flask_mysql_connector import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.secret_key = 'super secret key'  # lets cookies work so flash() can work
+
+app.config['MYSQL_DB'] = 'post_office'
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_PORT'] = 3306
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'meow10!'
 
 mysql = MySQL(app)
 
@@ -77,7 +84,7 @@ def tracking_history():
     if request.method == 'POST':
         # tracking_id = request.form.get('tracking_id')
         tracking_id = request.get_json()['tracking_id']
-        cur.execute('SELECT * FROM delivers WHERE delivers.tracking_id = %s', (tracking_id,)).fetchone()
+        cur.execute('''SELECT * FROM delivers WHERE delivers.tracking_id = %s''', (tracking_id,)).fetchone()
         # This should return all the information we want to display based on the user input
     output = cur.fetchall()
     return jsonify(output)

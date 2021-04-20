@@ -23,20 +23,33 @@ class Trackinghistory extends React.Component{
     
     onSubmit(event) 
     {
-          if(this.validateForm)
-          {
+          //if(this.validateForm)
+          //{
             event.preventDefault();
-            const state= this.setState;
-            this.state.tracking_value= event.tracking_value;
-            this.setState(state);
+            //const form = event.target;
+            const data = new FormData();
+    
+            for (const key in data) {
+                data.append(key, data[key])
+                console.log("key:", key, "data[key]", data[key])
+            }
+            //data.append('tracking_id', form.value);
+
+            fetch('http://localhost:5000/backend/Tracking_history', {
+            method: 'POST',
+            body: data,
+            });
+            //const state= this.setState;
+            // this.state.tracking_value= event.tracking_value;
+            // this.setState(state);
             /*backend axios code for HTTP request*/
-            
-            console.log("this.state.tracking_value");
+            //
+            //console.log("this.state.tracking_value");
             alert("Tracking Successful!");
-          }
-          else{
+         // }
+          //else{
               alert("Tracking Number missing, please enter tracking number for delivery");
-          }
+          //}
     }
     
     /*handleClick()
@@ -52,17 +65,19 @@ class Trackinghistory extends React.Component{
     render() {
     
         return(
-            <form className ="container_track">  
+            <form className ="container_track" >  
                 <h1 className = "header_track" align='center'>Tracking History</h1>
                 
-                <Textarea
+                {/*Textarea*/}
+                <input                          
                     className = "delete_box_track"
-                    type= 'tracking_value'
+                    type= 'text'
                     value = {this.state.tracking_value}
                     onChange= {e => this.setState({tracking_value: e.target.value})}
                     id="tracking_value"
                     label = "Tracking Number"
                     rows={1}
+                    required
                 />
                 
                 <Button className = "button_2_track" label = "Track" disabled={!this.validateForm()} onClick = {this.onSubmit} variant = "base"></Button>
@@ -71,4 +86,4 @@ class Trackinghistory extends React.Component{
     }
 }
 
-export default Trackinghistory
+export default Trackinghistory;
