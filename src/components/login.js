@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Textarea from 'react-rainbow-components/components/Textarea'
 import Button from 'react-rainbow-components/components/Button';
 import { useHistory } from 'react-router-dom';
+
 const containerStyles = {
     maxWidth: 400,
     margin: 'auto',
@@ -14,7 +15,6 @@ const buttoncontainerStyle = {
     margin: 'auto',
     display:'block'
 }
-    const variable = '';
 
 export default function Login(){
     
@@ -29,6 +29,9 @@ export default function Login(){
       
     };*/
 
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
     const history = useHistory();
 
     async function authRouteHome(event)
@@ -39,23 +42,28 @@ export default function Login(){
 
     function validateForm()
     {
-
+        return username.length > 0 && password.length > 0;
     };
    
     function handleSubmit(event) {
-        event.preventDefault();
+        if (validateForm)
+        {
+            event.preventDefault();
         this.setState({ saveUser: this.state.textUser, savePass: this.state.textPass}, () => {
             console.log("                       ");
             console.log("This is the saved username.. " + this.state.saveUser)
             console.log("This is the saved password.. " + this.state.savePass)
             console.log("                       ");
           });
-          
-
-          console.log("This is variable.. " + variable);
+        }
+        else
+        {
+            alert('Username or Password is incorrect');
+        }
+        
     }
 
-    function handleChange(event) {
+    /*function handleChange(event) {
         this.setState({ textUser: event.target.value}, () => {
             console.log("                       ");
             console.log("Printing out this user: "+ event.target.value);
@@ -71,7 +79,7 @@ export default function Login(){
           });
     }
 
-    /*componentDidMount() {
+    componentDidMount() {
     
     }
   
@@ -88,7 +96,9 @@ export default function Login(){
                 <p align='center'>Username</p>
                 <Textarea name='textBox' 
                     rows={1} 
-                    onChange={(e) => this.handleChange(e)} 
+                    type= 'username'
+                    value= {username}
+                    onChange={(e) => setUsername(e.target.value)} 
                     placeholder="scooby@doo.net" 
                     style = {containerStyles}  
                     autofocus 
@@ -98,7 +108,9 @@ export default function Login(){
                 </p>
                 <Textarea name='textBox' 
                     rows={1} 
-                    onChange={(e) => this.handleChange2(e)} 
+                    type= 'password'
+                    value= {password}
+                    onChange={(e) => e.setPassword(e.target.value)} 
                     placeholder="Shaggy12345!" 
                     style = {containerStyles} 
                 />
@@ -106,6 +118,7 @@ export default function Login(){
                 <Button name='loginButton' 
                     size='medium' 
                     label="Submit" 
+                    disabled= {!validateForm()}
                     onClick={(e) => this.handleSubmit(e)} 
                     style = {buttoncontainerStyle} 
                 />
@@ -114,7 +127,7 @@ export default function Login(){
 
 
         //i need to map everything together still oi vey..
-        variable = this.props.loggedIn
+        //variable = this.props.loggedIn
         
         //still need to work on it..
         
