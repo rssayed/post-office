@@ -1,26 +1,35 @@
 from flask import Flask, render_template, flash, redirect, url_for
 from flask import jsonify
 from flask import request
-#import mysql.connector
 import json
 import datetime
-#import connection
+import backend.connection
 from flask_mysqldb import MySQL
-
-#from flask_mysql_connector import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
+import yaml
 
 app = Flask(__name__)
-app.secret_key = 'super secret key'  # lets cookies work so flash() can work
 
-app.config['MYSQL_DB'] = 'post_office'
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_PORT'] = 3306
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '#####'
+# app.config['MYSQL_DB'] = 'mainschema'
+# app.config['MYSQL_HOST'] = 'localhost'
+# app.config['MYSQL_PORT'] = 3306
+# app.config['MYSQL_USER'] = 'root'
+# app.config['MYSQL_PASSWORD'] = 'password'
+
+# app.config['MYSQL_DB'] = 'aws-snailmail'
+# app.config['MYSQL_HOST'] = 'aws-snailmail.c2s7bdbtbg0f.us-east-2.rds.amazonaws.com'
+# app.config['MYSQL_PORT'] = 3306
+# app.config['MYSQL_USER'] = 'admin'
+# app.config['MYSQL_PASSWORD'] = 'Heartless1234'
+
+db = yaml.load(open('db.yaml'))
+app.config['MYSQL_DB'] = db['mysql_db']
+app.config['MYSQL_HOST'] = db['mysql_host']
+app.config['MYSQL_PORT'] = db['mysql_port']
+app.config['MYSQL_USER'] = db['mysql_user']
+app.config['MYSQL_PASSWORD'] = db['mysql_password']
 
 mysql = MySQL(app)
-
 
 @app.route('/backend/profile', methods=['GET', 'POST'])
 def profile():
@@ -45,8 +54,8 @@ def profile():
         zipcode = request.get_json()['zipcode']
         email = request.get_json()['email']
         customer_password = request.get_json()['customer_password']
-        cur.execute("""UPDATE customers SET fname=%s, lname=%s, street_address=%s, city=%s, state=%s, zipcode=%s, 
-        email=%s, customer_password=%s WHERE customer.customer_id=%s""",
+        cur.execute('''UPDATE customers SET fname=%s, lname=%s, street_address=%s, city=%s, state=%s, zipcode=%s, 
+        email=%s, customer_password=%s WHERE customer.customer_id=%s''',
                                     (fname, lname, street_address, city, state, zipcode,
                                      email, generate_password_hash(customer_password),
                                      customer_id))
@@ -67,11 +76,11 @@ def order_history():
         customer_id = request.get_json()['customer_id']
 
         cur.execute(
-            """SELECT DISTINCT package.tracking_id, deliver_to, shipping_date, expected_delivery, post_office.facility_id 
+            '''SELECT DISTINCT package.tracking_id, deliver_to, shipping_date, expected_delivery, post_office.facility_id 
             FROM package, receiver, orders, customer, delivers, post_office
             WHERE tracking_id=%s AND customer_id=%s AND
             customer.customer_id=orders.customer_id AND orders.tracking_id=package.tracking_id AND 
-            delivers.facility_id=post_office.facility_id""",
+            delivers.facility_id=post_office.facility_id''',
             (tracking_id, customer_id))
         # This should return all the information we want to display based on the user input
     output = cur.fetchall()
@@ -105,10 +114,10 @@ def update_package():
         time_out = request.get_json()['time_out']
         delivery_status = request.get_json()['is_delivered']
 
-        cur.execute("""UPDATE delivers 
+        cur.execute('''UPDATE delivers 
                         SET time_in=%s, time_out=%s, is_delivered=%s
                         WHERE package.tracking_id=%s AND post_office.facility_id=%s AND 
-                        orders.tracking_id=package.tracking_id AND orders.customer_id=customer.customer_id""",
+                        orders.tracking_id=package.tracking_id AND orders.customer_id=customer.customer_id''',
                     (time_in, time_out, delivery_status, tracking_id, post_office_id))
         mysql.connection.commit()
 
@@ -141,12 +150,12 @@ def create_package():
         zipcode = request.get_json()['zipcode']
 
         # not sure if these will be valid as it doesn't fulfill all of the fields for creating each one of these
-        cur.execute("""INSERT INTO package(shipping_date, type, weight, deliver_to)
-                    VALUES (%s, %s, %s, %s)""", (shipping_date, shipping_type, weight, name))
-        cur.execute("""INSERT INTO receiver(name, street_address, city, state, zipcode)
-                    VALUES (%s, %s, %s, %s, %s)""", (name, street_address, city, state, zipcode))
-        cur.execute("""INSERT INTO orders(customer_id)
-                    VALUES (customer_id)""", customer_id)
+        cur.execute('''INSERT INTO package(shipping_date, type, weight, deliver_to)
+                    VALUES (%s, %s, %s, %s)''', (shipping_date, shipping_type, weight, name))
+        cur.execute('''INSERT INTO receiver(name, street_address, city, state, zipcode)
+                    VALUES (%s, %s, %s, %s, %s)''', (name, street_address, city, state, zipcode))
+        cur.execute('''INSERT INTO orders(customer_id)
+                    VALUES (customer_id)''', customer_id)
         mysql.connection.commit()
 
         # not sure how to return these multiple queries just yet
@@ -159,61 +168,64 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        customerUsernames = cur.execute("SELECT customer_id FROM customer")
-        employeeUsernames = cur.execute("SELECT employee_id FROM employee")
-        managerUsernames = cur.execute(
-            "SELECT employee_id FROM employee, post_office WHERE employee.employee_id = post_office.po_manager_eid")
+        customerUsernames = cur.execute('''SELECT customer_id FROM customer''')
+        employeeUsernames = cur.execute('''SELECT employee_id FROM employee''')
+        managerUsernames = cur.execute('''SELECT employee_id FROM employee, post_office WHERE employee.employee_id = post_office.po_manager_eid''')
         for i in customerUsernames:
             if username == i:
-                customerPW = cur.execute("SELECT customer_password FROM customer WHERE customer_id=%s", (username))
+                customerPW = cur.execute('''SELECT customer_password FROM customer WHERE customer_id=%s''', (username))
                 if password == customerPW:
                     return redirect('/profile')
                 return ('Incorrect password')
         for i in managerUsernames:
             if username == i:
-                customerPW = cur.execute("SELECT employee_password FROM employee WHERE employee_id=%s", (username))
+                customerPW = cur.execute('''SELECT employee_password FROM employee WHERE employee_id=%s''', (username))
                 if password == customerPW:
                     return redirect('/profile')
                 return ('Incorrect password')
         for i in employeeUsernames:
             if username == i:
-                employeePW = cur.execute("SELECT employee_password FROM employee WHERE employee_id=%s", (username))
+                employeePW = cur.execute('''SELECT employee_password FROM employee WHERE employee_id=%s''', (username))
                 if password == employeePW:
                     return redirect('/profile')
                 return ('Incorrect password')
         return ("login again")
-
-    mysql.connection.commit()
-    # cur.close() ?
-    return render_template('login.html')  # example template for testing, change later
 
 
 @app.route('/backend/delete', methods=['GET', 'POST'])
 def delete():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
-        # tracking_id = request.form['tracking_number']
+        tracking_id = request.form['tracking_number']
         tracking_id = request.get_json()['tracking_id']
-        orders = cur.execute("SELECT tracking_id FROM orders")
+        orders = cur.execute('''SELECT tracking_id FROM orders''')
         for i in orders:
             if tracking_id == i:
-                cur.execute("DELETE FROM package WHERE tracking_id=%s", (tracking_id))
+                cur.execute('''DELETE FROM package WHERE tracking_id=%s''', (tracking_id))
+                mysql.connection.commit()
                 return ('Sucessfully deleted package')
-                # flash('Sucessfully deleted package')
-                # return render_template('delete.html')
             else:
                 return ('Package not found')
-                # flash('Package not found')
-                # return render_template('delete.html')
         return ('tracking id not found')
-
+    # return('working')
     output = cur.fetchall()
-
-    mysql.connection.commit()
-    # cur.close() ?
     return jsonify(output)
-    # return render_template('DeletePackage.js')  # replace with actual one
 
+@app.route('/')
+def home():
+    # cur = mysql.connection.cursor() # <<<<<< testing for mysql connection
+    # cur.execute('''CREATE TABLE test (id INTEGER, name VARCHAR(20))''')
+    # cur.execute('''DROP TABLE test''')
+    # cur.execute('''INSERT INTO test VALUES (1, 'dayson')''')
+    # cur.execute('''INSERT INTO test VALUES (2, 'patrick')''')
+    # mysql.connection.commit()
+    # cur.execute('''select * from test''')
+    # output = cur.fetchall()
+    # print(output)
+    # return str(output)
+    # return 'Done!'
+
+    return 'working'
 
 if __name__ == '__main__':
     app.run(debug=True)
