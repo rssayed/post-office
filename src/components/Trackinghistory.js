@@ -13,10 +13,35 @@ class Trackinghistory extends React.Component{
     {
         super(props);
         this.state = {  //initialize state properties to empty strings
-            input: ""
-        };
+            tracking_value: ""
+        }
+        this.onSubmit= this.onSubmit.bind(this);
+    }
         
-        function handleClick()
+    validateForm()
+    {
+        return this.state.tracking_value != null;
+    }
+    
+    onSubmit(event) 
+    {
+          if(this.validateForm)
+          {
+            event.preventDefault();
+            const state= this.setState;
+            this.state.tracking_value= event.tracking_value;
+            this.setState(state);
+            /*backend axios code for HTTP request*/
+            
+            console.log("this.state.tracking_value");
+            alert("Tracking Successful!");
+          }
+          else{
+              alert("Tracking Number missing, please enter tracking number for delivery");
+          }
+    }
+    
+    /*handleClick()
         { 
             this.setState(state => {
                 var inputVal = document.getElementById("tracking_value").value;
@@ -24,26 +49,26 @@ class Trackinghistory extends React.Component{
             })
             console.log(this.state.input)
         }
-    }
+    }*/
 
     render() {
     
         return(
-            <div className ="container_track">  
+            <form className ="container_track">  
                 <h1 className = "header_track" align='center'>Tracking History</h1>
+                
                 <Textarea
-                        className = "delete_box_track"
-                        id="tracking_value"
-                        label = "Tracking number"
-                        rows={1}
+                    className = "delete_box_track"
+                    type= 'tracking_value'
+                    value = {this.state.tracking_value}
+                    onChange= {e => this.setState({tracking_value: e.target.value})}
+                    id="tracking_value"
+                    label = "Tracking Number"
+                    rows={1}
                 />
-                <Button 
-                    className = "button_2_track"
-                    label = "Track"
-                     //   onClick = {() => this.setState({ input: document.getElementById("tracking_value").value})}
-                    variant = "base"                    
-                />
-            </div>
+                
+                <Button className = "button_2_track" label = "Track" disabled={!this.validateForm()} onClick = {this.onSubmit} variant = "base"></Button>
+            </form>
         )
     }
 }
