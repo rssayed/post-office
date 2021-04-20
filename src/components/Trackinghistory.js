@@ -69,7 +69,7 @@ class Trackinghistory extends React.Component{
                 <h1 className = "header_track" align='center'>Tracking History</h1>
                 
                 {/*Textarea*/}
-                <input                          
+                <Textarea                          
                     className = "delete_box_track"
                     type= 'text'
                     value = {this.state.tracking_value}
