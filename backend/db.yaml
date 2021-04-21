@@ -1,5 +1,0 @@
-mysql_host: 'aws-snailmail.c2s7bdbtbg0f.us-east-2.rds.amazonaws.com'
-mysql_port: '3306'
-mysql_user: 'admin'
-mysql_password: 'Heartless1234'
-mysql_db: 'aws-snailmail'
