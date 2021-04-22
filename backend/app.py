@@ -3,7 +3,6 @@ from flask import jsonify
 from flask import request
 import json
 import datetime
-import backend.connection
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 import yaml
@@ -93,7 +92,10 @@ def tracking_history():
     if request.method == 'POST':
         # tracking_id = request.form.get('tracking_id')
         tracking_id = request.get_json()['tracking_id']
-        cur.execute('''SELECT * FROM delivers WHERE delivers.tracking_id = %s''', (tracking_id,)).fetchone()
+        cur.execute('''SELECT DISTINCT delivers.tracking_id, delivers.time_in, delivers.time_out, delivers.is_delivered
+        post_office.street_address, post_office.city, post_office.state, post_office.zipcode
+        FROM post_office, delivers
+        WHERE delivers.tracking_id=%s AND delivers.facility_id=post_office.facility_id''', (tracking_id,)).fetchone()
         # This should return all the information we want to display based on the user input
     output = cur.fetchall()
     return jsonify(output)
@@ -114,10 +116,8 @@ def update_package():
         time_out = request.get_json()['time_out']
         delivery_status = request.get_json()['is_delivered']
 
-        cur.execute('''UPDATE delivers 
-                        SET time_in=%s, time_out=%s, is_delivered=%s
-                        WHERE package.tracking_id=%s AND post_office.facility_id=%s AND 
-                        orders.tracking_id=package.tracking_id AND orders.customer_id=customer.customer_id''',
+        cur.execute('''INSERT INTO delivers
+                        VALUES(%s,%s,%s,%s,%s)''',
                     (time_in, time_out, delivery_status, tracking_id, post_office_id))
         mysql.connection.commit()
 
