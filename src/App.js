@@ -6,12 +6,13 @@ import Home from './components/Home';
 //import { BrowserRouter as Router} from "react-router-dom";
 import Login from './components/login';
 import DeletePackage from './components/DeletePackage';
-import Profile from './components/profile';
+import profile from './components/profile';
 import Trackinghistory from './components/Trackinghistory';
 import Navigation from './components/Navigation';
 import OrderHistory from './components/orderHistory';
 import CreatePackage from './components/CreatePackage';
 import UpdatePackage from './components/UpdatePackage';
+import PrivateRouter from './config/PrivateRoutes';
 //import Nav2 from './components/Nav2';
 
 
