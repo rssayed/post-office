@@ -3,7 +3,8 @@ import Textarea from 'react-rainbow-components/components/Textarea';
 import './createpackage-styles.css';
 import Button from 'react-rainbow-components/components/Button';
 
-
+//If you don’t use it in render(), 
+//it shouldn’t be in the state. For example, you can put timer IDs directly on the instanc
 class CreatePackage extends React.Component{
     
     constructor(props)
