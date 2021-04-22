@@ -1,5 +1,6 @@
 
 import Roles from './Roles'
+
 // components we are using
 import Home from '../components/Home';
 import login from '../components/login'
@@ -8,8 +9,12 @@ import DeletePackage from '../components/DeletePackage'
 import orderHistory from '../components/orderHistory'
 import Trackinghistory from '../components/Trackinghistory'
 import UpdatePackage from '../components/UpdatePackage'
-import Profile from '../components/Profile'
+import Profile from '../components/profile'
 
+
+
+//this whole thing is a private area containing components with
+//certain permissions tied to the role.js..
 
 export default [
  {
