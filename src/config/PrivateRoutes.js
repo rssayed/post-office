@@ -23,7 +23,6 @@ export default [
   path: '/CreatePackage',
   title: 'Create',
   permission: [
-    Roles.User,
     Roles.Manager,
     Roles.Worker,
      ],
@@ -55,7 +54,8 @@ export default [
   title: 'Order History',
   permission: [
    Roles.User,
-   Roles.Manager,
+   Roles.Worker,
+   Roles.Manager
     ],
  },
  {
@@ -71,6 +71,7 @@ export default [
     path: '/UpdatePackage',
     title: 'Update Package',
     permission: [
+     Roles.Worker,
      Roles.Manager
       ],
    },
@@ -81,8 +82,7 @@ export default [
   permission: [
       Roles.User,
       Roles.Manager,
-      Roles.Worker,
-
+      Roles.Worker
   ],
  },
 ]
