@@ -226,7 +226,7 @@ def home():
     cur = mysql.connection.cursor()  # <<<<<< testing for mysql connection
     # mysql.connection.commit()
 
-    # return '/ route working'
+    return '/ route working'
 
 
 if __name__ == '__main__':
