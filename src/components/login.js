@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Textarea from 'react-rainbow-components/components/Textarea'
 import Button from 'react-rainbow-components/components/Button';
 import { useHistory } from 'react-router-dom';
-
+import Auth from '../routes/Auth';
 const containerStyles = {
     maxWidth: 400,
     margin: 'auto',
@@ -16,11 +16,13 @@ const buttoncontainerStyle = {
     display:'block'
 }
 
-export default function Login(){
+export default function Login()
+{
+
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
+    const [roles, setRole] = useState([]);
     const history = useHistory();
 
     async function authRouteHome(event)
@@ -28,23 +30,33 @@ export default function Login(){
 
         
     }
-
+ 
     function validateForm()
     {
         return username.length > 0 && password.length > 0;
     }
-   
     async function handleSubmit(event) {
+        event.preventDefault();
+        const username_var = new String(username);
+        roles.push(username_var);
+        setRole(username_var);
         if (validateForm)
-        {
-            event.preventDefault();
-        /*this.setState({ saveUser: this.state.textUser, savePass: this.state.textPass}, () => {
-            console.log("                       ");
-            console.log("This is the saved username.. " + this.state.saveUser)
-            console.log("This is the saved password.. " + this.state.savePass)
-            console.log("                       ");
-          });*/
-          history.push('/track');       //what page to redirect to after login
+        {   
+            
+            if (typeof window !== 'undefined') {
+                //const roles = JSON.parse(username);
+                // localStorage.setItem('roles', roles);
+                //jsonify stringy roles..
+                localStorage.setItem('roles', JSON.stringify(roles));
+                // localStorage.setItem('roles', JSON.stringify(username));
+                
+                console.log(" Pushing the role into local storage.." +roles)
+                //what happens after we history.push app..
+                history.push('/app');
+            }
+      
+            //history.push('/App');
+           //history.push('/track');       
         }
         else
         {
@@ -53,34 +65,10 @@ export default function Login(){
         
     }
 
-    /*function handleChange(event) {
-        this.setState({ textUser: event.target.value}, () => {
-            console.log("                       ");
-            console.log("Printing out this user: "+ event.target.value);
-            console.log("                       ");
-          });
-    }
-
-    function handleChange2(event) {
-        this.setState({ textPass: event.target.value}, () => {
-            console.log("                       ");
-            console.log("Printing out this pass: "+ event.target.value);
-            console.log("                       ");
-          });
-    }
-
-    componentDidMount() {
     
-    }
-  
-    componentWillUnmount() {     
-    
-    }*/
-    
-    //render()
-    //{
         return(
-
+            
+          
             <div className='containerStyles' style = {containerStyles}>
                 <h1 align='center'>SnailMail</h1>
                 <p align='center'>Username</p>
@@ -111,13 +99,8 @@ export default function Login(){
                     style = {buttoncontainerStyle} 
                 />
             </div> 
+           
         );
 
-
-        //i need to map everything together still oi vey..
-        //variable = this.props.loggedIn
-        
-        //still need to work on it..
-        
-    //}
+   
 }

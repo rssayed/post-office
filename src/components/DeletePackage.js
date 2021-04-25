@@ -55,10 +55,11 @@ class DeletePackage extends React.Component{
     }*/
 
     render() {
+            
         return(
             <form className ="container_delete">
                 <h1 className = "header_delete" align='center'>Delete Package</h1>
-           
+             
                 <Textarea
                 className = "delete_box_delete"
                 type= 'tracking_value'
@@ -71,6 +72,7 @@ class DeletePackage extends React.Component{
  
                 <Button className="button_2_delete" label="Delete" disabled={!this.validateForm()} onClick={this.onSubmit} variant = "base">Delete</Button>
             </form>
+            
         )
     }
 }
