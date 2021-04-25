@@ -1,7 +1,4 @@
-
 import Roles from './Roles'
-
-// components we are using
 import Home from '../components/Home'
 import login from '../components/login'
 import CreatePackage from '../components/CreatePackage'
@@ -11,8 +8,6 @@ import Trackinghistory from '../components/Trackinghistory'
 import UpdatePackage from '../components/UpdatePackage'
 import Profile from '../components/profile'
 import LandingPage from '../components/LandingPage';
-
-
 
 //this whole thing is a private area containing components with
 //certain permissions tied to the role.js..
