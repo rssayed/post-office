@@ -8,7 +8,7 @@ import DeletePackage from '../components/DeletePackage'
 import orderHistory from '../components/orderHistory'
 import Trackinghistory from '../components/Trackinghistory'
 import UpdatePackage from '../components/UpdatePackage'
-import Profile from '../components/Profile'
+import Profile from '../components/profile'
 
 
 export default [

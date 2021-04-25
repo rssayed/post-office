@@ -4,16 +4,15 @@ import './tracking_history-styles.css';
 import Button from 'react-rainbow-components/components/Button';
 
 
-//still need to fix the formatting for this!!
 class Trackinghistory extends React.Component{
     
     constructor(props)
     {
         super(props);
-        this.state = {  //initialize state properties to empty strings
+        this.state = {
             tracking_value: ""
         }
-        this.onSubmit= this.onSubmit.bind(this);
+        this.handleSubmit= this.handleSubmit.bind(this);
     }
         
     validateForm()
@@ -21,54 +20,46 @@ class Trackinghistory extends React.Component{
         return this.state.tracking_value != null;
     }
     
-    onSubmit(event) 
+    handleSubmit = (event) =>
     {
-          //if(this.validateForm)
-          //{
             event.preventDefault();
-            //const form = event.target;
-            const data = new FormData();
-    
-            for (const key in data) {
-                data.append(key, data[key])
-                console.log("key:", key, "data[key]", data[key])
-            }
-            //data.append('tracking_id', form.value);
-
-            fetch('http://localhost:5000/backend/Tracking_history', {
-            method: 'POST',
-            body: data,
-            });
+        
             //const state= this.setState;
             // this.state.tracking_value= event.tracking_value;
             // this.setState(state);
-            /*backend axios code for HTTP request*/
-            //
-            //console.log("this.state.tracking_value");
-            alert("Tracking Successful!");
-         // }
-          //else{
-              alert("Tracking Number missing, please enter tracking number for delivery");
-          //}
-    }
-    
-    /*handleClick()
-        { 
-            this.setState(state => {
-                var inputVal = document.getElementById("tracking_value").value;
-                return {input: inputVal}
+
+            //const form='12345';
+
+            const form = new FormData(document.getElementById('form1'));
+
+            alert("x0x0");
+
+            fetch('http://localhost:5000/backend/Tracking_history', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+              },
+            body: form,
             })
-            console.log(this.state.input)
-        }
-    }*/
+            .then(response => response.json())
+            .then(result => {
+                console.log('Success:', result);
+                var obj = JSON.parse(result);
+                console.log(obj['delivers.tracking_id']);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+            alert("Tracking Successful!");
+    }
 
     render() {
     
         return(
-            <form className ="container_track" >  
+            <form className ="container_track" /*onSubmit={this.handleSubmit}*/ id='form1'>  
                 <h1 className = "header_track" align='center'>Tracking History</h1>
                 
-                {/*Textarea*/}
                 <Textarea                          
                     className = "delete_box_track"
                     type= 'text'
@@ -79,8 +70,8 @@ class Trackinghistory extends React.Component{
                     rows={1}
                     required
                 />
-                
-                <Button className = "button_2_track" label = "Track" disabled={!this.validateForm()} onClick = {this.onSubmit} variant = "base"></Button>
+                <strong>The typed value is:</strong><span>{this.state.tracking_value}</span>    {/*debug onChange---> works */}
+                <Button className= "button_2_track" label= "Track" disabled={!this.validateForm()} onClick = {this.handleSubmit} variant = "base" type='submit'></Button>
             </form>
         )
     }
