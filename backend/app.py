@@ -11,17 +11,17 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-app.config['MYSQL_DB'] = 'postOffice'
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_PORT'] = 3306
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '#######!'
-
-# app.config['MYSQL_DB'] = 'aws-snailmail'
-# app.config['MYSQL_HOST'] = 'aws-snailmail.c2s7bdbtbg0f.us-east-2.rds.amazonaws.com'
+# app.config['MYSQL_DB'] = 'mainschema'
+# app.config['MYSQL_HOST'] = 'localhost'
 # app.config['MYSQL_PORT'] = 3306
-# app.config['MYSQL_USER'] = 'admin'
-# app.config['MYSQL_PASSWORD'] = 'Heartless1234'
+# app.config['MYSQL_USER'] = 'root'
+# app.config['MYSQL_PASSWORD'] = 'password'
+
+app.config['MYSQL_DB'] = 'post_office'
+app.config['MYSQL_HOST'] = 'aws-snailmail.c2s7bdbtbg0f.us-east-2.rds.amazonaws.com'
+app.config['MYSQL_PORT'] = 3306
+app.config['MYSQL_USER'] = 'admin'
+app.config['MYSQL_PASSWORD'] = 'Heartless1234'
 
 # db = yaml.load(open('db.yaml'))
 # app.config['MYSQL_DB'] = db['mysql_db']
@@ -165,24 +165,30 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        customerUsernames = cur.execute('''SELECT customer_id FROM customer''')
-        employeeUsernames = cur.execute('''SELECT employee_id FROM employee''')
-        managerUsernames = cur.execute('''SELECT employee_id FROM employee, post_office WHERE employee.employee_id = post_office.po_manager_eid''')
+        cur.execute('''SELECT customer_id FROM customer''')
+        customerUsernames = cur.fetchall()
+        cur.execute('''SELECT employee_id FROM employee''')
+        employeeUsernames = cur.fetchall()
+        cur.execute('''SELECT employee_id FROM employee, post_office WHERE employee.employee_id = post_office.po_manager_eid''')
+        managerUsernames = cur.fetchall()
         for i in customerUsernames:
             if username == i:
-                customerPW = cur.execute('''SELECT customer_password FROM customer WHERE customer_id=%s''', (username))
+                cur.execute('''SELECT customer_password FROM customer WHERE customer_id=%s''', (username))
+                customerPW = cur.fetchall()
                 if password == customerPW:
                     return redirect('/profile')
                 return ('Incorrect password')
         for i in managerUsernames:
             if username == i:
-                customerPW = cur.execute('''SELECT employee_password FROM employee WHERE employee_id=%s''', (username))
-                if password == customerPW:
+                cur.execute('''SELECT employee_password FROM employee WHERE employee_id=%s''', (username))
+                managerPW = cur.fetchall()
+                if password == managerPW:
                     return redirect('/profile')
                 return ('Incorrect password')
         for i in employeeUsernames:
             if username == i:
-                employeePW = cur.execute('''SELECT employee_password FROM employee WHERE employee_id=%s''', (username))
+                cur.execute('''SELECT employee_password FROM employee WHERE employee_id=%s''', (username))
+                employeePW = cur.fetchall()
                 if password == employeePW:
                     return redirect('/profile')
                 return ('Incorrect password')
@@ -210,19 +216,10 @@ def delete():
 
 @app.route('/')
 def home():
-    # cur = mysql.connection.cursor() # <<<<<< testing for mysql connection
-    # cur.execute('''CREATE TABLE test (id INTEGER, name VARCHAR(20))''')
-    # cur.execute('''DROP TABLE test''')
-    # cur.execute('''INSERT INTO test VALUES (1, 'dayson')''')
-    # cur.execute('''INSERT INTO test VALUES (2, 'patrick')''')
+    cur = mysql.connection.cursor() # <<<<<< testing for mysql connection
     # mysql.connection.commit()
-    # cur.execute('''select * from test''')
-    # output = cur.fetchall()
-    # print(output)
-    # return str(output)
-    # return 'Done!'
 
-    return 'working'
+    # return '/ route working'
 
 if __name__ == '__main__':
     app.run(debug=True)
