@@ -45,7 +45,7 @@ class Trackinghistory extends React.Component{
             .then(result => {
                 console.log('Success:', result);
                 var obj = JSON.parse(result);
-                console.log(obj['delivers.tracking_id']);
+                console.log(obj['tracking_id']);
             })
             .catch((error) => {
                 console.error('Error:', error);
