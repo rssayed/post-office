@@ -5,7 +5,7 @@ import json
 import datetime
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
-# import yaml
+import yaml
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -32,7 +32,6 @@ app.config['MYSQL_PASSWORD'] = 'Heartless1234'
 
 mysql = MySQL(app)
 
-
 @app.route('/backend/profile', methods=['GET', 'POST'])
 def profile():
     cur = mysql.connection.cursor()
@@ -58,9 +57,9 @@ def profile():
         customer_password = request.get_json()['customer_password']
         cur.execute('''UPDATE customers SET fname=%s, lname=%s, street_address=%s, city=%s, state=%s, zipcode=%s, 
         email=%s, customer_password=%s WHERE customer.customer_id=%s''',
-                    (fname, lname, street_address, city, state, zipcode,
-                     email, generate_password_hash(customer_password),
-                     customer_id))
+                                    (fname, lname, street_address, city, state, zipcode,
+                                     email, generate_password_hash(customer_password),
+                                     customer_id))
         mysql.connection.commit()
 
     profile_query = cur.fetchall()
@@ -72,19 +71,15 @@ def profile():
 def order_history():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
-        # tracking_id = request.form.get('tracking_id')
-        # customer_id = request.form.get('customer_id')
-        tracking_id = request.get_json()['tracking_id']
-        first_date_between = request.get_json()['first_date_between']
-        second_date_between = request.get_json()['second_date_between']
-        cur.execute(
-            '''SELECT DISTINCT package.tracking_id, deliver_to, shipping_date, expected_delivery, post_office.facility_id 
+         tracking_id = request.form.get('tracking_id')
+         customer_id = request.form.get('customer_id')
+         cur.execute(
+        '''SELECT DISTINCT package.tracking_id, deliver_to, shipping_date, expected_delivery, post_office.facility_id 
         FROM package, receiver, orders, customer, delivers, post_office
-        WHERE package.tracking_id=%s AND delivers.is_delivered='Yes' AND
+        WHERE tracking_id=%s AND customer_id=%s AND
         customer.customer_id=orders.customer_id AND orders.tracking_id=package.tracking_id AND 
-        delivers.tracking_id=orders.tracking_id AND delivers.facility_id=post_office.facility_id AND
-        BETWEEN %s AND %s''', (tracking_id, first_date_between, second_date_between))
-    # This should return all the information we want to display based on the user input
+        delivers.facility_id=post_office.facility_id''',(tracking_id, customer_id))
+        # This should return all the information we want to display based on the user input
     output = cur.fetchall()
     return jsonify(output)
 
@@ -94,7 +89,7 @@ def tracking_history():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
         tracking_id = request.form.get('tracking_id')
-        # tracking_id = request.get_json()['tracking_id']
+        #tracking_id = request.get_json()['tracking_id']
         cur.execute('''SELECT DISTINCT delivers.tracking_id, delivers.time_in, delivers.time_out, delivers.is_delivered, post_office.street_address, post_office.city, post_office.state, post_office.zipcode
         FROM post_office, delivers
         WHERE delivers.tracking_id=%s AND delivers.facility_id=post_office.facility_id''', (tracking_id,))
@@ -174,8 +169,7 @@ def login():
         customerUsernames = cur.fetchall()
         cur.execute('''SELECT employee_id FROM employee''')
         employeeUsernames = cur.fetchall()
-        cur.execute(
-            '''SELECT employee_id FROM employee, post_office WHERE employee.employee_id = post_office.po_manager_eid''')
+        cur.execute('''SELECT employee_id FROM employee, post_office WHERE employee.employee_id = post_office.po_manager_eid''')
         managerUsernames = cur.fetchall()
         for i in customerUsernames:
             if username == i:
@@ -220,14 +214,12 @@ def delete():
     output = cur.fetchall()
     return jsonify(output)
 
-
 @app.route('/')
 def home():
-    cur = mysql.connection.cursor()  # <<<<<< testing for mysql connection
+    cur = mysql.connection.cursor() # <<<<<< testing for mysql connection
     # mysql.connection.commit()
 
     # return '/ route working'
-
 
 if __name__ == '__main__':
     app.run(debug=True)
