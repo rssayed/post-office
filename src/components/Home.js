@@ -1,43 +1,25 @@
-import React from "react";
-import Navigation from './Navigation';
+import React, { Fragment } from 'react';
 
-//need to do authentication stuff up here..
-// eslint-disable-next-line no-use-before-define
+import Nav from './Nav'
 
-    //props.history.push
-    //auth.logout
-    //onclick
-    class Home extends React.Component{
-        constructor(props)
-        {
-            super(props);
-            this.state = {  //initialize state properties to empty strings
-                input: ""
-            };
-                  
-        }
+const containerStyles = {
+	maxWidth: 400,
+	margin: 'auto',
+}
 
-    render() 
-    {
-      return (
-        
-        
-        
-        <Navigation />
+const navOptions = [
+	{title: 'Login', path: '/login'},
+	{title: 'Register', path: '/register'}
+];
 
-        )
+function Home() {
+        return (
+				<div className = "testing">
+            	<h1 align='center'>SnailMail</h1>
+            	<p align='center'></p>
+				</div>
+				
+		)
+}
 
-        //need to do authentication stuff up here..
-        // eslint-disable-next-line no-use-before-define
-
-        //props.history.push
-        //auth.logout
-        //onclick
-        //need to have the props in here so I can assign the navbar
-        //to the user session and the app pretty much..
-
-        //(Only show the navbar when you are logged in)
-        
-    }
-        }
-        export default Home;
+export default Home

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Redirect, useRouteMatch } from 'react-router-dom';
-import { getAllowedRoutes} from '../config/getAllowedRoutes';
-import isLoggedIn from './isLoggedIn';
+import { getAllowedRoutes} from '../utils/index';
+import { isLoggedIn } from '../utils/index';
 import PrivateRoutes from '../config/PrivateRoutes';
 import Nav from '../components/Nav'
 import MapAllowed from './MapAllowed';
@@ -11,11 +11,12 @@ import MapAllowed from './MapAllowed';
 //pass the mapping array into here.
 //the useRouteMatch be wrong
 function UsePrivateRoutes() {
- const match = useRouteMatch('../App');
+ const match = useRouteMatch('/app');
  let allowedRoutes = [];
     //if we are logged in.. get the allowed routes..
  if (isLoggedIn()) {
    allowedRoutes = getAllowedRoutes(PrivateRoutes);
+   console.log(" HEYYYY These are the allowedroutes..",allowedRoutes);
  } else {
    return <Redirect to="/" />;
    //alert("Hi, you need to login and receive authentication")
@@ -25,17 +26,16 @@ function UsePrivateRoutes() {
   <Fragment>
    <Nav     //Navigationbar..
      routes={allowedRoutes} 
-     path={match.path}
+     prefix={match.path}
      className="bg-white" 
    />
    <MapAllowed
      routes={allowedRoutes} 
-     basePath="../App" 
-     isAddNotFound 
+     basePath="/app" 
+     isAddNotFound    //take you to Home..
    />
   </Fragment>
  );
 }
-//what does fragment do react..? lets you group multiple elements.. in this case..
-// topnav and fragment..
+//so it actually returns the NavBar with my allowedRoutes..
 export default UsePrivateRoutes;

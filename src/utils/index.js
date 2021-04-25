@@ -6,7 +6,10 @@ export function isLoggedIn() {
 		*  This app assume if local storage have roles it means
 		*  user is authenticated you can update this logic as per your app.
 	*/
+	//ahahaha
+	console.log("!!!!!!!!!!!!!!!!!")
 	return !!localStorage.getItem('roles')
+	console.log("!!!!!!!!!!!!!!!!!")
 }
 
 export function isArrayWithLength(arr) {
@@ -14,6 +17,7 @@ export function isArrayWithLength(arr) {
 }
 
 export function getAllowedRoutes(routes) {
+	console.log("This is the value of routes.. ",routes);
 	const roles = JSON.parse(localStorage.getItem('roles'));
 	return routes.filter(({ permission }) => {
 		if(!permission) return true;
@@ -21,3 +25,5 @@ export function getAllowedRoutes(routes) {
 		else return intersection(permission, roles).length;
 	});
 }
+
+//AWS LAMBDA

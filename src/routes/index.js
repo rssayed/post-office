@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PrivateRoutes from '../config/PrivateRoutes';
 import Auth from './Auth';
 import History from '../utils/history';
-
+import UsePrivateRoutes from './Map'
+import Login from '../components/login';
 //history.push(`${your router address}`)
 
 //problem with my location i think..
@@ -12,11 +13,11 @@ function Routes() {
 	return (
 		<Router History={History}>
 			<Switch>
-				<Route path="/App">
-					<PrivateRoutes />
+				<Route path="/app">
+					<UsePrivateRoutes/>
 				</Route>
 				<Route path="">
-					<Auth />
+					<Auth/>
 				</Route>
 			</Switch>
 		</Router>

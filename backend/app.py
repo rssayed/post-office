@@ -3,18 +3,19 @@ from flask import jsonify
 from flask import request
 import json
 import datetime
-import backend.connection
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 import yaml
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
-# app.config['MYSQL_DB'] = 'mainschema'
-# app.config['MYSQL_HOST'] = 'localhost'
-# app.config['MYSQL_PORT'] = 3306
-# app.config['MYSQL_USER'] = 'root'
-# app.config['MYSQL_PASSWORD'] = 'password'
+app.config['MYSQL_DB'] = 'postOffice'
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_PORT'] = 3306
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'meow10!'
 
 # app.config['MYSQL_DB'] = 'aws-snailmail'
 # app.config['MYSQL_HOST'] = 'aws-snailmail.c2s7bdbtbg0f.us-east-2.rds.amazonaws.com'
@@ -22,12 +23,12 @@ app = Flask(__name__)
 # app.config['MYSQL_USER'] = 'admin'
 # app.config['MYSQL_PASSWORD'] = 'Heartless1234'
 
-db = yaml.load(open('db.yaml'))
-app.config['MYSQL_DB'] = db['mysql_db']
-app.config['MYSQL_HOST'] = db['mysql_host']
-app.config['MYSQL_PORT'] = db['mysql_port']
-app.config['MYSQL_USER'] = db['mysql_user']
-app.config['MYSQL_PASSWORD'] = db['mysql_password']
+# db = yaml.load(open('db.yaml'))
+# app.config['MYSQL_DB'] = db['mysql_db']
+# app.config['MYSQL_HOST'] = db['mysql_host']
+# app.config['MYSQL_PORT'] = db['mysql_port']
+# app.config['MYSQL_USER'] = db['mysql_user']
+# app.config['MYSQL_PASSWORD'] = db['mysql_password']
 
 mysql = MySQL(app)
 
@@ -91,9 +92,11 @@ def order_history():
 def tracking_history():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
-        # tracking_id = request.form.get('tracking_id')
-        tracking_id = request.get_json()['tracking_id']
-        cur.execute('''SELECT * FROM delivers WHERE delivers.tracking_id = %s''', (tracking_id,)).fetchone()
+        tracking_id = request.form.get('tracking_id')
+        #tracking_id = request.get_json()['tracking_id']
+        cur.execute('''SELECT DISTINCT delivers.tracking_id, delivers.time_in, delivers.time_out, delivers.is_delivered, post_office.street_address, post_office.city, post_office.state, post_office.zipcode
+        FROM post_office, delivers
+        WHERE delivers.tracking_id=%s AND delivers.facility_id=post_office.facility_id''', (tracking_id,))
         # This should return all the information we want to display based on the user input
     output = cur.fetchall()
     return jsonify(output)
@@ -114,10 +117,8 @@ def update_package():
         time_out = request.get_json()['time_out']
         delivery_status = request.get_json()['is_delivered']
 
-        cur.execute('''UPDATE delivers 
-                        SET time_in=%s, time_out=%s, is_delivered=%s
-                        WHERE package.tracking_id=%s AND post_office.facility_id=%s AND 
-                        orders.tracking_id=package.tracking_id AND orders.customer_id=customer.customer_id''',
+        cur.execute('''INSERT INTO delivers
+                        VALUES(%s,%s,%s,%s,%s)''',
                     (time_in, time_out, delivery_status, tracking_id, post_office_id))
         mysql.connection.commit()
 
