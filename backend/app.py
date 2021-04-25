@@ -220,20 +220,20 @@ def login():
 def delete():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
-        tracking_id = request.form['tracking_number']
-        tracking_id = request.get_json()['tracking_id']
-        orders = cur.execute('''SELECT tracking_id FROM orders''')
+        tracking_id = request.form['tracking_id']
+        cur.execute('''SELECT tracking_id FROM orders''')
+        orders = [item[0] for item in cur.fetchall()]
         for i in orders:
             if tracking_id == i:
-                cur.execute('''DELETE FROM package WHERE tracking_id=%s''', (tracking_id))
+                cur.execute('''DELETE FROM package WHERE tracking_id=%s''', [tracking_id])
                 mysql.connection.commit()
-                return ('Sucessfully deleted package')
+                return ('Sucessfully Deleted Package')
             else:
-                return ('Package not found')
-        return ('tracking id not found')
-    # return('working')
-    output = cur.fetchall()
-    return jsonify(output)
+                return ('Package Not Found')
+
+        return ('Tracking ID Not Found')
+
+    return ('Delete Page')
 
 
 @app.route('/')
