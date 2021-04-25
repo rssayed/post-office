@@ -180,36 +180,41 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        cur.execute('''SELECT customer_id FROM customer''')
-        customerUsernames = cur.fetchall()
-        cur.execute('''SELECT employee_id FROM employee''')
-        employeeUsernames = cur.fetchall()
-        cur.execute(
-            '''SELECT employee_id FROM employee, post_office WHERE employee.employee_id = post_office.po_manager_eid''')
-        managerUsernames = cur.fetchall()
+        cur.execute('''SELECT email FROM customer''')
+        customerUsernames = [item[0] for item in cur.fetchall()]
+        cur.execute('''SELECT employee_email FROM employee''')
+        employeeUsernames = [item[0] for item in cur.fetchall()]
+        cur.execute('''SELECT employee_email FROM employee, post_office WHERE employee.employee_id =  post_office.po_manager_eid''')
+        managerUsernames = [item[0] for item in cur.fetchall()]
         for i in customerUsernames:
             if username == i:
-                cur.execute('''SELECT customer_password FROM customer WHERE customer_id=%s''', (username))
-                customerPW = cur.fetchall()
-                if password == customerPW:
-                    return redirect('/profile')
-                return ('Incorrect password')
+                cur.execute('''SELECT customer_password FROM customer WHERE email=%s''', [username])
+                customerPW = cur.fetchone()
+                customerPW = list(customerPW)
+                if password == customerPW[0]:
+                    # return redirect('/profile')
+                    return 'Customer PW Matched'
+                return 'Incorrect Customer Password'
         for i in managerUsernames:
             if username == i:
-                cur.execute('''SELECT employee_password FROM employee WHERE employee_id=%s''', (username))
-                managerPW = cur.fetchall()
-                if password == managerPW:
-                    return redirect('/profile')
-                return ('Incorrect password')
+                cur.execute('''SELECT employee_password FROM employee WHERE employee_email=%s''', [username])
+                managerPW = cur.fetchone()
+                managerPW = list(managerPW)
+                if password == managerPW[0]:
+                    # return redirect('/profile')
+                    return 'Manager pw matched'
+                return 'Incorrect Manager Password'
         for i in employeeUsernames:
             if username == i:
-                cur.execute('''SELECT employee_password FROM employee WHERE employee_id=%s''', (username))
-                employeePW = cur.fetchall()
-                if password == employeePW:
-                    return redirect('/profile')
-                return ('Incorrect password')
-        return ("login again")
+                cur.execute('''SELECT employee_password FROM employee WHERE employee_email=%s''', [username])
+                employeePW = cur.fetchone()
+                employeePW = list(employeePW)
+                if password == employeePW[0]:
+                    # return redirect('/profile')
+                    return 'Employee Pw Matched'
+                return 'Incorrect Employee Password'
 
+    return ("Username Not Found In DB")
 
 @app.route('/backend/delete', methods=['GET', 'POST'])
 def delete():
