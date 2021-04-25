@@ -15,7 +15,7 @@ app.config['MYSQL_DB'] = 'postOffice'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_PORT'] = 3306
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '##########!'
+app.config['MYSQL_PASSWORD'] = '#######!'
 
 # app.config['MYSQL_DB'] = 'aws-snailmail'
 # app.config['MYSQL_HOST'] = 'aws-snailmail.c2s7bdbtbg0f.us-east-2.rds.amazonaws.com'
@@ -73,16 +73,12 @@ def order_history():
     if request.method == 'POST':
          tracking_id = request.form.get('tracking_id')
          customer_id = request.form.get('customer_id')
-        #tracking_id = request.get_json()['tracking_id']
-        #customer_id = request.get_json()['customer_id']
-
-        cur.execute(
-            '''SELECT DISTINCT package.tracking_id, deliver_to, shipping_date, expected_delivery, post_office.facility_id 
-            FROM package, receiver, orders, customer, delivers, post_office
-            WHERE tracking_id=%s AND customer_id=%s AND
-            customer.customer_id=orders.customer_id AND orders.tracking_id=package.tracking_id AND 
-            delivers.facility_id=post_office.facility_id''',
-            (tracking_id, customer_id))
+         cur.execute(
+        '''SELECT DISTINCT package.tracking_id, deliver_to, shipping_date, expected_delivery, post_office.facility_id 
+        FROM package, receiver, orders, customer, delivers, post_office
+        WHERE tracking_id=%s AND customer_id=%s AND
+        customer.customer_id=orders.customer_id AND orders.tracking_id=package.tracking_id AND 
+        delivers.facility_id=post_office.facility_id''',(tracking_id, customer_id))
         # This should return all the information we want to display based on the user input
     output = cur.fetchall()
     return jsonify(output)

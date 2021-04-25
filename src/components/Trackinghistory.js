@@ -36,9 +36,6 @@ class Trackinghistory extends React.Component{
 
             fetch('http://localhost:5000/backend/Tracking_history', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-              },
             body: form,
             })
             .then(response => response.json())
@@ -66,6 +63,7 @@ class Trackinghistory extends React.Component{
                     value = {this.state.tracking_value}
                     onChange= {e => this.setState({tracking_value: e.target.value})}
                     id="tracking_value"
+                    name= "tracking_id"
                     label = "Tracking Number"
                     rows={1}
                     required
