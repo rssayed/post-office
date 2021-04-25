@@ -127,6 +127,16 @@ def update_package():
     return jsonify(update_query)
     # return render_template('/Update_Package.js')
 
+@app.route('backend/getUserId', methods=['GET', 'POST'])
+def get_user_id():
+    cur = mysql.connection.cursor()
+    fname = request.form['fname']
+    lname = request.form['lname']
+    email = request.form['email']
+    cur.execute('''SELECT customer_id FROM customer WHERE fname=%s AND lname=%s AND email=%s''', (fname, lname, email))
+    get_user_id_query = cur.fetchall()
+    return jsonify(get_user_id_query)
+
 
 @app.route('/backend/CreatePackage', methods=['GET', 'POST'])
 def create_package():
