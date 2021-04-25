@@ -37,7 +37,8 @@ class GetUserId extends React.Component {
         this.state = {
             fname: "",
             lname:"",
-            email: ""
+            email: "",
+            user_id: ""
         }
         this.handleSubmit= this.handleSubmit.bind(this);
     }
@@ -51,8 +52,8 @@ class GetUserId extends React.Component {
             })
             .then(response => response.json())
             .then(result => {
-                console.log('Success:', result);            //need to figure out how to print the response on the webpage
-                this.setState({tracking_history: result});  // for some reason the backend is returning an array of arrays, get first array
+                console.log('Success:', result);
+                this.setState({user_id: result}); 
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -63,36 +64,41 @@ class GetUserId extends React.Component {
 
     render(){
         return(
-            <form name='getUserIdForm'>
-                <h1 align='center'>Get User ID</h1>
-                <Textarea
-                    label='First Name'
-                    name='fname'
-                    rows='1'
-                    style={fnameContainerStyles}
-                />
-                <Textarea
-                    label='Last Name'
-                    name='lname'
-                    rows='1'
-                    style={lnameContainerStyles}
-                />
-                <Textarea
-                    label='Email'
-                    name='email'
-                    rows='1'
-                    style={emailContainerStyles}
-                />
-                <Button
-                    label='Get'
-                    name='getButton'
-                    size='medium'
-                    onClick={this.handleSubmit}
-                    style={buttonContainerStyle}
-                    variant='base'
-                    type="submit"
-                />
-            </form>
+            <React.Fragment>
+                <form name='getUserIdForm'>
+                    <h1 align='center'>Get User ID</h1>
+                    <Textarea
+                        label='First Name'
+                        name='fname'
+                        rows='1'
+                        style={fnameContainerStyles}
+                    />
+                    <Textarea
+                        label='Last Name'
+                        name='lname'
+                        rows='1'
+                        style={lnameContainerStyles}
+                    />
+                    <Textarea
+                        label='Email'
+                        name='email'
+                        rows='1'
+                        style={emailContainerStyles}
+                    />
+                    <Button
+                        label='Get'
+                        name='getButton'
+                        size='medium'
+                        onClick={this.handleSubmit}
+                        style={buttonContainerStyle}
+                        variant='base'
+                        type="submit"
+                    />
+                </form>
+                <span>
+                    <p>User ID: </p>{this.state.user_id}
+                </span>
+            </React.Fragment>
         )
     }
 }
