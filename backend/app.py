@@ -38,24 +38,24 @@ def profile():
     cur = mysql.connection.cursor()
 
     if request.method == 'POST':
-        # customer_id = request.form.get('customer_id')
-        # fname = request.form.get('fname')
-        # lname = request.form.get('lname')
-        # street_address = request.form.get('street_address')
-        # city = request.form.get('city')
-        # state = request.form.get('state')
-        # zipcode = request.form.get('zipcode')
-        # email = request.form.get('email')
-        # customer_password = request.form.get('customer_password')
-        customer_id = request.get_json['customer_id']
-        fname = request.get_json()['fname']
-        lname = request.get_json()['lname']
-        street_address = request.get_json()['street_address']
-        city = request.get_json()['city']
-        state = request.get_json()['state']
-        zipcode = request.get_json()['zipcode']
-        email = request.get_json()['email']
-        customer_password = request.get_json()['customer_password']
+        customer_id = request.form.get('customer_id')
+        fname = request.form.get('fname')
+        lname = request.form.get('lname')
+        street_address = request.form.get('street_address')
+        city = request.form.get('city')
+        state = request.form.get('state')
+        zipcode = request.form.get('zipcode')
+        email = request.form.get('email')
+        customer_password = request.form.get('customer_password')
+        # customer_id = request.get_json['customer_id']
+        # fname = request.get_json()['fname']
+        # lname = request.get_json()['lname']
+        # street_address = request.get_json()['street_address']
+        # city = request.get_json()['city']
+        # state = request.get_json()['state']
+        # zipcode = request.get_json()['zipcode']
+        # email = request.get_json()['email']
+        # customer_password = request.get_json()['customer_password']
         cur.execute('''UPDATE customers SET fname=%s, lname=%s, street_address=%s, city=%s, state=%s, zipcode=%s, 
         email=%s, customer_password=%s WHERE customer.customer_id=%s''',
                     (fname, lname, street_address, city, state, zipcode,
@@ -72,11 +72,10 @@ def profile():
 def order_history():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
-        # tracking_id = request.form.get('tracking_id')
-        # customer_id = request.form.get('customer_id')
-        tracking_id = request.get_json()['tracking_id']
-        first_between_date = request.get_json()['first_between_date']
-        second_between_date = request.get_json()['second_between_date']
+        tracking_id = request.form.get('tracking_id')
+        # tracking_id = request.get_json()['tracking_id']
+        first_between_date = request.form.get('first_between_date')
+        second_between_date = request.form.get('second_between_date')
         cur.execute(
             '''SELECT DISTINCT package.tracking_id, deliver_to, shipping_date, expected_delivery, post_office.facility_id 
         FROM package, receiver, orders, customer, delivers, post_office
@@ -107,16 +106,16 @@ def tracking_history():
 def update_package():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
-        # tracking_id = request.form['tracking_id']
-        # post_office_id = request.form['facility_id']
-        # time_in = request.form['time_in']
-        # time_out = request.form['time_out']
-        # delivery_status = request.form['is_delivered']
-        tracking_id = request.get_json()['tracking_id']
-        post_office_id = request.get_json()['facility_id']
-        time_in = request.get_json()['time_in']
-        time_out = request.get_json()['time_out']
-        delivery_status = request.get_json()['is_delivered']
+        tracking_id = request.form.get('tracking_id')
+        post_office_id = request.form.get('facility_id')
+        time_in = request.form.get('time_in')
+        time_out = request.form.get('time_out')
+        delivery_status = request.form.get('is_delivered')
+        # tracking_id = request.get_json()['tracking_id']
+        # post_office_id = request.get_json()['facility_id']
+        # time_in = request.get_json()['time_in']
+        # time_out = request.get_json()['time_out']
+        # delivery_status = request.get_json()['is_delivered']
 
         cur.execute('''INSERT INTO delivers
                         VALUES(%s,%s,%s,%s,%s)''',
@@ -142,24 +141,24 @@ def get_user_id():
 def create_package():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
-        # shipping_date = request.form['shipping_date']
-        # shipping_type = request.form['type']
-        # weight = request.form['weight']
-        # customer_id = request.form['customer_id']
-        # name = request.form['name']
-        # street_address = request.form['street_address']
-        # city = request.form['city']
-        # state = request.form['state']
-        # zipcode = request.form['zipcode']
-        shipping_date = request.get_json()['shipping_date']
-        shipping_type = request.get_json()['type']
-        weight = request.get_json()['weight']
-        customer_id = request.get_json()['customer_id']
-        name = request.get_json()['name']
-        street_address = request.get_json()['street_address']
-        city = request.get_json()['city']
-        state = request.get_json()['state']
-        zipcode = request.get_json()['zipcode']
+        shipping_date = request.form.get('shipping_date')
+        shipping_type = request.form.get('type')
+        weight = request.form.get('weight')
+        customer_id = request.form.get('customer_id')
+        name = request.form.get('name')
+        street_address = request.form.get('street_address')
+        city = request.form.get('city')
+        state = request.form.get('state')
+        zipcode = request.form.get('zipcode')
+        # shipping_date = request.get_json()['shipping_date']
+        # shipping_type = request.get_json()['type']
+        # weight = request.get_json()['weight']
+        # customer_id = request.get_json()['customer_id']
+        # name = request.get_json()['name']
+        # street_address = request.get_json()['street_address']
+        # city = request.get_json()['city']
+        # state = request.get_json()['state']
+        # zipcode = request.get_json()['zipcode']
 
         # not sure if these will be valid as it doesn't fulfill all of the fields for creating each one of these
         cur.execute('''INSERT INTO package(shipping_date, type, weight, deliver_to)
