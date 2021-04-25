@@ -95,7 +95,7 @@ def tracking_history():
     if request.method == 'POST':
         tracking_id = request.form.get('tracking_id')
         # tracking_id = request.get_json()['tracking_id']
-        cur.execute('''SELECT DISTINCT delivers.tracking_id, delivers.time_in, delivers.time_out, delivers.is_delivered, post_office.street_address, post_office.city, post_office.state, post_office.zipcode
+        cur.execute('''SELECT DISTINCT delivers.time_in, delivers.time_out, delivers.is_delivered, post_office.street_address, post_office.city, post_office.state, post_office.zipcode
         FROM post_office, delivers
         WHERE delivers.tracking_id=%s AND delivers.facility_id=post_office.facility_id''', (tracking_id,))
         # This should return all the information we want to display based on the user input
