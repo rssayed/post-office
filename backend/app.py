@@ -130,9 +130,9 @@ def update_package():
 @app.route('backend/getUserId', methods=['GET', 'POST'])
 def get_user_id():
     cur = mysql.connection.cursor()
-    fname = request.form['fname']
-    lname = request.form['lname']
-    email = request.form['email']
+    fname = request.form.get('fname')
+    lname = request.form.get('lname')
+    email = request.form.get('email')
     cur.execute('''SELECT customer_id FROM customer WHERE fname=%s AND lname=%s AND email=%s''', (fname, lname, email))
     get_user_id_query = cur.fetchall()
     return jsonify(get_user_id_query)

@@ -63,7 +63,7 @@ class Trackinghistory extends React.Component{
             // this.setState(state);
 
             const form = new FormData(document.getElementById('form1'));
-
+            console.log(form);
             alert("x0x0");
 
             fetch('http://localhost:5000/backend/Tracking_history', {

@@ -5,28 +5,32 @@ import Button from 'react-rainbow-components/components/Button';
 const fnameContainerStyles = {
     margin: 'auto',
     maxWidth: 300,
-    top: 150
+    top: 25
 }
 
 const lnameContainerStyles = {
     margin: 'auto',
     maxWidth: 300,
-    top: 175
+    top: 50
 }
 
-const emailContainerStyles = {
+const nameContainerStyles = {
     margin: 'auto',
     maxWidth: 300,
-    top: 200
+    top: 75
 }
-
 const buttonContainerStyle = {
     backgroundColor: '#0645AE',
     borderColor: '#0645AE',
     color: '#ffffff',
     margin: 'auto',
     display:'block',
-    top: 250
+    top: 100
+}
+
+const pConatinerStyle = {
+    top: 150,
+    align: 'center'
 }
 
 class GetUserId extends React.Component {
@@ -44,9 +48,14 @@ class GetUserId extends React.Component {
     }
 
     handleSubmit = (event) => {
+        
         event.preventDefault();
+        
         const form = new FormData(document.getElementById('getUserIdForm'));
-        fetch('http://localhost:5000/backend/Tracking_history', {
+
+        alert('start fetching');
+
+        fetch('http://localhost:5000/backend/getUserId', {
             method: 'POST',
             body: form,
             })
@@ -59,13 +68,13 @@ class GetUserId extends React.Component {
                 console.error('Error:', error);
             });
 
-            alert("Tracking Successful!");
+        alert("finish fetch!");
     }
 
     render(){
         return(
             <React.Fragment>
-                <form name='getUserIdForm'>
+                <form id='getUserIdForm'>
                     <h1 align='center'>Get User ID</h1>
                     <Textarea
                         label='First Name'
@@ -83,7 +92,7 @@ class GetUserId extends React.Component {
                         label='Email'
                         name='email'
                         rows='1'
-                        style={emailContainerStyles}
+                        style={nameContainerStyles}
                     />
                     <Button
                         label='Submit'
@@ -96,7 +105,7 @@ class GetUserId extends React.Component {
                     />
                 </form>
                 <span>
-                    <p>User ID: </p>{this.state.user_id}
+                    <p style={pConatinerStyle}>User ID: </p>{this.state.user_id}
                 </span>
             </React.Fragment>
         )
