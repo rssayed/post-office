@@ -56,7 +56,7 @@ export default [
  {
   component: GetUserId,
   path: '/getUserId',
-  title: 'getUserId',
+  title: 'Get User Id',
   permission: [
    Roles.Worker,
    Roles.Manager,
