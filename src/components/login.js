@@ -35,32 +35,67 @@ export default function Login()
     {
         return username.length > 0 && password.length > 0;
     }
-    async function handleSubmit(event) {
+    async function handleSubmit(event)
+    {
         event.preventDefault();
-        const username_var = new String(username);
-        roles.push(username_var);
-        setRole(username_var);
+        //const username_var = new String(username); //sets up username_var
+        
         if (validateForm)
         {   
-            
-            if (typeof window !== 'undefined') {
-                //const roles = JSON.parse(username);
-                // localStorage.setItem('roles', roles);
-                //jsonify stringy roles..
-                localStorage.setItem('roles', JSON.stringify(roles));
-                // localStorage.setItem('roles', JSON.stringify(username));
-                
-                console.log(" Pushing the role into local storage.." +roles)
-                //what happens after we history.push app..
-                history.push('/app');
-            }
-      
-            //history.push('/App');
-           //history.push('/track');       
+            const form = new FormData(document.getElementById('form2'));
+
+            alert("x0x0");
+
+            fetch('http://localhost:5000/backend/login', {
+            method: 'POST',
+            body: form,
+            })
+            .then(response => response.text())          //need to send back a string..
+            .then(result => {
+                console.log('Works..:', result);
+                //i need it to pass back the role permission through login..
+                //else pass back "no_permission"
+                console.log("hiiii");
+                if(result == 'Manager')
+                {
+                    console.log("This user is a manager..", result)
+                    roles.push(result);
+                    setRole(result);
+                    localStorage.setItem('roles', JSON.stringify(roles));
+                    history.push('/app');
+                }
+                else if(result == 'Customer')
+                {
+                    console.log("This user is a customer..",result)
+                    roles.push(result);
+                    setRole(result);
+                    localStorage.setItem('roles', JSON.stringify(roles));
+                    history.push('/app');
+                }
+                else if(result == 'Worker')
+                {
+                    console.log("This user is a worker",result)
+                    roles.push(result);
+                    setRole(result);
+                    localStorage.setItem('roles', JSON.stringify(roles));
+                    history.push('/app');
+                }
+                else if(result == 'no_permission')
+                {
+                    console.log("This has no permission..")
+                    alert("You will need to try to login again..")
+                    history.push('/login')
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                history.push('/');
+            });
+
         }
         else
         {
-            alert('Username or Password is incorrect');
+            alert('Username or Password is not valid');
         }
         
     }
@@ -68,13 +103,14 @@ export default function Login()
     
         return(
             
-          
+            <form className ="container_login" /*onSubmit={this.handleSubmit}*/ id='form2'>  
             <div className='containerStyles' style = {containerStyles}>
                 <h1 align='center'>SnailMail</h1>
                 <p align='center'>Username</p>
                 <Textarea name='textBox' 
                     rows={1} 
                     type= 'username'
+                    name = "username"
                     value= {username}
                     onChange={(e) => setUsername(e.target.value)} 
                     placeholder="scooby@doo.net" 
@@ -86,6 +122,7 @@ export default function Login()
                     rows={1} 
                     type= 'password'
                     value= {password}
+                    name = "password"
                     onChange={(e) => setPassword(e.target.value)} 
                     placeholder="Shaggy12345!" 
                     style = {containerStyles} 
@@ -99,7 +136,7 @@ export default function Login()
                     style = {buttoncontainerStyle} 
                 />
             </div> 
-           
+            </form>
         );
 
    
