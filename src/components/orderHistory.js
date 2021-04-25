@@ -52,6 +52,7 @@ export default function OrderHistory(props){
     const classes = useStyles();
 
     return(
+        //add Date To and Date From to make this form a report
         <TableContainer component={Paper}>
             <h1 align='center'>Order History</h1>
             <Table className={classes.table} >
