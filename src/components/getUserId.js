@@ -86,7 +86,7 @@ class GetUserId extends React.Component {
                         style={emailContainerStyles}
                     />
                     <Button
-                        label='Get'
+                        label='Submit'
                         name='getButton'
                         size='medium'
                         onClick={this.handleSubmit}

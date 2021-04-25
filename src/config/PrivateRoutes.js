@@ -8,7 +8,7 @@ import Trackinghistory from '../components/Trackinghistory'
 import UpdatePackage from '../components/UpdatePackage'
 import Profile from '../components/profile'
 import LandingPage from '../components/LandingPage';
-
+import GetUserId from '../components/getUserId'
 //this whole thing is a private area containing components with
 //certain permissions tied to the role.js..
 
@@ -51,6 +51,15 @@ export default [
    Roles.User,
    Roles.Worker,
    Roles.Manager
+    ],
+ },
+ {
+  component: GetUserId,
+  path: '/getUserId',
+  title: 'getUserId',
+  permission: [
+   Roles.Worker,
+   Roles.Manager,
     ],
  },
  {
