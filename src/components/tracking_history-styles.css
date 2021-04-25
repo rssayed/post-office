@@ -45,9 +45,15 @@
     width:150px;
     height:46px;
     top: 20px;
+    bottom: 50px;
   }
 
   .button_2_update:sucess:hover
   {
     background:darkblue;
+  }
+
+  .printBlock
+  {
+    margin: auto;
   }
