@@ -126,7 +126,7 @@ def update_package():
     return jsonify(update_query)
     # return render_template('/Update_Package.js')
 
-@app.route('backend/getUserId', methods=['GET', 'POST'])
+@app.route('/backend/getUserId', methods=['GET', 'POST'])
 def get_user_id():
     cur = mysql.connection.cursor()
     fname = request.form.get('fname')

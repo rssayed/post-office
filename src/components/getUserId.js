@@ -5,19 +5,19 @@ import Button from 'react-rainbow-components/components/Button';
 const fnameContainerStyles = {
     margin: 'auto',
     maxWidth: 300,
-    top: 25
+    top: 0
 }
 
 const lnameContainerStyles = {
     margin: 'auto',
     maxWidth: 300,
-    top: 50
+    top: 15
 }
 
 const nameContainerStyles = {
     margin: 'auto',
     maxWidth: 300,
-    top: 75
+    top: 30
 }
 const buttonContainerStyle = {
     backgroundColor: '#0645AE',
@@ -25,12 +25,7 @@ const buttonContainerStyle = {
     color: '#ffffff',
     margin: 'auto',
     display:'block',
-    top: 100
-}
-
-const pConatinerStyle = {
-    top: 150,
-    align: 'center'
+    top: 45
 }
 
 class GetUserId extends React.Component {
@@ -105,7 +100,10 @@ class GetUserId extends React.Component {
                     />
                 </form>
                 <span>
-                    <p style={pConatinerStyle}>User ID: </p>{this.state.user_id}
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <p align='center'>User ID: {this.state.user_id}</p>
                 </span>
             </React.Fragment>
         )

@@ -144,6 +144,9 @@ class Trackinghistory extends React.Component{
                 </form>
 
                 <div className="printBlock">
+                    <br></br>
+                    <br></br>
+                    <br></br>
                     {this.state.tracking_history.map(this.renderHistory)}
                 </div>
             </React.Fragment>
