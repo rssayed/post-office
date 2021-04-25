@@ -2,12 +2,40 @@ import React from 'react';
 import Textarea from 'react-rainbow-components/components/Textarea';
 import './tracking_history-styles.css';
 import Button from 'react-rainbow-components/components/Button';
-
+import withStyles from '@material-ui/core/styles/withStyles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper'
 
 
 const printStyle = {
         margin: 'auto'
 }
+
+const StyledTableCell = withStyles((theme) => ({
+    head: {
+        backgroundColor: '#0645AE',
+        color: theme.palette.common.white,
+        fontSize: 18
+    },
+    body: {
+        fontSize: 14
+    }
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+    root: {
+      '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+      }
+    }
+  }))(TableRow);
+
 
 class Trackinghistory extends React.Component{
     
@@ -34,8 +62,6 @@ class Trackinghistory extends React.Component{
             // this.state.tracking_value= event.tracking_value;
             // this.setState(state);
 
-            //const form='12345';
-
             const form = new FormData(document.getElementById('form1'));
 
             alert("x0x0");
@@ -57,13 +83,37 @@ class Trackinghistory extends React.Component{
     }
 
     renderHistory(history, idx) {
+       
         return (
-            <div align='center'>
-                <h2>Delivery Stop#{idx}</h2>
-                {history.map((item, idx) => (
-                    <div key={idx}>{JSON.stringify(item)}</div>
-                ))}
-            </div>
+            <TableContainer componenet={Paper}>
+                <Table >
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell>Time in</StyledTableCell>
+                            <StyledTableCell>Time out</StyledTableCell>
+                            <StyledTableCell>Delivery Status</StyledTableCell>
+                            <StyledTableCell>Location</StyledTableCell>
+                            <StyledTableCell></StyledTableCell>
+                            <StyledTableCell></StyledTableCell>
+                            <StyledTableCell></StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+
+                    <TableBody>
+                        <StyledTableRow>
+                        {history.map((item, idx) => (
+                                    <StyledTableCell key={idx}>{(item)}</StyledTableCell>
+                        ))}
+                        </StyledTableRow>
+                    </TableBody>
+                </Table>
+            </TableContainer>
+                /* <div align='center'>
+                    <h2>Delivery Stop#{idx}</h2>
+                    {history.map((item, idx) => (
+                        <div key={idx}>{JSON.stringify(item)}</div>
+                    ))}
+                </div> */
         )
     }
 

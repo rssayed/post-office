@@ -11,17 +11,17 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# app.config['MYSQL_DB'] = 'mainschema'
-# app.config['MYSQL_HOST'] = 'localhost'
-# app.config['MYSQL_PORT'] = 3306
-# app.config['MYSQL_USER'] = 'root'
-# app.config['MYSQL_PASSWORD'] = 'password'
-
-app.config['MYSQL_DB'] = 'post_office'
-app.config['MYSQL_HOST'] = 'aws-snailmail.c2s7bdbtbg0f.us-east-2.rds.amazonaws.com'
+app.config['MYSQL_DB'] = 'postoffice'
+app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_PORT'] = 3306
-app.config['MYSQL_USER'] = 'admin'
-app.config['MYSQL_PASSWORD'] = 'Heartless1234'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'meow10!'
+
+# app.config['MYSQL_DB'] = 'post_office'
+# app.config['MYSQL_HOST'] = 'aws-snailmail.c2s7bdbtbg0f.us-east-2.rds.amazonaws.com'
+# app.config['MYSQL_PORT'] = 3306
+# app.config['MYSQL_USER'] = 'admin'
+# app.config['MYSQL_PASSWORD'] = 'Heartless1234'
 
 # db = yaml.load(open('db.yaml'))
 # app.config['MYSQL_DB'] = db['mysql_db']
@@ -90,7 +90,7 @@ def tracking_history():
     if request.method == 'POST':
         tracking_id = request.form.get('tracking_id')
         #tracking_id = request.get_json()['tracking_id']
-        cur.execute('''SELECT DISTINCT delivers.tracking_id, delivers.time_in, delivers.time_out, delivers.is_delivered, post_office.street_address, post_office.city, post_office.state, post_office.zipcode
+        cur.execute('''SELECT DISTINCT delivers.time_in, delivers.time_out, delivers.is_delivered, post_office.street_address, post_office.city, post_office.state, post_office.zipcode
         FROM post_office, delivers
         WHERE delivers.tracking_id=%s AND delivers.facility_id=post_office.facility_id''', (tracking_id,))
         # This should return all the information we want to display based on the user input
@@ -219,7 +219,7 @@ def home():
     cur = mysql.connection.cursor() # <<<<<< testing for mysql connection
     # mysql.connection.commit()
 
-    # return '/ route working'
+    return '/ route working'
 
 if __name__ == '__main__':
     app.run(debug=True)
