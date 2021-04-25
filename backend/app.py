@@ -11,11 +11,13 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-app.config['MYSQL_DB'] = 'postOffice'
-app.config['MYSQL_HOST'] = 'localhost'
+
+app.config['MYSQL_DB'] = 'post_office'
+app.config['MYSQL_HOST'] = 'aws-snailmail.c2s7bdbtbg0f.us-east-2.rds.amazonaws.com'
 app.config['MYSQL_PORT'] = 3306
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '#######!'
+app.config['MYSQL_USER'] = 'admin'
+app.config['MYSQL_PASSWORD'] = 'Heartless1234'
+
 
 # app.config['MYSQL_DB'] = 'aws-snailmail'
 # app.config['MYSQL_HOST'] = 'aws-snailmail.c2s7bdbtbg0f.us-east-2.rds.amazonaws.com'
