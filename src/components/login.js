@@ -44,7 +44,6 @@ export default function Login()
         {   
             const form = new FormData(document.getElementById('form2'));
 
-            alert("x0x0");
 
             fetch('http://localhost:5000/backend/login', {
             method: 'POST',
@@ -62,6 +61,7 @@ export default function Login()
                     roles.push(result);
                     setRole(result);
                     localStorage.setItem('roles', JSON.stringify(roles));
+                    alert("Logging in as manager")
                     history.push('/app');
                 }
                 else if(result == 'Customer')
@@ -70,6 +70,7 @@ export default function Login()
                     roles.push(result);
                     setRole(result);
                     localStorage.setItem('roles', JSON.stringify(roles));
+                    alert("Logging in as Customer")
                     history.push('/app');
                 }
                 else if(result == 'Worker')
@@ -78,17 +79,24 @@ export default function Login()
                     roles.push(result);
                     setRole(result);
                     localStorage.setItem('roles', JSON.stringify(roles));
+                    alert("Logging in as Worker")
                     history.push('/app');
                 }
                 else if(result == 'no_permission')
                 {
                     console.log("This has no permission..")
-                    alert("You will need to try to login again..")
-                    history.push('/login')
+                    alert("You will need to try to login again password may be wrong....")
+                    history.push('/')
+                }
+                else if(result == 'Username Not Found In DB')
+                {
+                    alert("This username is not in the database try to log in again")
+                    history.push('/');
                 }
             })
             .catch((error) => {
                 console.error('Error:', error);
+                alert("This username is not in the db..")
                 history.push('/');
             });
 

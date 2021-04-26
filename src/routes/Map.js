@@ -18,7 +18,7 @@ function UsePrivateRoutes() {
    allowedRoutes = getAllowedRoutes(PrivateRoutes);
    console.log(" HEYYYY These are the allowedroutes..",allowedRoutes);
  } else {
-   return <Redirect to="/" />;
+   return <Redirect to="/login" />;
    //alert("Hi, you need to login and receive authentication")
  }
  //else redirect to "/ and print you do not have acess to this website"
