@@ -5,7 +5,6 @@ import json
 import datetime
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
-# import yaml
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -18,17 +17,10 @@ CORS(app)
 # app.config['MYSQL_PASSWORD'] = 'meow10!'
 
 app.config['MYSQL_DB'] = 'post_office'
-app.config['MYSQL_HOST'] = 'aws-snailmail.c2s7bdbtbg0f.us-east-2.rds.amazonaws.com'
+app.config['MYSQL_HOST'] = 'aws-snailmail.cnij84gemecu.us-east-2.rds.amazonaws.com'
 app.config['MYSQL_PORT'] = 3306
 app.config['MYSQL_USER'] = 'admin'
-app.config['MYSQL_PASSWORD'] = 'Heartless1234'
-
-# db = yaml.load(open('db.yaml'))
-# app.config['MYSQL_DB'] = db['mysql_db']
-# app.config['MYSQL_HOST'] = db['mysql_host']
-# app.config['MYSQL_PORT'] = db['mysql_port']
-# app.config['MYSQL_USER'] = db['mysql_user']
-# app.config['MYSQL_PASSWORD'] = db['mysql_password']
+app.config['MYSQL_PASSWORD'] = 'snail-password'
 
 mysql = MySQL(app)
 
@@ -270,9 +262,6 @@ def delete():
 
 @app.route('/')
 def home():
-    cur = mysql.connection.cursor()  # <<<<<< testing for mysql connection
-    # mysql.connection.commit()
-
     return '/ route working'
 
 if __name__ == '__main__':
