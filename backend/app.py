@@ -168,20 +168,23 @@ def createUser():
             cur.execute('''INSERT INTO employee(employee_email, fname, lname, gender, age, job_title, delivery_DBaccess, employee_password)
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s)''', (employee_email, fname, lname, gender, age, job_title, delivery_DBaccess, employee_password))
             mysql.connection.commit()
+    create_user_query = cur.fetchall()
+    return jsonify(create_user_query)
+
 
 @app.route('/backend/CreatePackage', methods=['GET', 'POST'])
 def create_package():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
-        shipping_date = request.form.get('shipping_date')
+        date = request.form.get('shipping_date')
         shipping_type = request.form.get('type')
         weight = request.form.get('weight')
         customer_id = request.form.get('customer_id')
         name = request.form.get('name')
-        street_address = request.form.get('street_address')
-        city = request.form.get('city')
-        state = request.form.get('state')
-        zipcode = request.form.get('zipcode')
+        street_address = request.form.get('return_street_address')
+        city = request.form.get('return_city')
+        state = request.form.get('return_state')
+        zipcode = request.form.get('return_zipcode')
         # shipping_date = request.get_json()['shipping_date']
         # shipping_type = request.get_json()['type']
         # weight = request.get_json()['weight']
@@ -193,16 +196,14 @@ def create_package():
         # zipcode = request.get_json()['zipcode']
 
         # not sure if these will be valid as it doesn't fulfill all of the fields for creating each one of these
-        cur.execute('''INSERT INTO package(shipping_date, type, weight, deliver_to)
-                    VALUES (%s, %s, %s, %s)''', (shipping_date, shipping_type, weight, name))
-        cur.execute('''INSERT INTO receiver(name, street_address, city, state, zipcode)
-                    VALUES (%s, %s, %s, %s, %s)''', (name, street_address, city, state, zipcode))
-        cur.execute('''INSERT INTO orders(customer_id)
-                    VALUES (customer_id)''', customer_id)
+        cur.execute('''INSERT INTO package(shipping_date, expected_delivery, type, weight, return_street_address, return_city, return_state, return_zipcode, is_delivered, deliver_to)
+                    VALUES (%s, ADDDATE(%s, INTERVAL 5 DAY), %s, %s, %s, %s, %s, %s, 'No', %s)''', (date, date, shipping_type, weight, street_address, city, state, zipcode, name))
+
         mysql.connection.commit()
 
         # not sure how to return these multiple queries just yet
-    return render_template('/CreatePackage.js')
+    create_package_query = cur.fetchall()
+    return jsonify(create_package_query)
     
 
 @app.route('/backend/login', methods=['GET', 'POST'])
