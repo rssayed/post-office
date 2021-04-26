@@ -22,22 +22,13 @@ export default [
     Roles.Worker,
      ],
  },
- {
-  component: Home,
-  path: '/app',
-  title: 'Home',
-  permission: [
-    Roles.User,
-    Roles.Manager,
-    Roles.Worker,
-     ],
- },
+
  {
     component: Trackinghistory,
     path: '/Trackinghistory',
     title: 'Tracking History',
     permission: [
-      Roles.User,
+      Roles.Customer,
       Roles.Manager,
       Roles.Worker,
        ],
@@ -48,7 +39,7 @@ export default [
   path: '/orderHistory',
   title: 'Order History',
   permission: [
-   Roles.User,
+   Roles.Customer,
    Roles.Worker,
    Roles.Manager
     ],
@@ -84,7 +75,7 @@ export default [
   path: '/Profile',
   title: 'Profile',
   permission: [
-      Roles.User,
+      Roles.Customer,
       Roles.Manager,
       Roles.Worker
   ],
