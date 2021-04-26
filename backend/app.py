@@ -200,6 +200,7 @@ def create_package():
 
 @app.route('/backend/login', methods=['GET', 'POST'])
 def login():
+    try:
         cur = mysql.connection.cursor()
         username = request.form['username']
         password = request.form['password']
@@ -236,33 +237,45 @@ def login():
                     # return redirect('/profile')
                     return 'Worker'
                 return 'no_permission'
-
         return ("Username Not Found In DB")
-
+        
+    except:
+        return ('Unable to get Username or Password')
 
 @app.route('/backend/delete', methods=['GET', 'POST'])
 def delete():
-    cur = mysql.connection.cursor()
     if request.method == 'POST':
-        tracking_id = request.form['tracking_id']
-        cur.execute('''SELECT tracking_id FROM orders''')
-        orders = [item[0] for item in cur.fetchall()]
-        for i in orders:
-            if tracking_id == i:
-                cur.execute('''DELETE FROM package WHERE tracking_id=%s''', [tracking_id])
-                mysql.connection.commit()
-                return ('Sucessfully Deleted Package')
-            else:
-                return ('Package Not Found')
+        try:
+            cur = mysql.connection.cursor()
+            tracking_id = request.form['tracking_id']
+            cur.execute ('''SELECT tracking_id FROM orders''')
+            orders = [item[0] for item in cur.fetchall()]
+            for i in orders:
+                if tracking_id == i:
+                    cur.execute ('''DELETE FROM package WHERE tracking_id=%s''', [tracking_id])
+                    mysql.connection.commit()
+                    return ('Sucessfully Deleted Package')
+                else:
+                    return ('Package Not Found')
 
-        return ('Tracking ID Not Found')
-
-    return ('Delete Page')
+            return ('Tracking ID Not Found')
+        except:
+            return ('Unable to get tracking_id request')
 
 
 @app.route('/')
 def home():
-    return '/ route working'
+    return ('/ route working')
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return ('error 404') # make pretty
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    return ('error 500') # change
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
