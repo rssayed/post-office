@@ -35,4 +35,14 @@ Example: python3 -m pip module_name
 3. Enter "npm start" to run the app locally where you can see app.js
 
 ## How to use website
+<<<<<<< HEAD
 Now that you have front and backend talking to each other along with the database you can use the website.
+=======
+Now that you have front and backend talking to each other along with the database you can use the website.
+
+## How to log in
+1. The website logs in through authenticating with the dbms.
+2. username = moneybags@gmail.com password = krustyKrab the role Manager
+3. username = texassquirrel@gmail.com password = mammalsrule the role is Worker
+4. username = jerry90@gmail.com password =  iamthebest the role is Customer
+>>>>>>> c64b955da5d50eda28d3acfaa687545d41eaed42
