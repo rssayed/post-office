@@ -1,6 +1,6 @@
 # SnailMail
 ## Tech stack
-1. ReactJS for the frontend using Rainbow UI
+1. ReactJS for the frontend
 2. Flask for the backend
 3. mysql for the database
 ## Setting up app
