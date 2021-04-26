@@ -96,7 +96,8 @@ def tracking_history():
         # tracking_id = request.get_json()['tracking_id']
         cur.execute('''SELECT DISTINCT delivers.time_in, delivers.time_out, delivers.is_delivered, post_office.street_address, post_office.city, post_office.state, post_office.zipcode
         FROM post_office, delivers
-        WHERE delivers.tracking_id=%s AND delivers.facility_id=post_office.facility_id''', (tracking_id,))
+        WHERE delivers.tracking_id=%s AND delivers.facility_id=post_office.facility_id
+        ORDER BY delivers.time_in''', (tracking_id,))
         # This should return all the information we want to display based on the user input
     output = cur.fetchall()
     return jsonify(output)
@@ -126,13 +127,14 @@ def update_package():
     return jsonify(update_query)
     # return render_template('/Update_Package.js')
 
+
 @app.route('/backend/getUserId', methods=['GET', 'POST'])
 def get_user_id():
     cur = mysql.connection.cursor()
     fname = request.form.get('fname')
     lname = request.form.get('lname')
     email = request.form.get('email')
-    cur.execute('''SELECT customer_id FROM customer WHERE fname=%s AND lname=%s AND email=%s''', (fname, lname, email))
+    cur.execute('''SELECT customer_id, fname, lname FROM customer WHERE fname=%s OR lname=%s OR email=%s''', (fname, lname, email))
     get_user_id_query = cur.fetchall()
     return jsonify(get_user_id_query)
 
