@@ -45,4 +45,3 @@ Now that you have front and backend talking to each other along with the databas
 2. username = moneybags@gmail.com password = krustyKrab the role Manager
 3. username = texassquirrel@gmail.com password = mammalsrule the role is Worker
 4. username = jerry90@gmail.com password =  iamthebest the role is Customer
->>>>>>> c64b955da5d50eda28d3acfaa687545d41eaed42
