@@ -35,9 +35,6 @@ Example: python3 -m pip module_name
 3. Enter "npm start" to run the app locally where you can see app.js
 
 ## How to use website
-<<<<<<< HEAD
-Now that you have front and backend talking to each other along with the database you can use the website.
-=======
 Now that you have front and backend talking to each other along with the database you can use the website.
 
 ## How to log in
