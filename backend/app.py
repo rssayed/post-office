@@ -1,27 +1,27 @@
-from flask import Flask, render_template, flash, redirect, url_for
+from flask import Flask, render_template, redirect, url_for
 from flask import jsonify
 from flask import request
 import json
 import datetime
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
-import yaml
+# import yaml
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
 
-app.config['MYSQL_DB'] = 'postoffice'
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_PORT'] = 3306
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'meow10!'
-
-# app.config['MYSQL_DB'] = 'post_office'
-# app.config['MYSQL_HOST'] = 'aws-snailmail.c2s7bdbtbg0f.us-east-2.rds.amazonaws.com'
+# app.config['MYSQL_DB'] = 'postoffice'
+# app.config['MYSQL_HOST'] = 'localhost'
 # app.config['MYSQL_PORT'] = 3306
-# app.config['MYSQL_USER'] = 'admin'
-# app.config['MYSQL_PASSWORD'] = 'Heartless1234'
+# app.config['MYSQL_USER'] = 'root'
+# app.config['MYSQL_PASSWORD'] = 'meow10!'
+
+app.config['MYSQL_DB'] = 'post_office'
+app.config['MYSQL_HOST'] = 'aws-snailmail.c2s7bdbtbg0f.us-east-2.rds.amazonaws.com'
+app.config['MYSQL_PORT'] = 3306
+app.config['MYSQL_USER'] = 'admin'
+app.config['MYSQL_PASSWORD'] = 'Heartless1234'
 
 # db = yaml.load(open('db.yaml'))
 # app.config['MYSQL_DB'] = db['mysql_db']
@@ -96,7 +96,8 @@ def tracking_history():
         # tracking_id = request.get_json()['tracking_id']
         cur.execute('''SELECT DISTINCT delivers.time_in, delivers.time_out, delivers.is_delivered, post_office.street_address, post_office.city, post_office.state, post_office.zipcode
         FROM post_office, delivers
-        WHERE delivers.tracking_id=%s AND delivers.facility_id=post_office.facility_id''', (tracking_id,))
+        WHERE delivers.tracking_id=%s AND delivers.facility_id=post_office.facility_id
+        ORDER BY delivers.time_in''', (tracking_id,))
         # This should return all the information we want to display based on the user input
     output = cur.fetchall()
     return jsonify(output)
@@ -126,13 +127,14 @@ def update_package():
     return jsonify(update_query)
     # return render_template('/Update_Package.js')
 
+
 @app.route('/backend/getUserId', methods=['GET', 'POST'])
 def get_user_id():
     cur = mysql.connection.cursor()
     fname = request.form.get('fname')
     lname = request.form.get('lname')
     email = request.form.get('email')
-    cur.execute('''SELECT customer_id FROM customer WHERE fname=%s AND lname=%s AND email=%s''', (fname, lname, email))
+    cur.execute('''SELECT customer_id, fname, lname FROM customer WHERE fname=%s OR lname=%s OR email=%s''', (fname, lname, email))
     get_user_id_query = cur.fetchall()
     return jsonify(get_user_id_query)
 
@@ -171,12 +173,11 @@ def create_package():
 
         # not sure how to return these multiple queries just yet
     return render_template('/CreatePackage.js')
-
+    
 
 @app.route('/backend/login', methods=['GET', 'POST'])
 def login():
-    cur = mysql.connection.cursor()
-    if request.method == 'POST':
+        cur = mysql.connection.cursor()
         username = request.form['username']
         password = request.form['password']
         cur.execute('''SELECT email FROM customer''')
@@ -192,8 +193,8 @@ def login():
                 customerPW = list(customerPW)
                 if password == customerPW[0]:
                     # return redirect('/profile')
-                    return 'Customer PW Matched'
-                return 'Incorrect Customer Password'
+                    return 'Customer'
+                return 'no_permission'
         for i in managerUsernames:
             if username == i:
                 cur.execute('''SELECT employee_password FROM employee WHERE employee_email=%s''', [username])
@@ -201,8 +202,8 @@ def login():
                 managerPW = list(managerPW)
                 if password == managerPW[0]:
                     # return redirect('/profile')
-                    return 'Manager pw matched'
-                return 'Incorrect Manager Password'
+                    return 'Manager'
+                return 'no_permission'
         for i in employeeUsernames:
             if username == i:
                 cur.execute('''SELECT employee_password FROM employee WHERE employee_email=%s''', [username])
@@ -210,10 +211,11 @@ def login():
                 employeePW = list(employeePW)
                 if password == employeePW[0]:
                     # return redirect('/profile')
-                    return 'Employee Pw Matched'
-                return 'Incorrect Employee Password'
+                    return 'Worker'
+                return 'no_permission'
 
-    return ("Username Not Found In DB")
+        return ("Username Not Found In DB")
+
 
 @app.route('/backend/delete', methods=['GET', 'POST'])
 def delete():
