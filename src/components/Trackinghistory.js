@@ -58,10 +58,6 @@ class Trackinghistory extends React.Component{
     {
             event.preventDefault();
         
-            //const state= this.setState;
-            // this.state.tracking_value= event.tracking_value;
-            // this.setState(state);
-
             const form = new FormData(document.getElementById('form1'));
             
             alert("x0x0");
@@ -72,8 +68,8 @@ class Trackinghistory extends React.Component{
             })
             .then(response => response.json())
             .then(result => {
-                console.log('Success:', result);            //need to figure out how to print the response on the webpage
-                this.setState({tracking_history: result});  // for some reason the backend is returning an array of arrays, get first array
+                console.log('Success:', result);            
+                this.setState({tracking_history: result});  
             })
             .catch((error) => {
                 console.error('Error:', error);
