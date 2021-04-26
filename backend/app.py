@@ -1,21 +1,21 @@
-from flask import Flask, render_template, flash, redirect, url_for
+from flask import Flask, render_template, redirect, url_for
 from flask import jsonify
 from flask import request
 import json
 import datetime
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
-import yaml
+# import yaml
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
 
-#app.config['MYSQL_DB'] = 'postoffice'
-#app.config['MYSQL_HOST'] = 'localhost'
-#app.config['MYSQL_PORT'] = 3306
-#app.config['MYSQL_USER'] = 'root'
-#app.config['MYSQL_PASSWORD'] = 'meow10!'
+# app.config['MYSQL_DB'] = 'postoffice'
+# app.config['MYSQL_HOST'] = 'localhost'
+# app.config['MYSQL_PORT'] = 3306
+# app.config['MYSQL_USER'] = 'root'
+# app.config['MYSQL_PASSWORD'] = 'meow10!'
 
 app.config['MYSQL_DB'] = 'post_office'
 app.config['MYSQL_HOST'] = 'aws-snailmail.c2s7bdbtbg0f.us-east-2.rds.amazonaws.com'
