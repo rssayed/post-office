@@ -22,10 +22,10 @@
 7. numpy==1.20.2
 8. pandas==1.2.3
 9. protobuf==3.15.7
-10. python-dateutil==2.8.1
-11. pytz==2021.1
-12. six==1.15.0
-13. Werkzeug==1.0.1
+ 10. python-dateutil==2.8.1
+ 11. pytz==2021.1
+ 12. six==1.15.0
+ 13. Werkzeug==1.0.1
 ## How to run backend
 1. Open a terminal for backend
 1. Now to run the backend use "python -m flask run" inside of the backend folder.
