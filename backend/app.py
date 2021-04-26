@@ -177,8 +177,7 @@ def create_package():
 
 @app.route('/backend/login', methods=['GET', 'POST'])
 def login():
-    cur = mysql.connection.cursor()
-    if request.method == 'POST':
+        cur = mysql.connection.cursor()
         username = request.form['username']
         password = request.form['password']
         cur.execute('''SELECT email FROM customer''')
@@ -194,8 +193,8 @@ def login():
                 customerPW = list(customerPW)
                 if password == customerPW[0]:
                     # return redirect('/profile')
-                    return 'Customer PW Matched'
-                return 'Incorrect Customer Password'
+                    return 'Customer'
+                return 'no_permission'
         for i in managerUsernames:
             if username == i:
                 cur.execute('''SELECT employee_password FROM employee WHERE employee_email=%s''', [username])
@@ -203,8 +202,8 @@ def login():
                 managerPW = list(managerPW)
                 if password == managerPW[0]:
                     # return redirect('/profile')
-                    return 'Manager pw matched'
-                return 'Incorrect Manager Password'
+                    return 'Manager'
+                return 'no_permission'
         for i in employeeUsernames:
             if username == i:
                 cur.execute('''SELECT employee_password FROM employee WHERE employee_email=%s''', [username])
@@ -212,10 +211,11 @@ def login():
                 employeePW = list(employeePW)
                 if password == employeePW[0]:
                     # return redirect('/profile')
-                    return 'Employee Pw Matched'
-                return 'Incorrect Employee Password'
+                    return 'Worker'
+                return 'no_permission'
 
-    return ("Username Not Found In DB")
+        return ("Username Not Found In DB")
+
 
 @app.route('/backend/delete', methods=['GET', 'POST'])
 def delete():
