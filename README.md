@@ -36,3 +36,9 @@ Example: python3 -m pip module_name
 
 ## How to use website
 Now that you have front and backend talking to each other along with the database you can use the website.
+
+## How to log in
+1. The website logs in through authenticating with the dbms.
+2. username = moneybags@gmail.com password = krustyKrab the role Manager
+3. username = texassquirrel@gmail.com password = mammalsrule the role is Worker
+4. username = jerry90@gmail.com password =  iamthebest the role is Customer
