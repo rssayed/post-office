@@ -139,6 +139,36 @@ def get_user_id():
     return jsonify(get_user_id_query)
 
 
+@app.route('/backend/createUser', methods=['GET', 'POST'])
+def createUser():
+    cur = mysql.connection.cursor()
+    if request.method == 'POST':
+        entity = request.form.get('entity')
+        if entity == 'Customer':
+            fname = request.form.get('fname')
+            lname = request.form.get('lname')
+            street_address = request.form.get('street_address')
+            city = request.form.get('city')
+            state = request.form.get('state')
+            zipcode = request.form.get('zipcode')
+            customer_password = request.form.get('customer_password')
+            email = request.form.get('email')
+            cur.execute('''INSERT INTO customer(street_address, city, state, zipcode, fname, lname, customer_password, email)
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s)''', (street_address, city, state, zipcode, fname, lname, customer_password, email))
+            mysql.connection.commit()
+        else:
+            fname = request.form.get('fname')
+            lname = request.form.get('lname')
+            employee_email = request.form.get('employee_email')
+            gender = request.form.get('gender')
+            age = request.form.get('age')
+            job_title = request.form.get('job_title')
+            delivery_DBaccess = request.form.get('delivery_DBaccess')
+            employee_password = request.form.get('employee_password')
+            cur.execute('''INSERT INTO employee(employee_email, fname, lname, gender, age, job_title, delivery_DBaccess, employee_password)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)''', (employee_email, fname, lname, gender, age, job_title, delivery_DBaccess, employee_password))
+            mysql.connection.commit()
+
 @app.route('/backend/CreatePackage', methods=['GET', 'POST'])
 def create_package():
     cur = mysql.connection.cursor()
