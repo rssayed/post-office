@@ -3,7 +3,9 @@ from flask import jsonify
 from flask import request
 import json
 import datetime
+import werkzeug
 from flask_mysqldb import MySQL
+from werkzeug.exceptions import HTTPException
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_cors import CORS
 
@@ -242,6 +244,7 @@ def login():
     except:
         return ('Unable to get Username or Password')
 
+
 @app.route('/backend/delete', methods=['GET', 'POST'])
 def delete():
     if request.method == 'POST':
@@ -267,14 +270,26 @@ def delete():
 def home():
     return ('/ route working')
 
+
+# not sure which method of error handling is correct, can try out both
+@app.errorhandler(werkzeug.exceptions.BadRequest)
+def handle_bad_request(e):
+    return {'message': 'Bad request!'}, 400
+
+
+@app.errorhandler(werkzeug.exceptions.Conflict)
+def handle_conflict(e):
+    return {'message': 'Username already taken!'}, 409
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     return ('error 404') # make pretty
 
+
 @app.errorhandler(500)
 def internal_server_error(e):
     return ('error 500') # change
-
 
 
 if __name__ == '__main__':
