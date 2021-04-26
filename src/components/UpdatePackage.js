@@ -14,8 +14,6 @@ class UpdatePackage extends React.Component{
               
     }
 
-    
-
     render() {
         return(    
             <div> 

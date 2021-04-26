@@ -1,5 +1,5 @@
 import React from "react";
-import Nav from './Nav';
+
 //cannot read property of map undefined
     class NotFound extends React.Component{
         constructor(props)
@@ -14,15 +14,11 @@ import Nav from './Nav';
     render() 
     {
         console.log(this.props)
-      return (
-        
+      return (    
         <div className = "container"> 
         <h1> Cannot read property map of undefined.. inside props.routes.map in..</h1>
         <h1> Nav bar.. which means there is no path??</h1>
         </div>
-        
-        
-
         )      
     }
         }

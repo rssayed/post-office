@@ -47,36 +47,38 @@ const useStyles = makeStyles({
 
 
 //passing in props to the orderHistory..
-export default function OrderHistory(props){
+export default function OrderHistory(){
     
     const classes = useStyles();
 
     return(
         //add Date To and Date From to make this form a report
-        <TableContainer component={Paper}>
-            <h1 align='center'>Order History</h1>
-            <Table className={classes.table} >
-                <TableHead>
-                    <TableRow>
-                        <StyledTableCell>Tracking Number</StyledTableCell>
-                        <StyledTableCell>Recipient Name</StyledTableCell>
-                        <StyledTableCell>Shipped On</StyledTableCell>
-                        <StyledTableCell>Delivered On</StyledTableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                {rows.map((row) => (
-                    <StyledTableRow key={row.tracking_id}>
-                        <StyledTableCell component="th" scope="row">
-                            {row.tracking_id}
-                        </StyledTableCell>
-                        <StyledTableCell align="left">{row.reciever}</StyledTableCell>
-                        <StyledTableCell align="left">{row.shipped}</StyledTableCell>
-                        <StyledTableCell align="left">{row.delivered}</StyledTableCell>
-                    </StyledTableRow>
-                ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <div>
+            <TableContainer component={Paper}>
+                <h1 align='center'>Order History</h1>
+                <Table className={classes.table} >
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell>Tracking Number</StyledTableCell>
+                            <StyledTableCell>Recipient Name</StyledTableCell>
+                            <StyledTableCell>Shipped On</StyledTableCell>
+                            <StyledTableCell>Delivered On</StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                    {rows.map((row) => (
+                        <StyledTableRow key={row.tracking_id}>
+                            <StyledTableCell component="th" scope="row">
+                                {row.tracking_id}
+                            </StyledTableCell>
+                            <StyledTableCell align="left">{row.reciever}</StyledTableCell>
+                            <StyledTableCell align="left">{row.shipped}</StyledTableCell>
+                            <StyledTableCell align="left">{row.delivered}</StyledTableCell>
+                        </StyledTableRow>
+                    ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </div>
     );
 }

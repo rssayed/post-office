@@ -1,6 +1,5 @@
 import React from 'react';
 import Textarea from 'react-rainbow-components/components/Textarea';
-import Lookup from 'react-rainbow-components/components/Lookup';
 import Button from 'react-rainbow-components/components/Button';
 import Select from 'react-rainbow-components/components/Select';
 
