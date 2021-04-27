@@ -138,8 +138,7 @@ def createUser():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
         entity = request.form.get('entity')
-
-        if entity == 'Customer':
+        # if entity == 'Customer':
             fname = request.form.get('fname')
             lname = request.form.get('lname')
             street_address = request.form.get('street_address')
@@ -148,27 +147,23 @@ def createUser():
             zipcode = request.form.get('zipcode')
             customer_password = request.form.get('customer_password')
             email = request.form.get('email')
-            create_user_query = cur.execute('''INSERT INTO customer(street_address, city, state, zipcode, fname, lname, customer_password, email)
+            cur.execute('''INSERT INTO customer(street_address, city, state, zipcode, fname, lname, customer_password, email)
             VALUES (%s,%s,%s,%s,%s,%s,%s,%s)''', (street_address, city, state, zipcode, fname, lname, customer_password, email))
             mysql.connection.commit()
-            get_customer_id = cur.execute('''SELECT customer_id FROM customer WHERE fname=%s AND lname=%s AND email=%s''', (fname, lname, email))
-            return jsonify(get_customer_id)
-        else:
-            fname = request.form.get('fname')
-            lname = request.form.get('lname')
-            employee_email = request.form.get('employee_email')
-            gender = request.form.get('gender')
-            age = request.form.get('age')
-            job_title = request.form.get('job_title')
-            delivery_DBaccess = request.form.get('delivery_DBaccess')
-            employee_password = request.form.get('employee_password')
-            cur.execute('''INSERT INTO employee(employee_email, fname, lname, gender, age, job_title, delivery_DBaccess, employee_password)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)''', (employee_email, fname, lname, gender, age, job_title, delivery_DBaccess, employee_password))
-            mysql.connection.commit()
-            get_employee_id = cur.execute('''SELECT employee_id FROM customer WHERE fname=%s AND lname=%s AND employee_email=%s''', (fname, lname, employee_email))
-            return jsonify(get_employee_id)
-    # create_user_query = cur.fetchall()
-    # return jsonify(create_user_query)
+        # else:
+        #     fname = request.form.get('fname')
+        #     lname = request.form.get('lname')
+        #     employee_email = request.form.get('employee_email')
+        #     gender = request.form.get('gender')
+        #     age = request.form.get('age')
+        #     job_title = request.form.get('job_title')
+        #     delivery_DBaccess = request.form.get('delivery_DBaccess')
+        #     employee_password = request.form.get('employee_password')
+        #     cur.execute('''INSERT INTO employee(employee_email, fname, lname, gender, age, job_title, delivery_DBaccess, employee_password)
+        #     VALUES (%s, %s, %s, %s, %s, %s, %s, %s)''', (employee_email, fname, lname, gender, age, job_title, delivery_DBaccess, employee_password))
+        #     mysql.connection.commit()
+    create_user_query = cur.fetchall()
+    return jsonify(create_user_query)
 
 
 @app.route('/backend/CreatePackage', methods=['GET', 'POST'])
@@ -256,11 +251,11 @@ def delete():
         try:
             cur = mysql.connection.cursor()
             tracking_id = request.form.get('tracking_id')
-            cur.execute('''SELECT tracking_id FROM orders''')
+            cur.execute ('''SELECT tracking_id FROM orders''')
             orders = [item[0] for item in cur.fetchall()]
             for i in orders:
                 if tracking_id == i:
-                    cur.execute('''DELETE FROM package WHERE tracking_id=%s''', [tracking_id])
+                    cur.execute ('''DELETE FROM package WHERE tracking_id=%s''', (tracking_id))
                     mysql.connection.commit()
                     return ('Sucessfully Deleted Package')
                 else:

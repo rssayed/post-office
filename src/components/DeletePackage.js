@@ -1,7 +1,7 @@
 import React from 'react';
 //import useState from 'react';
 import Textarea from 'react-rainbow-components/components/Textarea';
-import './deletepage-styles.css';
+//import './deletepage-styles.css';
 import Button from 'react-rainbow-components/components/Button';
 
 
@@ -10,68 +10,65 @@ class DeletePackage extends React.Component{
     constructor(props) {
         super(props)
         this.state = {
-          tracking_value: ""
+          tracking_id: "",
+          status: ""
         }
-        this.onSubmit= this.onSubmit.bind(this);
-    }
-   
-    validateForm()
-    {
-        return this.state.tracking_value != null;
+        this.handleSubmit= this.handleSubmit.bind(this);
     }
 
-    onSubmit(event) {
-        /*this.setState({ savedVar: this.state.textareaValue}, () => {
-            console.log("                       ");
-            console.log("Printing out this submit.."+ this.state.savedVar);
-            console.log("                       ");
-          });*/
-          if(this.validateForm)
-          {
-            event.preventDefault();
-            const state= this.setState;
-            this.state.tracking_value= event.tracking_value;
-            this.setState(state);
-            /*backend axios code for HTTP request*/
-            
-            console.log("this.state.tracking_value");
-            alert("Delivery deleted");
-          }
-          else{
-              alert("Tracking Number missing, please enter tracking number for delivery");
-          }
+
+    handleSubmit = (event) => {
+        
+        event.preventDefault();
+
+        const form = new FormData(document.getElementById('deleteForm'));
+
+        alert('start fetching');;
+
+        fetch('http://localhost:5000/backend/getUserId', {
+            method: 'POST',
+            body: form,
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Success:', result);
+                this.setState({status: result}); 
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+        alert("finish fetch!");
     }
-
-    /*componentDidMount() {
-
-    //thinking about using axios..
-    fetch("https://blahblah").then(results => {
-    // Do something with the results
-    
-    })}    
-                 
-    componentWillUnmount() {
-            
-    }*/
 
     render() {
             
         return(
-            <form className ="container_delete">
-                <h1 className = "header_delete" align='center'>Delete Package</h1>
-             
-                <Textarea
-                className = "delete_box_delete"
-                type= 'tracking_value'
-                value = {this.state.tracking_value}
-                onChange= {e => this.setState({tracking_value: e.target.value})}
-                id="tracking_value"
-                label = "Tracking Number"
-                rows={1}
-                />
- 
-                <Button className="button_2_delete" label="Delete" disabled={!this.validateForm()} onClick={this.onSubmit} variant = "base">Delete</Button>
-            </form>
+            <React.Fragment>
+                <form className ="container_delete" id='deleteForm'>
+                    <h1 className = "header_delete" align='center'>Delete Package</h1>
+                
+                    <Textarea
+                    className = "delete_box_delete"
+                    value = {this.state.tracking_id}
+                    onChange= {e => this.setState({tracking_id: e.target.value})}
+                    id="tracking_id"
+                    name="tracking_id"
+                    label = "Tracking Number"
+                    rows={1}
+                    required
+                    />
+    
+                    <Button className="button_2_delete" label="Delete" onClick={this.handleSubmit} variant = "base" type='submit'>Delete</Button>
+                </form>
+
+                <span>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <p align='center'>{this.state.user_id}</p>
+                </span>
+            </React.Fragment>
             
         )
     }
