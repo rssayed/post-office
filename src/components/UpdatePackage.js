@@ -58,6 +58,7 @@ class UpdatePackage extends React.Component {
                         id="time_in"
                         name="time_in"
                         label="Time in"
+                        placeholder= "YYYY-MM-DD HH:MM:SS"
                         rows={1}
 
                     />
@@ -68,6 +69,7 @@ class UpdatePackage extends React.Component {
                         id="time_out"
                         name="time_out"
                         label="Time out"
+                        placeholder= "YYYY-MM-DD HH:MM:SS"
                         rows={1}
                     />
 
