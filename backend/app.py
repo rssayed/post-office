@@ -28,7 +28,7 @@ mysql = MySQL(app)
 
 
 @app.route('/backend/getProfile', methods=['GET', 'POST'])
-def profile():
+def getProfile():
     cur = mysql.connection.cursor()
 
     if request.method == 'POST':
@@ -50,7 +50,7 @@ def profile():
     return jsonify(getProfile_query)
 
 @app.route('/backend/setProfile', methods=['GET', 'POST'])
-def profile():
+def setProfile():
     cur = mysql.connection.cursor()
 
     if request.method == 'POST':
