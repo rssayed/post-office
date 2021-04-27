@@ -3,9 +3,10 @@ from flask import jsonify
 from flask import request
 import json
 import datetime
+import werkzeug
 from flask_mysqldb import MySQL
+from werkzeug.exceptions import HTTPException
 from werkzeug.security import generate_password_hash, check_password_hash
-# import yaml
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -18,17 +19,10 @@ CORS(app)
 # app.config['MYSQL_PASSWORD'] = 'meow10!'
 
 app.config['MYSQL_DB'] = 'post_office'
-app.config['MYSQL_HOST'] = 'aws-snailmail.c2s7bdbtbg0f.us-east-2.rds.amazonaws.com'
+app.config['MYSQL_HOST'] = 'aws-snailmail.cnij84gemecu.us-east-2.rds.amazonaws.com'
 app.config['MYSQL_PORT'] = 3306
 app.config['MYSQL_USER'] = 'admin'
-app.config['MYSQL_PASSWORD'] = 'Heartless1234'
-
-# db = yaml.load(open('db.yaml'))
-# app.config['MYSQL_DB'] = db['mysql_db']
-# app.config['MYSQL_HOST'] = db['mysql_host']
-# app.config['MYSQL_PORT'] = db['mysql_port']
-# app.config['MYSQL_USER'] = db['mysql_user']
-# app.config['MYSQL_PASSWORD'] = db['mysql_password']
+app.config['MYSQL_PASSWORD'] = 'snail-password'
 
 mysql = MySQL(app)
 
@@ -208,6 +202,7 @@ def create_package():
 
 @app.route('/backend/login', methods=['GET', 'POST'])
 def login():
+    try:
         cur = mysql.connection.cursor()
         username = request.form['username']
         password = request.form['password']
@@ -244,36 +239,58 @@ def login():
                     # return redirect('/profile')
                     return 'Worker'
                 return 'no_permission'
-
         return ("Username Not Found In DB")
+        
+    except:
+        return ('Unable to get Username or Password')
 
 
 @app.route('/backend/delete', methods=['GET', 'POST'])
 def delete():
-    cur = mysql.connection.cursor()
     if request.method == 'POST':
-        tracking_id = request.form['tracking_id']
-        cur.execute('''SELECT tracking_id FROM orders''')
-        orders = [item[0] for item in cur.fetchall()]
-        for i in orders:
-            if tracking_id == i:
-                cur.execute('''DELETE FROM package WHERE tracking_id=%s''', [tracking_id])
-                mysql.connection.commit()
-                return ('Sucessfully Deleted Package')
-            else:
-                return ('Package Not Found')
+        try:
+            cur = mysql.connection.cursor()
+            tracking_id = request.form['tracking_id']
+            cur.execute ('''SELECT tracking_id FROM orders''')
+            orders = [item[0] for item in cur.fetchall()]
+            for i in orders:
+                if tracking_id == i:
+                    cur.execute ('''DELETE FROM package WHERE tracking_id=%s''', [tracking_id])
+                    mysql.connection.commit()
+                    return ('Sucessfully Deleted Package')
+                else:
+                    return ('Package Not Found')
 
-        return ('Tracking ID Not Found')
-
-    return ('Delete Page')
+            return ('Tracking ID Not Found')
+        except:
+            return ('Unable to get tracking_id request')
 
 
 @app.route('/')
 def home():
-    cur = mysql.connection.cursor()  # <<<<<< testing for mysql connection
-    # mysql.connection.commit()
+    return ('/ route working')
 
-    return '/ route working'
+
+# not sure which method of error handling is correct, can try out both
+@app.errorhandler(werkzeug.exceptions.BadRequest)
+def handle_bad_request(e):
+    return {'message': 'Bad request!'}, 400
+
+
+@app.errorhandler(werkzeug.exceptions.Conflict)
+def handle_conflict(e):
+    return {'message': 'Username already taken!'}, 409
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return ('error 404') # make pretty
+
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    return ('error 500') # change
+
 
 if __name__ == '__main__':
     app.run(debug=True)
