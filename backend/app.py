@@ -138,7 +138,7 @@ def createUser():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
         entity = request.form.get('entity')
-        if entity == 'Customer':
+        # if entity == 'Customer':
             fname = request.form.get('fname')
             lname = request.form.get('lname')
             street_address = request.form.get('street_address')
@@ -150,18 +150,18 @@ def createUser():
             cur.execute('''INSERT INTO customer(street_address, city, state, zipcode, fname, lname, customer_password, email)
             VALUES (%s,%s,%s,%s,%s,%s,%s,%s)''', (street_address, city, state, zipcode, fname, lname, customer_password, email))
             mysql.connection.commit()
-        else:
-            fname = request.form.get('fname')
-            lname = request.form.get('lname')
-            employee_email = request.form.get('employee_email')
-            gender = request.form.get('gender')
-            age = request.form.get('age')
-            job_title = request.form.get('job_title')
-            delivery_DBaccess = request.form.get('delivery_DBaccess')
-            employee_password = request.form.get('employee_password')
-            cur.execute('''INSERT INTO employee(employee_email, fname, lname, gender, age, job_title, delivery_DBaccess, employee_password)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)''', (employee_email, fname, lname, gender, age, job_title, delivery_DBaccess, employee_password))
-            mysql.connection.commit()
+        # else:
+        #     fname = request.form.get('fname')
+        #     lname = request.form.get('lname')
+        #     employee_email = request.form.get('employee_email')
+        #     gender = request.form.get('gender')
+        #     age = request.form.get('age')
+        #     job_title = request.form.get('job_title')
+        #     delivery_DBaccess = request.form.get('delivery_DBaccess')
+        #     employee_password = request.form.get('employee_password')
+        #     cur.execute('''INSERT INTO employee(employee_email, fname, lname, gender, age, job_title, delivery_DBaccess, employee_password)
+        #     VALUES (%s, %s, %s, %s, %s, %s, %s, %s)''', (employee_email, fname, lname, gender, age, job_title, delivery_DBaccess, employee_password))
+        #     mysql.connection.commit()
     create_user_query = cur.fetchall()
     return jsonify(create_user_query)
 

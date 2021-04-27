@@ -63,7 +63,7 @@ const buttonContainerStyle = {
     margin: 'auto',
     display:'block',
     top: 225,
-    bottom: 200     /*does not work, need space below button*/
+    //bottom: 200     /*does not work, need space below button*/
 }
 
 const lookup_data = [
@@ -166,17 +166,17 @@ class CreateUser extends React.Component{
 
         alert("Tracking Successful!");
         
-        return this.setState({
-            username: this.state.username,
-            password: this.state.password
-        });
+        // return this.setState({
+        //     username: this.state.username,
+        //     password: this.state.password
+        // });
     }
 
     render(){
         return(
             <React.Fragment>
                 <form id="createUserForm">
-                    <h1 align='center'>Create Customer</h1>
+                    <h1 align='center'>Create New User</h1>
                     <Select
                         label='Add new'
                         name='entity'
@@ -211,7 +211,7 @@ class CreateUser extends React.Component{
                     />
                     <Textarea 
                         label='Street address' 
-                        name='address' 
+                        name='street_address' 
                         type='text'
                         value= {this.state.address}
                         onChange= {e => this.setState({address: e.target.value})}
@@ -284,16 +284,15 @@ class CreateUser extends React.Component{
                     />
                 </form>
 
-                <div>
+                <span>
                     <br></br>
                     <br></br>
                     <br></br>
                     <p align='center'>User ID: {this.state.user_id}</p>
-                </div>
+                </span>
             </React.Fragment>
         );
-    }
-    
+    }  
 }
 
 export default CreateUser;
