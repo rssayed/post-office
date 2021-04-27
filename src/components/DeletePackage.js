@@ -1,5 +1,4 @@
 import React from 'react';
-//import useState from 'react';
 import Textarea from 'react-rainbow-components/components/Textarea';
 import './css_folder/deletepage-styles.css';
 import Button from 'react-rainbow-components/components/Button';
@@ -25,7 +24,7 @@ class DeletePackage extends React.Component{
 
         alert('start fetching');;
 
-        fetch('http://localhost:5000/backend/getUserId', {
+        fetch('http://localhost:5000/backend/delete', {
             method: 'POST',
             body: form,
             })
@@ -66,7 +65,7 @@ class DeletePackage extends React.Component{
                     <br></br>
                     <br></br>
                     <br></br>
-                    <p align='center'>{this.state.user_id}</p>
+                    <p align='center'>{this.state.status}</p>
                 </span>
             </React.Fragment>
             
