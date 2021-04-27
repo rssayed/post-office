@@ -197,9 +197,11 @@ def create_package():
         # not sure if these will be valid as it doesn't fulfill all of the fields for creating each one of these
         cur.execute('''INSERT INTO package(shipping_date, expected_delivery, type, weight, return_street_address, return_city, return_state, return_zipcode, is_delivered, deliver_to)
                     VALUES (%s, ADDDATE(%s, INTERVAL 5 DAY), %s, %s, %s, %s, %s, %s, 'No', %s)''', (date, date, shipping_type, weight, street_address, city, state, zipcode, name))
-
+        cur.execute('''INSERT INTO receiver(name, street_address, city, state, zipcode
+                    VALUES (%s, %s, %s, %s, %s)''', (name, street_address, city, state, zipcode))
         mysql.connection.commit()
-        get_tracking_id = cur.execute('''SELECT tracking_id FROM package WHERE shipping_date=%s''', date)
+        cur.execute('''SELECT tracking_id FROM package WHERE shipping_date=%s''', date)
+        get_tracking_id = cur.fetchall()
         # not sure how to return these multiple queries just yet
         # create_package_query = 'cur.fetchall()'
         return jsonify(get_tracking_id)
