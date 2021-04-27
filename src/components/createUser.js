@@ -206,11 +206,11 @@ class Profile extends React.Component {
 
                     <Textarea
                         label='Street address'
-                        name='address'
+                        name='street_address'
                         type='text'
                         value= {this.state.street_address}
                         onChange= {e => this.setState({street_address: e.target.value})}
-                        id= 'address'
+                        id= 'street_address'
                         rows='1' 
                         placeholder="Mickey Mouse Clubhouse, Disney World" 
                         style={addressContainerStyles}
@@ -289,7 +289,7 @@ class Profile extends React.Component {
                     <br></br>
                     <br></br>
                     <br></br>
-                    <p align='center'>User ID: {this.state.user_id}</p>
+                    <p align='center'>User ID: {this.state.user_id}holllla</p>
                 </div>
             </React.Fragment>
         );
