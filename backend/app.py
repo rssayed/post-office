@@ -266,14 +266,18 @@ def delete():
 
         output = 'Tracking ID Not Found'
         return jsonify(output)
-        
     else:
         output = 'Unable to get tracking_id request'
-        return (output)
+        return jsonify(output)
 
 
 @app.route('/')
 def home():
+    # cur = mysql.connection.cursor()
+    # cur.execute('''select tracking_id from orders''')
+    # orders = [item[0] for item in cur.fetchall()]
+    # return str(orders)
+
     return ('/ route working')
 
 
