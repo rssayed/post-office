@@ -124,7 +124,7 @@ const entity_lookup = [
     {label: 'Customer'}
 ];
 
-class Profile extends React.Component{
+class CreateUser extends React.Component{
 
     constructor(props){
         super(props);
@@ -285,7 +285,10 @@ class Profile extends React.Component{
                 </form>
 
                 <div>
-
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <p align='center'>User ID: {this.state.user_id}</p>
                 </div>
             </React.Fragment>
         );
@@ -293,4 +296,4 @@ class Profile extends React.Component{
     
 }
 
-export default Profile;
+export default CreateUser;

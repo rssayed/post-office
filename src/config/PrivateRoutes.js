@@ -6,10 +6,29 @@ import Trackinghistory from '../components/Trackinghistory'
 import UpdatePackage from '../components/UpdatePackage'
 import Profile from '../components/profile'
 import GetUserId from '../components/getUserId'
+import CreateUser from '../components/createUser'
 //this whole thing is a private area containing components with
 //certain permissions tied to the role.js..
 
 export default [
+   {
+      component: CreateUser,
+      path: '/CreateUser',
+      title: 'Create New User',
+      permission: [
+      Roles.Worker,
+      Roles.Manager,
+      ],
+    },
+   {
+   component: GetUserId,
+   path: '/getUserId',
+   title: 'Get User Id',
+   permission: [
+   Roles.Worker,
+   Roles.Manager,
+   ],
+ },
  {
   component: CreatePackage,
   path: '/CreatePackage',
@@ -39,15 +58,6 @@ export default [
    Roles.Customer,
    Roles.Worker,
    Roles.Manager
-    ],
- },
- {
-  component: GetUserId,
-  path: '/getUserId',
-  title: 'Get User Id',
-  permission: [
-   Roles.Worker,
-   Roles.Manager,
     ],
  },
  {
