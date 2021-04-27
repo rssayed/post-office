@@ -51,7 +51,7 @@ def profile():
         # email = request.get_json()['email']
         # customer_password = request.get_json()['customer_password']
         cur.execute('''UPDATE customers SET fname=%s, lname=%s, street_address=%s, city=%s, state=%s, zipcode=%s, 
-        email=%s, customer_password=%s WHERE customer.customer_id=%s''',
+        customer_password=%s, email=%s WHERE customer.customer_id=%s''',
                     (fname, lname, street_address, city, state, zipcode,
                      generate_password_hash(customer_password), email,
                      customer_id))
