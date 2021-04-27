@@ -109,10 +109,8 @@ class UpdatePackage extends React.Component {
                 </form>
 
                 <div className="printBlock">
+                    <p align='center'>{this.state.status}hola</p>
                     <br></br>
-                    <br></br>
-                    <br></br>
-                    {this.state.status}
                 </div>
             </React.Fragment>
         )
