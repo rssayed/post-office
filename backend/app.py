@@ -225,7 +225,7 @@ def create_package():
         # state = request.get_json()['state']
         # zipcode = request.get_json()['zipcode']
         cur.execute('''INSERT INTO receiver(name, street_address, city, state, zipcode)
-                            VALUES (%s, %s, %s, %s, %s)''', [name, street_address, city, state, zipcode])
+                            VALUES (%s, %s, %s, %s, %s)''', (name, street_address, city, state, zipcode))
         cur.execute('''INSERT INTO package(shipping_date, expected_delivery, type, weight, return_street_address, return_city, return_state, return_zipcode, is_delivered, deliver_to)
                     VALUES (%s, ADDDATE(%s, INTERVAL 5 DAY), %s, %s, %s, %s, %s, %s, 'No', %s)''', (date, date, shipping_type, weight, street_address, city, state, zipcode, name))
         mysql.connection.commit()
