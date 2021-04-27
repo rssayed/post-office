@@ -150,7 +150,7 @@ def createUser():
         cur.execute('''INSERT INTO customer(fname, lname, street_address, city, state, zipcode, customer_password, email)
         VALUES (%s,%s,%s,%s,%s,%s,%s,%s)''', (fname, lname, street_address, city, state, zipcode, customer_password, email))
         mysql.connection.commit()
-        cur.execute('''SELECT customer_id FROM customer WHERE fname=%s, lname=%s, email=%s''', (fname, lname, email))
+        cur.execute('''SELECT customer_id FROM customer WHERE fname=%s AND lname=%s AND email=%s''', (fname, lname, email))
         get_customer_id = cur.fetchall()
         return jsonify(get_customer_id)
         # successful = 'success'

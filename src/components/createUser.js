@@ -137,7 +137,7 @@ class Profile extends React.Component {
             zipcode: "",
             email: "",
             customer_password: "",
-            user_id: ""
+            user_id: ""     //returns user_id, fname and lname ---> print from array --- returns array with 3 elements
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
