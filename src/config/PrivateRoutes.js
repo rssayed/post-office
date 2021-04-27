@@ -23,7 +23,7 @@ export default [
    {
    component: GetUserId,
    path: '/getUserId',
-   title: 'Get User Id',
+   title: 'Get Customer Id',
    permission: [
    Roles.Worker,
    Roles.Manager,

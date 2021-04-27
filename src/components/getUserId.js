@@ -40,6 +40,7 @@ class GetUserId extends React.Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
     handleSubmit = (event) => {
         event.preventDefault();
         const form = new FormData(document.getElementById('getUserIdForm'));
@@ -64,7 +65,7 @@ class GetUserId extends React.Component {
             <React.Fragment>
 
                 <form id='getUserIdForm'>
-                    <h1 align='center'>Get User ID</h1>
+                    <h1 align='center'>Get Customer ID</h1>
 
                     <Textarea
                         label='First Name'
@@ -97,15 +98,13 @@ class GetUserId extends React.Component {
                         type="submit"
                     />
 
-                </form>
-
                 <span>
                     <br></br>
                     <br></br>
                     <br></br>
                     <p align='center'>User ID: {this.state.user_id}</p>
                 </span>
-
+                </form>
             </React.Fragment>
         )
     }
