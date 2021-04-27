@@ -27,7 +27,29 @@ app.config['MYSQL_PASSWORD'] = 'snail-password'
 mysql = MySQL(app)
 
 
-@app.route('/backend/profile', methods=['GET', 'POST'])
+@app.route('/backend/getProfile', methods=['GET', 'POST'])
+def profile():
+    cur = mysql.connection.cursor()
+
+    if request.method == 'POST':
+        # customer_id = request.form.get('customer_id')
+        # fname = request.form.get('fname')
+        # lname = request.form.get('lname')
+        # street_address = request.form.get('street_address')
+        # city = request.form.get('city')
+        # state = request.form.get('state')
+        # zipcode = request.form.get('zipcode')
+        email = request.form.get('email')
+        customer_password = request.form.get('customer_password')
+        cur.execute('''SELECT fname, lname, street_address, city, state, zipcode, 
+        customer_password, email,customer_id FROM customers WHERE customer.email=%s AND customer.customer_password=%s''',
+                    (generate_password_hash(customer_password), email))
+        mysql.connection.commit()
+
+    getProfile_query = cur.fetchall()
+    return jsonify(getProfile_query)
+
+@app.route('/backend/setProfile', methods=['GET', 'POST'])
 def profile():
     cur = mysql.connection.cursor()
 

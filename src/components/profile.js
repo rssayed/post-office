@@ -119,59 +119,73 @@ const lookup_data = [
     { label: 'WY' }
 ];
 
-function filter(query, options) {
-    if (query) {
-        return options.filter(item => {
-            const regex = new RegExp(query, 'i');
-            return regex.test(item.label);
-        });
-    }
-    return [];
-}
+// function filter(query, options) {
+//     if (query) {
+//         return options.filter(item => {
+//             const regex = new RegExp(query, 'i');
+//             return regex.test(item.label);
+//         });
+//     }
+//     return [];
+// }
 
-function lookup_search(value) {
-    if (this.state.options && this.state.value && value.length > this.state.value.length) {
-        this.setState({
-            options: filter(value, this.state.options),
-            value,
-        });
-    } else if (value) {
-        this.setState({
-            value,
-        });
-        this.setState({
-            options: filter(value, lookup_data),
-            value,
-        });
-    } else {
-        this.setState({
-            value: '',
-            options: null,
-        });
-    }
-}
+// function lookup_search(value) {
+//     if (this.state.options && this.state.value && value.length > this.state.value.length) {
+//         this.setState({
+//             options: filter(value, this.state.options),
+//             value,
+//         });
+//     } else if (value) {
+//         this.setState({
+//             value,
+//         });
+//         this.setState({
+//             options: filter(value, lookup_data),
+//             value,
+//         });
+//     } else {
+//         this.setState({
+//             value: '',
+//             options: null,
+//         });
+//     }
+// }
 
-function handleSubmit(event) {
-    event.preventDefault();
-    return this.setState({
-        username: this.state.username,
-        password: this.state.password
-    });
-}
 
 class Profile extends React.Component {
+    
     constructor(props) {
         super(props);
         this.state = {
-            options: null,
-            value: ''
+            customer_id: "",
+            fname: "",
+            lname: "",
+            street_address: "",
+            city: "",
+            state: "",
+            zipcode: "",
+            email: "",
+            customer_password: ""
         }
-
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        // return this.setState({
+        //     username: this.state.username,
+        //     password: this.state.password
+        // });
+    }
+
+    handleLoad = (event) => {
+        event.preventDefault();
+    }
+    
 
     render() {
         return (
-            <form className='profile'>
+            <form className='profile' onLoad={this.handleLoad}>
                 <h1 align='center'>Profile Settings</h1>
 
                 <Textarea
