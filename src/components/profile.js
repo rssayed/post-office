@@ -174,7 +174,29 @@ class Profile extends React.Component {
     // }
     
     componentDidMount(){
-        
+        fetch('http://localhost:5000/backend/getProfile', {
+            method: 'POST',
+            body: form,
+        })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Success:', result);
+                this.setState({ 
+                    customer_id: result['customer_id'],
+                    fname: result['fname'],
+                    lname: result['lname'],
+                    street_address: result['street_address'],
+                    city: result['city'],
+                    state: result['state'],
+                    zipcode: result['zipcode'],
+                    email: result['email'],
+                    customer_password: result['customer_password']
+                });
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        alert("Get Successful!");
     }
 
     render() {

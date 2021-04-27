@@ -30,7 +30,8 @@ mysql = MySQL(app)
 @app.route('/backend/getProfile', methods=['GET', 'POST'])
 def getProfile():
     cur = mysql.connection.cursor()
-
+    email = #get from login function
+    password = #get from login function
     if request.method == 'POST':
         # customer_id = request.form.get('customer_id')
         # fname = request.form.get('fname')
@@ -39,8 +40,8 @@ def getProfile():
         # city = request.form.get('city')
         # state = request.form.get('state')
         # zipcode = request.form.get('zipcode')
-        email = request.form.get('email')
-        customer_password = request.form.get('customer_password')
+        #email = request.form.get('email')
+        #customer_password = request.form.get('customer_password')
         cur.execute('''SELECT fname, lname, street_address, city, state, zipcode, 
         customer_password, email,customer_id FROM customers WHERE customer.email=%s AND customer.customer_password=%s''',
                     (generate_password_hash(customer_password), email))
