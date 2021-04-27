@@ -114,7 +114,7 @@ class Trackinghistory extends React.Component {
                     />
 
                     <div>
-                        <strong>The typed value is:</strong><span>{this.state.tracking_id}</span>
+                        <strong>The typed value is:</strong><span>{this.state.tracking_value}</span>
                     </div>
                     <Button className="button_2_track" label="Track" disabled={!this.validateForm()} onClick={this.handleSubmit} variant="base" type='submit'></Button>
                 </form>
