@@ -42,12 +42,12 @@ def getProfile():
         email = request.form.get('email')
         customer_password = request.form.get('customer_password')
         cur.execute('''SELECT fname, lname, street_address, city, state, zipcode, 
-        customer_password, email,customer_id FROM customers WHERE customer.email=%s AND customer.customer_password=%s''',
-                    (generate_password_hash(customer_password), email))
+        customer_password, email,customer_id FROM customers WHERE email=%s AND customer_password=%s''',
+                    (email, customer_password))
         mysql.connection.commit()
 
-    getProfile_query = cur.fetchall()
-    return jsonify(getProfile_query)
+    get_profile_query = cur.fetchall()
+    return jsonify(get_profile_query)
 
 @app.route('/backend/setProfile', methods=['GET', 'POST'])
 def setProfile():
@@ -75,7 +75,7 @@ def setProfile():
         cur.execute('''UPDATE customers SET fname=%s, lname=%s, street_address=%s, city=%s, state=%s, zipcode=%s, 
         customer_password=%s, email=%s WHERE customer.customer_id=%s''',
                     (fname, lname, street_address, city, state, zipcode,
-                     generate_password_hash(customer_password), email,
+                     customer_password, email,
                      customer_id))
         mysql.connection.commit()
 
@@ -222,6 +222,8 @@ def create_package():
         mysql.connection.commit()
         cur.execute('''SELECT tracking_id FROM package WHERE shipping_date=%s''', (date,))
         get_tracking_id = cur.fetchall()
+        cur.execute('''INSERT INTO orders VALUES (%s, %s)''', (customer_id, get_tracking_id))
+        mysql.connection.commit()
         # not sure how to return these multiple queries just yet
         # create_package_query = 'cur.fetchall()'
         return jsonify(get_tracking_id)
