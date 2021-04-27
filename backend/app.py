@@ -117,8 +117,8 @@ def update_package():
                     (tracking_id, time_in, time_out, delivery_status, post_office_id))
         mysql.connection.commit()
 
-    update_query = cur.fetchall()
-    return jsonify(update_query)
+        update_query = 'Delivery status updated!'
+        return jsonify(update_query)
     # return render_template('/Update_Package.js')
 
 
