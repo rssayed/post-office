@@ -1,7 +1,7 @@
 import React from 'react';
 //import useState from 'react';
 import Textarea from 'react-rainbow-components/components/Textarea';
-//import './deletepage-styles.css';
+import './css_folder/deletepage-styles.css';
 import Button from 'react-rainbow-components/components/Button';
 
 
