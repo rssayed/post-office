@@ -168,10 +168,6 @@ class Profile extends React.Component {
         }
         //this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    // handleLoad = (event) => {
-    //     event.preventDefault();
-    // }
     
     componentDidMount(){
         const form = new FormData(document.getElementById('profileForm'))

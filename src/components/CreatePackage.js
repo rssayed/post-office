@@ -1,8 +1,9 @@
 import React from 'react';
 import Textarea from 'react-rainbow-components/components/Textarea';
-import styles from "./css_folder/createpackage-styles.css";
+import "./css_folder/createpackage-styles.css";
 import Button from 'react-rainbow-components/components/Button';
 import Select from 'react-rainbow-components/components/Select';
+
 const lookup_data = [
     { label: 'AL' },
     { label: 'AK' },
@@ -67,6 +68,7 @@ const dropdown_shipping =
 async function validateForm() {
     return this.state.date != 0 && this.state.weight > 0 && this.state.weight < 300 && this.state.customer_id > 0 && this.state.name.length > 2 && this.state.address.length > 0 && this.state.city.length > 0 && this.state.zipcode.length > 0 && this.state.zipcode.length < 9 && this.state.gallons !== 0;
 }
+
 class CreatePackage extends React.Component {
 
     constructor(props) {

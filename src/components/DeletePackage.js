@@ -22,7 +22,7 @@ class DeletePackage extends React.Component {
 
         const form = new FormData(document.getElementById('deleteForm'));
 
-        alert('start fetching');;
+        alert('start fetching');
 
         fetch('http://localhost:5000/backend/delete', {
             method: 'POST',
