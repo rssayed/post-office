@@ -120,8 +120,8 @@ const lookup_data = [
 ];
 
 const entity_lookup = [
-    { label: 'Employee' },
-    { label: 'Customer' }
+    { label: 'Customer' },
+    { label: 'Employee' }
 ];
 
 class Profile extends React.Component {
@@ -159,7 +159,7 @@ class Profile extends React.Component {
                 console.error('Error:', error);
             });
 
-        alert("Tracking Successful!");
+        alert("Create Successful!");
     }
 
     render() {
@@ -286,6 +286,10 @@ class Profile extends React.Component {
 
                 </form>
                 <div>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <p align='center'>User ID: {this.state.user_id}</p>
                 </div>
             </React.Fragment>
         );

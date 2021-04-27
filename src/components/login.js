@@ -3,6 +3,7 @@ import Textarea from 'react-rainbow-components/components/Textarea'
 import Button from 'react-rainbow-components/components/Button';
 import { useHistory } from 'react-router-dom';
 import Auth from '../routes/Auth';
+
 const containerStyles = {
     maxWidth: 400,
     margin: 'auto',
