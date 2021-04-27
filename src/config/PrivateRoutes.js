@@ -1,5 +1,4 @@
 import Roles from './Roles'
-import login from '../components/login'
 import CreatePackage from '../components/CreatePackage'
 import DeletePackage from '../components/DeletePackage'
 import orderHistory from '../components/orderHistory'
