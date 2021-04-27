@@ -174,6 +174,7 @@ class Profile extends React.Component {
     // }
     
     componentDidMount(){
+        const form = new FormData(document.getElementById('profileForm'))
         fetch('http://localhost:5000/backend/getProfile', {
             method: 'POST',
             body: form,
@@ -201,12 +202,15 @@ class Profile extends React.Component {
 
     render() {
         return (
-            <form className='profile' onLoad={this.handleLoad}>
+            <form className='profile' id='profileForm'>
                 <h1 align='center'>Profile Settings</h1>
 
                 <Textarea
                     label='Customer ID'
                     name='customer_id'
+                    value={this.state.customer_id}
+                    onChange={e => this.setState({ customer_id: e.target.value })}
+                    id='customer_id'
                     rows='1'
                     placeholder='1234'
                     style={customer_idContainerStyles}
@@ -216,6 +220,9 @@ class Profile extends React.Component {
                 <Textarea
                     label='First Name'
                     name='fname'
+                    value={this.state.fname}
+                    onChange={e => this.setState({ fname: e.target.value })}
+                    id='fname'
                     rows='1'
                     placeholder="Mickey"
                     style={fnameContainerStyles}
@@ -225,6 +232,9 @@ class Profile extends React.Component {
                 <Textarea
                     label='Last Name'
                     name='lname'
+                    value={this.state.lname}
+                    onChange={e => this.setState({ lname: e.target.value })}
+                    id='lname'
                     rows='1'
                     placeholder="Mouse"
                     style={lnameContainerStyles}
@@ -232,7 +242,10 @@ class Profile extends React.Component {
 
                 <Textarea
                     label='Street address'
-                    name='address'
+                    name='street_address'
+                    value={this.state.street_address}
+                    onChange={e => this.setState({ street_address: e.target.value })}
+                    id='street_address'
                     rows='1'
                     placeholder="Mickey Mouse Clubhouse, Disney World"
                     style={addressContainerStyles}
@@ -241,6 +254,9 @@ class Profile extends React.Component {
                 <Textarea
                     label='City'
                     name='city'
+                    value={this.state.city}
+                    onChange={e => this.setState({ city: e.target.value })}
+                    id='city'
                     rows='1'
                     placeholder='Orlando'
                     style={cityContainerStyles}
@@ -249,6 +265,9 @@ class Profile extends React.Component {
                 <Select
                     label='State'
                     name='state'
+                    value={this.state.state}
+                    onChange={e => this.setState({ state: e.target.value })}
+                    id='state'
                     options={lookup_data}
                     style={stateContainerStyles}
                 />
@@ -256,6 +275,9 @@ class Profile extends React.Component {
                 <Textarea
                     label='Zipcode'
                     name='zipcode'
+                    value={this.state.zipcode}
+                    onChange={e => this.setState({ zipcode: e.target.value })}
+                    id='zipcode'
                     rows='1'
                     placeholder='66666'
                     style={zipcodeContainerStyles}
@@ -264,6 +286,9 @@ class Profile extends React.Component {
                 <Textarea
                     label='Email'
                     name='email'
+                    value={this.state.email}
+                    onChange={e => this.setState({ email: e.target.value })}
+                    id='email'
                     rows='1'
                     placeholder='mickey@disney.net'
                     style={emailContainerStyles}
@@ -272,6 +297,9 @@ class Profile extends React.Component {
                 <Textarea
                     label='Password'
                     name='password'
+                    value={this.state.password}
+                    onChange={e => this.setState({ password: e.target.value })}
+                    id='password'
                     rows='1'
                     placeholder='Minnie#1'
                     style={passwordContainerStyles}

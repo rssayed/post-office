@@ -27,11 +27,11 @@ app.config['MYSQL_PASSWORD'] = 'snail-password'
 mysql = MySQL(app)
 
 
-@app.route('/backend/getProfile', methods=['GET', 'POST'])
-def getProfile():
+@app.route('/backend/getProfile', methods=['GET','POST'])
+def getProfile(email, password, role):
     cur = mysql.connection.cursor()
-    email = #get from login function
-    password = #get from login function
+    #email from login function
+    #password get from login function
     if request.method == 'POST':
         # customer_id = request.form.get('customer_id')
         # fname = request.form.get('fname')
@@ -42,15 +42,23 @@ def getProfile():
         # zipcode = request.form.get('zipcode')
         #email = request.form.get('email')
         #customer_password = request.form.get('customer_password')
-        cur.execute('''SELECT fname, lname, street_address, city, state, zipcode, 
-        customer_password, email,customer_id FROM customer WHERE email=%s AND customer_password=%s''',
-                    (email, customer_password))
+        if role == 'Customer':
+            customer_password = password
+            cur.execute('''SELECT fname, lname, street_address, city, state, zipcode, 
+            customer_password, email,customer_id FROM customer WHERE email=%s AND customer_password=%s''',
+                        (email, customer_password))
+        else:
+            employee_password = password
+            employee_email = email
+            cur.execute('''SELECT fname, lname, street_address, city, state, zipcode, 
+            employee_password, employee_email, employee_id FROM employee WHERE employee_email=%s AND employee_password=%s''',
+                        (employee_email, employee_password))
         mysql.connection.commit()
 
     get_profile_query = cur.fetchall()
     return jsonify(get_profile_query)
 
-@app.route('/backend/setProfile', methods=['GET', 'POST'])
+@app.route('/backend/setProfile', methods=['POST'])
 def setProfile():
     cur = mysql.connection.cursor()
 
@@ -249,6 +257,7 @@ def login():
                 customerPW = list(customerPW)
                 if password == customerPW[0]:
                     # return redirect('/profile')
+                    role='Customer'
                     return 'Customer'
                 return 'no_permission'
         for i in managerUsernames:
@@ -258,6 +267,7 @@ def login():
                 managerPW = list(managerPW)
                 if password == managerPW[0]:
                     # return redirect('/profile')
+                    role='Manager'
                     return 'Manager'
                 return 'no_permission'
         for i in employeeUsernames:
@@ -267,8 +277,10 @@ def login():
                 employeePW = list(employeePW)
                 if password == employeePW[0]:
                     # return redirect('/profile')
+                    role='Worker'
                     return 'Worker'
                 return 'no_permission'
+        getProfile(username, password, role)
         return ("Username Not Found In DB")
         
     except:
