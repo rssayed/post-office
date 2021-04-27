@@ -178,10 +178,13 @@ class Profile extends React.Component {
         // });
     }
 
-    handleLoad = (event) => {
-        event.preventDefault();
-    }
+    // handleLoad = (event) => {
+    //     event.preventDefault();
+    // }
     
+    componentDidMount(){
+        
+    }
 
     render() {
         return (
