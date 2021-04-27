@@ -23,7 +23,25 @@ class UpdatePackage extends React.Component {
     }
 
     handleSubmit = (event) => {
-
+        event.preventDefault();
+        
+        const form = new FormData(document.getElementById('updateForm'));
+        
+        alert("start fetching!");
+        
+        fetch('http://localhost:5000/backend/Update_Package', {
+            method: 'POST',
+            body: form,
+        })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Success:', result);
+                this.setState({ status: result });
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        alert("finished fetching!");
     }
 
     render() {
