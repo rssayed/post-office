@@ -196,10 +196,10 @@ def create_package():
                     VALUES (%s, ADDDATE(%s, INTERVAL 5 DAY), %s, %s, %s, %s, %s, %s, 'No', %s)''', (date, date, shipping_type, weight, street_address, city, state, zipcode, name))
 
         mysql.connection.commit()
-
+        get_tracking_id = cur.execute('''SELECT tracking_id FROM package WHERE shipping_date=%s''', date)
         # not sure how to return these multiple queries just yet
-    create_package_query = cur.fetchall()
-    return jsonify(create_package_query)
+        # create_package_query = 'cur.fetchall()'
+        return jsonify(get_tracking_id)
     
 
 @app.route('/backend/login', methods=['GET', 'POST'])
