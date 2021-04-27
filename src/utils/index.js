@@ -1,15 +1,7 @@
 import { intersection } from 'lodash';
 
 export function isLoggedIn() {
-	/*
-		* Note:
-		*  This app assume if local storage have roles it means
-		*  user is authenticated you can update this logic as per your app.
-	*/
-	//ahahaha
-	console.log("!!!!!!!!!!!!!!!!!")
 	return !!localStorage.getItem('roles')
-	console.log("!!!!!!!!!!!!!!!!!")
 }
 
 export function isArrayWithLength(arr) {
@@ -26,4 +18,3 @@ export function getAllowedRoutes(routes) {
 	});
 }
 
-//AWS LAMBDA

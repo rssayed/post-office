@@ -8,7 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper'
-
+//ian is working on this swag..??
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -23,14 +23,14 @@ const StyledTableCell = withStyles((theme) => ({
 
 const StyledTableRow = withStyles((theme) => ({
     root: {
-      '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.action.hover,
-      }
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.action.hover,
+        }
     }
-  }))(TableRow);
+}))(TableRow);
 
-function createData(tracking_id, reciever, shipped, delivered){
-    return {tracking_id, reciever, shipped, delivered};
+function createData(tracking_id, reciever, shipped, delivered) {
+    return { tracking_id, reciever, shipped, delivered };
 }
 
 const rows = [
@@ -45,13 +45,12 @@ const useStyles = makeStyles({
     }
 });
 
-
 //passing in props to the orderHistory..
-export default function OrderHistory(){
-    
+export default function OrderHistory() {
+
     const classes = useStyles();
 
-    return(
+    return (
         //add Date To and Date From to make this form a report
         <div>
             <TableContainer component={Paper}>
@@ -66,16 +65,16 @@ export default function OrderHistory(){
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                    {rows.map((row) => (
-                        <StyledTableRow key={row.tracking_id}>
-                            <StyledTableCell component="th" scope="row">
-                                {row.tracking_id}
-                            </StyledTableCell>
-                            <StyledTableCell align="left">{row.reciever}</StyledTableCell>
-                            <StyledTableCell align="left">{row.shipped}</StyledTableCell>
-                            <StyledTableCell align="left">{row.delivered}</StyledTableCell>
-                        </StyledTableRow>
-                    ))}
+                        {rows.map((row) => (
+                            <StyledTableRow key={row.tracking_id}>
+                                <StyledTableCell component="th" scope="row">
+                                    {row.tracking_id}
+                                </StyledTableCell>
+                                <StyledTableCell align="left">{row.reciever}</StyledTableCell>
+                                <StyledTableCell align="left">{row.shipped}</StyledTableCell>
+                                <StyledTableCell align="left">{row.delivered}</StyledTableCell>
+                            </StyledTableRow>
+                        ))}
                     </TableBody>
                 </Table>
             </TableContainer>
