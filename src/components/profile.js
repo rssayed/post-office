@@ -119,38 +119,6 @@ const lookup_data = [
     { label: 'WY' }
 ];
 
-// function filter(query, options) {
-//     if (query) {
-//         return options.filter(item => {
-//             const regex = new RegExp(query, 'i');
-//             return regex.test(item.label);
-//         });
-//     }
-//     return [];
-// }
-
-// function lookup_search(value) {
-//     if (this.state.options && this.state.value && value.length > this.state.value.length) {
-//         this.setState({
-//             options: filter(value, this.state.options),
-//             value,
-//         });
-//     } else if (value) {
-//         this.setState({
-//             value,
-//         });
-//         this.setState({
-//             options: filter(value, lookup_data),
-//             value,
-//         });
-//     } else {
-//         this.setState({
-//             value: '',
-//             options: null,
-//         });
-//     }
-// }
-
 class Profile extends React.Component {
     
     constructor(props) {
@@ -166,7 +134,7 @@ class Profile extends React.Component {
             email: "",
             customer_password: ""
         }
-        //this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     
     componentDidMount(){
@@ -194,6 +162,36 @@ class Profile extends React.Component {
                 console.error('Error:', error);
             });
         alert("Get Successful!");
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+
+        const form = new FormData(document.getElementById('profileForm'));
+
+        fetch('http://localhost:5000/backend/setProfile', {
+            method: 'POST',
+            body: form,
+        })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Success:', result);
+                this.setState({ 
+                    customer_id: result['customer_id'],
+                    fname: result['fname'],
+                    lname: result['lname'],
+                    street_address: result['street_address'],
+                    city: result['city'],
+                    state: result['state'],
+                    zipcode: result['zipcode'],
+                    email: result['email'],
+                    customer_password: result['customer_password']
+                });
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        alert("Set Successful!");
     }
 
     render() {
