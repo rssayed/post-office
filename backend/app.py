@@ -97,17 +97,17 @@ def setProfile():
 def order_history():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
-        tracking_id = request.form.get('tracking_id')
+        # tracking_id = request.form.get('tracking_id')
         # tracking_id = request.get_json()['tracking_id']
         first_between_date = request.form.get('first_between_date')
         second_between_date = request.form.get('second_between_date')
         cur.execute(
             '''SELECT DISTINCT package.tracking_id, deliver_to, shipping_date, expected_delivery, post_office.facility_id 
         FROM package, receiver, orders, customer, delivers, post_office
-        WHERE package.tracking_id=%s AND delivers.is_delivered='Yes' AND
+        WHERE delivers.is_delivered='Yes' AND
         customer.customer_id=orders.customer_id AND orders.tracking_id=package.tracking_id AND 
         delivers.tracking_id=orders.tracking_id AND delivers.facility_id=post_office.facility_id
-        AND shipping_date BETWEEN %s AND %s''', (tracking_id, first_between_date, second_between_date))
+        AND shipping_date BETWEEN %s AND %s''', (first_between_date, second_between_date))
     # This should return all the information we want to display based on the user input
     output = cur.fetchall()
     return jsonify(output)
