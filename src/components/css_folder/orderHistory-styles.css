@@ -1,0 +1,78 @@
+.orderContainer
+{
+    margin:auto;
+    display: grid;
+    grid-template-rows: 100px auto auto 105px auto;
+    grid-auto-flow: column;
+    grid-auto-columns: auto;
+
+    justify-content: center;
+    align-content: center;
+}
+.header{
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin-top:25px;
+    margin: auto;
+    font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    justify-content: center;
+    align-content: center;
+    }
+.DateFrom
+{ 
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    width: 300px;
+    height: 100px;
+    justify-content: center;
+    align-content: center;
+}
+
+.DateTo
+{
+    display: grid;
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    width: 300px;
+    height: 100px;
+    justify-content: center;
+    align-content: center;
+}
+
+  .buttonFilter
+  {
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 5;
+
+    background: #0645AE;
+    border: #0645AE;
+    color: #ffffff; 
+    margin: auto;
+    width:150px;
+    height:46px;
+    justify-content: center;
+    align-content: center;
+  }
+  .Table
+  {
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 6;
+    grid-row-end: span 12;
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+  }

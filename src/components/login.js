@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Textarea from 'react-rainbow-components/components/Textarea'
+import Textarea from 'react-rainbow-components/components/Textarea';
 import Button from 'react-rainbow-components/components/Button';
 import { useHistory } from 'react-router-dom';
 import Auth from '../routes/Auth';
