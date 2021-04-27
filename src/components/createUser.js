@@ -289,7 +289,7 @@ class Profile extends React.Component {
                     <br></br>
                     <br></br>
                     <br></br>
-                    <p align='center'>User ID: {this.state.user_id}holllla</p>
+                    <p align='center'>User ID: {this.state.user_id}</p>
                 </div>
             </React.Fragment>
         );
