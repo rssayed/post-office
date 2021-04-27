@@ -97,7 +97,7 @@ class CreatePackage extends React.Component {
             method: 'POST',
             body: form,
         })
-            .then(response => response.json())          //need to send back a string..
+            .then(response => response.json())
             .then(result => {
                 console.log('Success:', result);
                 this.setState({ tracking_id: result });

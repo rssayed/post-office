@@ -72,15 +72,6 @@ def setProfile():
         zipcode = request.form.get('zipcode')
         email = request.form.get('email')
         customer_password = request.form.get('customer_password')
-        # customer_id = request.get_json['customer_id']
-        # fname = request.get_json()['fname']
-        # lname = request.get_json()['lname']
-        # street_address = request.get_json()['street_address']
-        # city = request.get_json()['city']
-        # state = request.get_json()['state']
-        # zipcode = request.get_json()['zipcode']
-        # email = request.get_json()['email']
-        # customer_password = request.get_json()['customer_password']
         cur.execute('''UPDATE customers SET fname=%s, lname=%s, street_address=%s, city=%s, state=%s, zipcode=%s, 
         customer_password=%s, email=%s WHERE customer.customer_id=%s''',
                     (fname, lname, street_address, city, state, zipcode,
@@ -98,7 +89,6 @@ def order_history():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
         # tracking_id = request.form.get('tracking_id')
-        # tracking_id = request.get_json()['tracking_id']
         first_between_date = request.form.get('first_between_date')
         second_between_date = request.form.get('second_between_date')
         cur.execute(
@@ -118,7 +108,6 @@ def tracking_history():
     cur = mysql.connection.cursor()
     if request.method == 'POST':
         tracking_id = request.form.get('tracking_id')
-        # tracking_id = request.get_json()['tracking_id']
         cur.execute('''SELECT DISTINCT delivers.time_in, delivers.time_out, delivers.is_delivered, post_office.street_address, post_office.city, post_office.state, post_office.zipcode
         FROM post_office, delivers
         WHERE delivers.tracking_id=%s AND delivers.facility_id=post_office.facility_id
@@ -137,12 +126,6 @@ def update_package():
         time_in = request.form.get('time_in')
         time_out = request.form.get('time_out')
         delivery_status = request.form.get('is_delivered')
-        # tracking_id = request.get_json()['tracking_id']
-        # post_office_id = request.get_json()['facility_id']
-        # time_in = request.get_json()['time_in']
-        # time_out = request.get_json()['time_out']
-        # delivery_status = request.get_json()['is_delivered']
-
         cur.execute('''INSERT INTO delivers
                         VALUES(%s,%s,%s,%s,%s)''',
                     (tracking_id, time_in, time_out, delivery_status, post_office_id))
@@ -184,6 +167,7 @@ def createUser():
         cur.execute('''SELECT customer_id FROM customer WHERE fname=%s AND lname=%s AND email=%s''', (fname, lname, email))
         get_customer_id = cur.fetchall()
         return jsonify(get_customer_id)
+        
         # successful = 'success'
         # return jsonify(successful)
         # else:
@@ -215,15 +199,6 @@ def create_package():
         city = request.form.get('return_city')
         state = request.form.get('return_state')
         zipcode = request.form.get('return_zipcode')
-        # shipping_date = request.get_json()['shipping_date']
-        # shipping_type = request.get_json()['type']
-        # weight = request.get_json()['weight']
-        # customer_id = request.get_json()['customer_id']
-        # name = request.get_json()['name']
-        # street_address = request.get_json()['street_address']
-        # city = request.get_json()['city']
-        # state = request.get_json()['state']
-        # zipcode = request.get_json()['zipcode']
         cur.execute('''INSERT INTO receiver(name, street_address, city, state, zipcode)
                             VALUES (%s, %s, %s, %s, %s)''', (name, street_address, city, state, zipcode))
         cur.execute('''INSERT INTO package(shipping_date, expected_delivery, type, weight, return_street_address, return_city, return_state, return_zipcode, is_delivered, deliver_to)
@@ -233,8 +208,6 @@ def create_package():
         get_tracking_id = cur.fetchall()
         cur.execute('''INSERT INTO orders VALUES (%s, %s)''', (customer_id, get_tracking_id))
         mysql.connection.commit()
-        # not sure how to return these multiple queries just yet
-        # create_package_query = 'cur.fetchall()'
         return jsonify(get_tracking_id)
     
 

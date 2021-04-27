@@ -42,7 +42,7 @@ export default function Login() {
                 body: form,
             })
 
-                .then(response => response.text())          //need to send back a string..
+                .then(response => response.text())
                 .then(result => {
                     console.log('Works..:', result);
                     //i need it to pass back the role permission through login..
@@ -103,7 +103,7 @@ export default function Login() {
     }
 
     return (
-        <form className="container_login" /*onSubmit={this.handleSubmit}*/ id='form2'>
+        <form className="container_login" id='form2'>
             <div className='containerStyles' style={containerStyles}>
                 <h1 align='center'>SnailMail</h1>
                 <p align='center'>Username</p>

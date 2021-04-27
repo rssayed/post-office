@@ -12,6 +12,7 @@ import Textarea from 'react-rainbow-components/components/Textarea';
 import { useState } from 'react';
 import Button from 'react-rainbow-components/components/Button';
 import './css_folder/orderHistory-styles.css';
+
 const StyledTableCell = withStyles((theme) => ({
     head: {
         backgroundColor: '#0645AE',
@@ -50,7 +51,7 @@ const filterData = (value) => {
 
 
 }
-//passing in props to the orderHistory..
+
 export default function OrderHistory() {
 
     function handleSubmit(event) {
@@ -61,7 +62,7 @@ export default function OrderHistory() {
             method: 'POST',
             body: form,
         })
-            .then(response => response.json())          //need to send back a string..
+            .then(response => response.json())
             .then(result => {
                 console.log('Works..:', result);                console.log("hiiii");
             })
@@ -82,7 +83,7 @@ export default function OrderHistory() {
 
     return (
         //add Date To and Date From to make this form a report
-        <form className="orderContainer" /*onSubmit={this.handleSubmit}*/ id='form4'>
+        <form className="orderContainer" id='form4'>
                 <div className="header">
                 <h1 align='center'>Order History</h1>
                     </div>

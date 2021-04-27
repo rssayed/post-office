@@ -63,7 +63,7 @@ const buttonContainerStyle = {
     margin: 'auto',
     display: 'block',
     top: 225,
-    bottom: 200     /*does not work, need space below button*/
+    bottom: 200
 }
 
 const lookup_data = [

@@ -11,7 +11,7 @@ const is_deliveredData = [
 class UpdatePackage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {  //initialize state properties to empty strings
+        this.state = {
             tracking_id: "",
             facility_id: "",
             time_in: "",
@@ -97,7 +97,7 @@ class UpdatePackage extends React.Component {
                         <Select
                             className='text_box5'
                             id="id_delivered"
-                            label="Delivery Status"
+                            label="Has the package been delivered?"
                             name="is_delivered"
                             options={is_deliveredData}
                         />

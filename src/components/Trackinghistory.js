@@ -52,7 +52,7 @@ class Trackinghistory extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const form = new FormData(document.getElementById('form1'));
-        alert("x0x0");
+        alert("start fetching!");
         fetch('http://localhost:5000/backend/Tracking_history', {
             method: 'POST',
             body: form,
@@ -98,7 +98,7 @@ class Trackinghistory extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <form className="container_track" /*onSubmit={this.handleSubmit}*/ id='form1'>
+                <form className="container_track" id='form1'>
                     <div className="h1" align='center'>
                         <h1> Tracking History</h1>
                     </div>
