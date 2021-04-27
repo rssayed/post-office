@@ -250,12 +250,12 @@ def delete():
     if request.method == 'POST':
         try:
             cur = mysql.connection.cursor()
-            tracking_id = request.form['tracking_id']
+            tracking_id = request.form.get('tracking_id')
             cur.execute ('''SELECT tracking_id FROM orders''')
             orders = [item[0] for item in cur.fetchall()]
             for i in orders:
                 if tracking_id == i:
-                    cur.execute ('''DELETE FROM package WHERE tracking_id=%s''', [tracking_id])
+                    cur.execute ('''DELETE FROM package WHERE tracking_id=%s''', (tracking_id))
                     mysql.connection.commit()
                     return ('Sucessfully Deleted Package')
                 else:

@@ -132,7 +132,7 @@ class CreateUser extends React.Component{
             entity: "",
             fname: "",
             lname: "",
-            address: "",
+            street_address: "",
             city: "",
             state: "",
             zipcode: "",
@@ -213,8 +213,8 @@ class CreateUser extends React.Component{
                         label='Street address' 
                         name='street_address' 
                         type='text'
-                        value= {this.state.address}
-                        onChange= {e => this.setState({address: e.target.value})}
+                        value= {this.state.street_address}
+                        onChange= {e => this.setState({street_address: e.target.value})}
                         id= 'address'
                         rows='1' 
                         placeholder="Mickey Mouse Clubhouse, Disney World" 
