@@ -72,6 +72,7 @@ class GetUserId extends React.Component {
                         name='fname'
                         rows='1'
                         style={fnameContainerStyles}
+                        required
                     />
 
                     <Textarea
@@ -79,6 +80,7 @@ class GetUserId extends React.Component {
                         name='lname'
                         rows='1'
                         style={lnameContainerStyles}
+                        required
                     />
 
                     <Textarea
@@ -86,6 +88,7 @@ class GetUserId extends React.Component {
                         name='email'
                         rows='1'
                         style={nameContainerStyles}
+                        required
                     />
 
                     <Button
@@ -98,12 +101,12 @@ class GetUserId extends React.Component {
                         type="submit"
                     />
 
-                <span>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <p align='center'>User ID: {this.state.user_id}</p>
-                </span>
+                    <span>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <p align='center'>User ID: {this.state.user_id}</p>
+                    </span>
                 </form>
             </React.Fragment>
         )
