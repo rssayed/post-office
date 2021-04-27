@@ -53,7 +53,7 @@ def profile():
         cur.execute('''UPDATE customers SET fname=%s, lname=%s, street_address=%s, city=%s, state=%s, zipcode=%s, 
         email=%s, customer_password=%s WHERE customer.customer_id=%s''',
                     (fname, lname, street_address, city, state, zipcode,
-                     email, generate_password_hash(customer_password),
+                     generate_password_hash(customer_password), email,
                      customer_id))
         mysql.connection.commit()
 
@@ -114,7 +114,7 @@ def update_package():
 
         cur.execute('''INSERT INTO delivers
                         VALUES(%s,%s,%s,%s,%s)''',
-                    (time_in, time_out, delivery_status, tracking_id, post_office_id))
+                    (tracking_id, time_in, time_out, delivery_status, post_office_id))
         mysql.connection.commit()
 
     update_query = cur.fetchall()
@@ -147,8 +147,8 @@ def createUser():
         zipcode = request.form.get('zipcode')
         customer_password = request.form.get('customer_password')
         email = request.form.get('email')
-        cur.execute('''INSERT INTO customer(street_address, city, state, zipcode, fname, lname, customer_password, email)
-        VALUES (%s,%s,%s,%s,%s,%s,%s,%s)''', (street_address, city, state, zipcode, fname, lname, customer_password, email))
+        cur.execute('''INSERT INTO customer(fname, lname, street_address, city, state, zipcode, customer_password, email)
+        VALUES (%s,%s,%s,%s,%s,%s,%s,%s)''', (fname, lname, street_address, city, state, zipcode, customer_password, email))
         mysql.connection.commit()
         get_customer_id = cur.execute('''SELECT customer_id FROM customer WHERE fname=%s, lname=%s, email=%s''', (fname, lname, email))
         return jsonify(get_customer_id)
