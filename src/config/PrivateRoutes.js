@@ -14,7 +14,7 @@ export default [
  {
   component: CreatePackage,
   path: '/CreatePackage',
-  title: 'Create',
+  title: 'Create Package',
   permission: [
     Roles.Manager,
     Roles.Worker,
