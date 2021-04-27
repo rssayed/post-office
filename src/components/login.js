@@ -52,7 +52,11 @@ export default function Login() {
                         console.log("This user is a manager..", result)
                         roles.push(result);
                         setRole(result);
+                        console.log("This is the username",username)
                         localStorage.setItem('roles', JSON.stringify(roles));
+                        localStorage.setItem('username', username);
+                        localStorage.setItem('password', password);
+                        
                         alert("Logging in as manager")
                         history.push('/app');
                     }
@@ -61,6 +65,8 @@ export default function Login() {
                         roles.push(result);
                         setRole(result);
                         localStorage.setItem('roles', JSON.stringify(roles));
+                        localStorage.setItem('username', username);
+                        localStorage.setItem('password', password);
                         alert("Logging in as Customer")
                         history.push('/app');
                     }
@@ -69,6 +75,8 @@ export default function Login() {
                         roles.push(result);
                         setRole(result);
                         localStorage.setItem('roles', JSON.stringify(roles));
+                        localStorage.setItem('username', username);
+                        localStorage.setItem('password', password);
                         alert("Logging in as Worker")
                         history.push('/app');
                     }
