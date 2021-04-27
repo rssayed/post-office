@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Login from '../components/login';
 
-
 function PublicRoutes() {
 	return (
 		<Fragment>
@@ -14,5 +13,4 @@ function PublicRoutes() {
 		</Fragment>
 	)
 };
-
 export default PublicRoutes;

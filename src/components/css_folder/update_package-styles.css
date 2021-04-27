@@ -1,0 +1,95 @@
+.container_update
+{
+    margin:auto;
+    display: grid;
+    grid-template-rows: 45px 80px;
+    grid-template-columns: auto auto;
+    grid-template-areas: 
+    " sp_update sp_update sp_update sp_update sp_update"
+    ". . header_update . ."
+}
+
+.text_grid {
+    margin:auto;
+    display: grid;
+    grid-gap: 7px;
+    grid-auto-rows: 105px;
+    grid-template-areas: 
+    " . . text_box1 . ."
+    " . . text_box2 . ."
+    " . . text_box3 . ."
+    " . . text_box4 . ."
+    " . . text_box5 . ."
+    " . . button_update . ."
+}
+
+.sp_update
+{
+    grid-area:sp_update;
+}
+
+.header_update{
+    margin:auto;
+    text-align:center;
+    grid-area:header_update;
+    font-size:35px;
+    width: 500px;  
+  }
+
+
+  .text_box1
+  {
+    margin: auto;
+    grid-area:text_box1;
+    width: 400px;
+    height: 100px;
+  }
+
+  .text_box2
+  {
+    margin: auto;
+    grid-area:text_box2;
+    width: 400px;
+    height: 100px;
+  }
+
+  .text_box3
+  {
+  margin: auto;
+    grid-area:text_box3;
+    width: 270px;
+    height: 100px;
+  }
+
+  .text_box4
+  {
+    margin: auto;
+    grid-area:text_box4;
+    width: 270px;
+    height: 100px;
+  }
+
+  .text_box5
+  {
+    margin: auto;
+    grid-area:text_box5;
+    width: 270px;
+    height: 100px;
+  }
+
+  .button_update
+  {
+    grid-area: button_update;
+    background: #0645AE;
+    border: #0645AE;
+    color: #ffffff; 
+    margin: auto;
+    width:150px;
+    height: 46px;
+    margin-top:10px;
+  }
+
+  .button_update:sucess:hover
+  {
+    background:darkblue;
+  }

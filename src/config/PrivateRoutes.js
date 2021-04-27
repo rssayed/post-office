@@ -12,79 +12,70 @@ import CreateUser from '../components/createUser'
 
 export default [
    {
-      component: CreateUser,
-      path: '/CreateUser',
-      title: 'Create New User',
+      component: CreatePackage,
+      path: '/CreatePackage',
+      title: 'Create',
       permission: [
-      Roles.Worker,
-      Roles.Manager,
+         Roles.Manager,
+         Roles.Worker,
       ],
-    },
-   {
-   component: GetUserId,
-   path: '/getUserId',
-   title: 'Get User Id',
-   permission: [
-   Roles.Worker,
-   Roles.Manager,
-   ],
- },
- {
-  component: CreatePackage,
-  path: '/CreatePackage',
-  title: 'Create Package',
-  permission: [
-    Roles.Manager,
-    Roles.Worker,
-     ],
- },
+   },
 
- {
-    component: Trackinghistory,
-    path: '/Trackinghistory',
-    title: 'Tracking History',
-    permission: [
-      Roles.Customer,
-      Roles.Manager,
-      Roles.Worker,
-       ],
+   {
+      component: Trackinghistory,
+      path: '/Trackinghistory',
+      title: 'Tracking History',
+      permission: [
+         Roles.Customer,
+         Roles.Manager,
+         Roles.Worker,
+      ],
    },
- 
- {
-  component: orderHistory,
-  path: '/orderHistory',
-  title: 'Order History',
-  permission: [
-   Roles.Customer,
-   Roles.Worker,
-   Roles.Manager
-    ],
- },
- {
-    component: DeletePackage,
-    path: '/DeletePackage',
-    title: 'Delete Package',
-    permission: [
-     Roles.Manager
+
+   {
+      component: orderHistory,
+      path: '/orderHistory',
+      title: 'Order History',
+      permission: [
+         Roles.Customer,
+         Roles.Worker,
+         Roles.Manager
       ],
    },
    {
-    component: UpdatePackage,
-    path: '/UpdatePackage',
-    title: 'Update Package',
-    permission: [
-     Roles.Worker,
-     Roles.Manager
+      component: GetUserId,
+      path: '/getUserId',
+      title: 'Get User Id',
+      permission: [
+         Roles.Worker,
+         Roles.Manager,
       ],
    },
- {
-  component: Profile,
-  path: '/Profile',
-  title: 'Profile',
-  permission: [
-      Roles.Customer,
-      Roles.Manager,
-      Roles.Worker
-  ],
- },
+   {
+      component: DeletePackage,
+      path: '/DeletePackage',
+      title: 'Delete Package',
+      permission: [
+         Roles.Manager
+      ],
+   },
+   {
+      component: UpdatePackage,
+      path: '/UpdatePackage',
+      title: 'Update Package',
+      permission: [
+         Roles.Worker,
+         Roles.Manager
+      ],
+   },
+   {
+      component: Profile,
+      path: '/Profile',
+      title: 'Profile',
+      permission: [
+         Roles.Customer,
+         Roles.Manager,
+         Roles.Worker
+      ],
+   },
 ]

@@ -1,6 +1,6 @@
 import React from 'react';
 import Textarea from 'react-rainbow-components/components/Textarea';
-import './tracking_history-styles.css';
+import styles from "./css_folder/tracking_history-styles.css";
 import Button from 'react-rainbow-components/components/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
 import makeStyles from '@material-ui/core/styles/makeStyles';
@@ -10,11 +10,9 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper'
-
-
+import Paper from '@material-ui/core/Paper';
 const printStyle = {
-        margin: 'auto'
+    margin: 'auto'
 }
 
 const StyledTableCell = withStyles((theme) => ({
@@ -30,56 +28,46 @@ const StyledTableCell = withStyles((theme) => ({
 
 const StyledTableRow = withStyles((theme) => ({
     root: {
-      '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.action.hover,
-      }
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.action.hover,
+        }
     }
-  }))(TableRow);
+}))(TableRow);
 
-
-class Trackinghistory extends React.Component{
-    
-    constructor(props)
-    {
+class Trackinghistory extends React.Component {
+    constructor(props) {
         super(props);
         this.state = {
             tracking_value: "",
             tracking_history: [],
         }
-        this.handleSubmit= this.handleSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-        
-    validateForm()
-    {
+
+    validateForm() {
         return this.state.tracking_value != null;
     }
-    
-    handleSubmit = (event) =>
-    {
-            event.preventDefault();
-        
-            const form = new FormData(document.getElementById('form1'));
-            
-            alert("x0x0");
 
-            fetch('http://localhost:5000/backend/Tracking_history', {
+    handleSubmit = (event) => {
+        event.preventDefault();
+        const form = new FormData(document.getElementById('form1'));
+        alert("x0x0");
+        fetch('http://localhost:5000/backend/Tracking_history', {
             method: 'POST',
             body: form,
-            })
+        })
             .then(response => response.json())
             .then(result => {
-                console.log('Success:', result);            
-                this.setState({tracking_history: result});  
+                console.log('Success:', result);
+                this.setState({ tracking_history: result });
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
-
-            alert("Tracking Successful!");
+        alert("Tracking Successful!");
     }
 
     renderHistory(history, idx) {
-       
         return (
             <TableContainer componenet={Paper}>
                 <Table >
@@ -94,49 +82,40 @@ class Trackinghistory extends React.Component{
                             <StyledTableCell></StyledTableCell>
                         </TableRow>
                     </TableHead>
-
                     <TableBody>
                         <StyledTableRow>
-                        {history.map((item, idx) => (
-                                    <StyledTableCell key={idx}>{(item)}</StyledTableCell>
-                        ))}
+                            {history.map((item, idx) => (
+                                <StyledTableCell key={idx}>{(item)}</StyledTableCell>
+                            ))}
                         </StyledTableRow>
                     </TableBody>
                 </Table>
             </TableContainer>
-                /* <div align='center'>
-                    <h2>Delivery Stop#{idx}</h2>
-                    {history.map((item, idx) => (
-                        <div key={idx}>{JSON.stringify(item)}</div>
-                    ))}
-                </div> */
         )
     }
 
     render() {
-    
-        return(
+        return (
             <React.Fragment>
-                <form className ="container_track" /*onSubmit={this.handleSubmit}*/ id='form1'>  
-                    <h1 className = "header_track" align='center'>Tracking History</h1>
-                    
-                    <Textarea                          
-                        className = "delete_box_track"
-                        type= 'text'
-                        value = {this.state.tracking_value}
-                        onChange= {e => this.setState({tracking_value: e.target.value})}
+                <form className="container_track" /*onSubmit={this.handleSubmit}*/ id='form1'>
+                    <h1 className="header_track" align='center'>Tracking History</h1>
+
+                    <Textarea
+                        className="delete_box_track"
+                        type='text'
+                        value={this.state.tracking_value}
+                        onChange={e => this.setState({ tracking_value: e.target.value })}
                         id="tracking_value"
-                        name= "tracking_id"
-                        label = "Tracking Number"
+                        name="tracking_id"
+                        label="Tracking Number"
                         rows={1}
                         required
                     />
-               
-                <div>
-                    <strong>The typed value is:</strong><span>{this.state.tracking_id}</span>
-                </div>
 
-                    <Button className= "button_2_track" label= "Track" disabled={!this.validateForm()} onClick = {this.handleSubmit} variant = "base" type='submit'></Button>
+                    <div>
+                        <strong>The typed value is:</strong><span>{this.state.tracking_id}</span>
+                    </div>
+                    <Button className="button_2_track" label="Track" disabled={!this.validateForm()} onClick={this.handleSubmit} variant="base" type='submit'></Button>
                 </form>
 
                 <div className="printBlock">
@@ -149,5 +128,4 @@ class Trackinghistory extends React.Component{
         )
     }
 }
-
 export default Trackinghistory;

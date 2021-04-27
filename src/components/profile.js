@@ -26,7 +26,7 @@ const addressContainerStyles = {
     top: 75
 }
 
-const cityContainerStyles ={
+const cityContainerStyles = {
     margin: 'auto',
     maxWidth: 200,
     top: 100
@@ -47,7 +47,7 @@ const zipcodeContainerStyles = {
 const emailContainerStyles = {
     margin: 'auto',
     maxWidth: 300,
-    top:175
+    top: 175
 }
 
 const passwordContainerStyles = {
@@ -61,62 +61,62 @@ const buttonContainerStyle = {
     borderColor: '#0645AE',
     color: '#ffffff',
     margin: 'auto',
-    display:'block',
+    display: 'block',
     top: 225,
     bottom: 200     /*does not work, need space below button*/
 }
 
 const lookup_data = [
-    {label: 'AL'},
-    {label: 'AK'},
-    {label: 'AZ'},
-    {label: 'AR'},
-    {label: 'CA'},
-    {label: 'CO'},
-    {label: 'CT'},
-    {label: 'DE'},
-    {label: 'FL'},
-    {label: 'GA'},
-    {label: 'HI'},
-    {label: 'ID'},
-    {label: 'IL'},
-    {label: 'IN'},
-    {label: 'IA'},
-    {label: 'KS'},
-    {label: 'KY'},
-    {label: 'LA'},
-    {label: 'ME'},
-    {label: 'MD'},
-    {label: 'MA'},
-    {label: 'MI'},
-    {label: 'MN'},
-    {label: 'MS'},
-    {label: 'MO'},
-    {label: 'MT'},
-    {label: 'NE'},
-    {label: 'NV'},
-    {label: 'NH'},
-    {label: 'NJ'},
-    {label: 'NM'},
-    {label: 'NY'},
-    {label: 'NC'},
-    {label: 'ND'},
-    {label: 'OH'},
-    {label: 'OK'},
-    {label: 'OR'},
-    {label: 'PA'},
-    {label: 'RI'},
-    {label: 'SC'},
-    {label: 'SD'},
-    {label: 'TN'},
-    {label: 'TX'},
-    {label: 'UT'},
-    {label: 'VT'},
-    {label: 'VA'},
-    {label: 'WA'},
-    {label: 'WV'},
-    {label: 'WI'},
-    {label: 'WY'}
+    { label: 'AL' },
+    { label: 'AK' },
+    { label: 'AZ' },
+    { label: 'AR' },
+    { label: 'CA' },
+    { label: 'CO' },
+    { label: 'CT' },
+    { label: 'DE' },
+    { label: 'FL' },
+    { label: 'GA' },
+    { label: 'HI' },
+    { label: 'ID' },
+    { label: 'IL' },
+    { label: 'IN' },
+    { label: 'IA' },
+    { label: 'KS' },
+    { label: 'KY' },
+    { label: 'LA' },
+    { label: 'ME' },
+    { label: 'MD' },
+    { label: 'MA' },
+    { label: 'MI' },
+    { label: 'MN' },
+    { label: 'MS' },
+    { label: 'MO' },
+    { label: 'MT' },
+    { label: 'NE' },
+    { label: 'NV' },
+    { label: 'NH' },
+    { label: 'NJ' },
+    { label: 'NM' },
+    { label: 'NY' },
+    { label: 'NC' },
+    { label: 'ND' },
+    { label: 'OH' },
+    { label: 'OK' },
+    { label: 'OR' },
+    { label: 'PA' },
+    { label: 'RI' },
+    { label: 'SC' },
+    { label: 'SD' },
+    { label: 'TN' },
+    { label: 'TX' },
+    { label: 'UT' },
+    { label: 'VT' },
+    { label: 'VA' },
+    { label: 'WA' },
+    { label: 'WV' },
+    { label: 'WI' },
+    { label: 'WY' }
 ];
 
 function filter(query, options) {
@@ -129,7 +129,7 @@ function filter(query, options) {
     return [];
 }
 
-function lookup_search(value){
+function lookup_search(value) {
     if (this.state.options && this.state.value && value.length > this.state.value.length) {
         this.setState({
             options: filter(value, this.state.options),
@@ -151,75 +151,78 @@ function lookup_search(value){
     }
 }
 
-function handleSubmit(event)
-    {
-        event.preventDefault();
-        return this.setState({
-            username: this.state.username,
-            password: this.state.password
-        });
-    }
+function handleSubmit(event) {
+    event.preventDefault();
+    return this.setState({
+        username: this.state.username,
+        password: this.state.password
+    });
+}
 
-class Profile extends React.Component{
-
-    constructor(props){
+class Profile extends React.Component {
+    constructor(props) {
         super(props);
         this.state = {
             options: null,
             value: ''
         }
-       /* this.onChange=this.onChange.bind(this)    Cannot read property 'value' of undefined
-        this.onSearch=this.onSearch.bind(this)*/
-    }
-    
 
-    render(){
-        return(
+    }
+
+    render() {
+        return (
             <form className='profile'>
                 <h1 align='center'>Profile Settings</h1>
-                <Textarea 
-                    label='Customer ID' 
-                    name='customer_id' 
-                    rows='1' 
-                    placeholder='1234' 
-                    style={customer_idContainerStyles} 
+
+                <Textarea
+                    label='Customer ID'
+                    name='customer_id'
+                    rows='1'
+                    placeholder='1234'
+                    style={customer_idContainerStyles}
                     disabled
                 />
-                <Textarea 
-                    label='First Name' 
-                    name='fname' 
-                    rows='1' 
-                    placeholder="Mickey" 
-                    style={fnameContainerStyles} 
+
+                <Textarea
+                    label='First Name'
+                    name='fname'
+                    rows='1'
+                    placeholder="Mickey"
+                    style={fnameContainerStyles}
                     autofocus
                 />
-                <Textarea 
-                    label='Last Name' 
-                    name='lname' 
-                    rows='1' 
-                    placeholder="Mouse" 
+
+                <Textarea
+                    label='Last Name'
+                    name='lname'
+                    rows='1'
+                    placeholder="Mouse"
                     style={lnameContainerStyles}
                 />
-                <Textarea 
-                    label='Street address' 
-                    name='address' 
-                    rows='1' 
-                    placeholder="Mickey Mouse Clubhouse, Disney World" 
+
+                <Textarea
+                    label='Street address'
+                    name='address'
+                    rows='1'
+                    placeholder="Mickey Mouse Clubhouse, Disney World"
                     style={addressContainerStyles}
                 />
-                <Textarea 
-                    label='City' 
-                    name='city' 
-                    rows='1' 
-                    placeholder='Orlando' 
+
+                <Textarea
+                    label='City'
+                    name='city'
+                    rows='1'
+                    placeholder='Orlando'
                     style={cityContainerStyles}
                 />
+
                 <Select
                     label='State'
                     name='state'
                     options={lookup_data}
                     style={stateContainerStyles}
                 />
+
                 <Textarea
                     label='Zipcode'
                     name='zipcode'
@@ -227,6 +230,7 @@ class Profile extends React.Component{
                     placeholder='66666'
                     style={zipcodeContainerStyles}
                 />
+
                 <Textarea
                     label='Email'
                     name='email'
@@ -234,6 +238,7 @@ class Profile extends React.Component{
                     placeholder='mickey@disney.net'
                     style={emailContainerStyles}
                 />
+
                 <Textarea
                     label='Password'
                     name='password'
@@ -241,6 +246,7 @@ class Profile extends React.Component{
                     placeholder='Minnie#1'
                     style={passwordContainerStyles}
                 />
+
                 <Button
                     label='Update'
                     name='updateButton'
@@ -248,10 +254,9 @@ class Profile extends React.Component{
                     onClick={() => handleSubmit}
                     style={buttonContainerStyle}
                 />
+
             </form>
         );
     }
-    
 }
-
 export default Profile;
