@@ -252,6 +252,7 @@ def login():
         managerUsernames = [item[0] for item in cur.fetchall()]
         for i in customerUsernames:
             if username == i:
+                i = str(i)
                 cur.execute('''SELECT customer_password FROM customer WHERE email=%s''', [username])
                 customerPW = cur.fetchone()
                 customerPW = list(customerPW)
@@ -262,6 +263,7 @@ def login():
                 return 'no_permission'
         for i in managerUsernames:
             if username == i:
+                i = str(i)
                 cur.execute('''SELECT employee_password FROM employee WHERE employee_email=%s''', [username])
                 managerPW = cur.fetchone()
                 managerPW = list(managerPW)
@@ -272,6 +274,7 @@ def login():
                 return 'no_permission'
         for i in employeeUsernames:
             if username == i:
+                i = str(i)
                 cur.execute('''SELECT employee_password FROM employee WHERE employee_email=%s''', [username])
                 employeePW = cur.fetchone()
                 employeePW = list(employeePW)
@@ -295,17 +298,16 @@ def delete():
         cur.execute ('''SELECT tracking_id FROM orders''')
         orders = [item[0] for item in cur.fetchall()]
         for i in orders:
+            i = str(i)
             if tracking_id == i:
-                cur.execute ('''DELETE FROM package WHERE tracking_id=%s''', (tracking_id))
+                cur.execute ('''DELETE FROM package WHERE tracking_id=%s''', [tracking_id])
                 mysql.connection.commit()
                 output = 'Sucessfully Deleted Package'
                 return jsonify(output)
-            else:
-                output = 'Package Not Found'
-                return jsonify(output)
 
-        output = 'Tracking ID Not Found'
+        output = 'Package Not Found'
         return jsonify(output)
+
     else:
         output = 'Unable to get tracking_id request'
         return jsonify(output)
