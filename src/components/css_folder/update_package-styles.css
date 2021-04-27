@@ -101,3 +101,8 @@
   {
     background:darkblue;
   }
+  .printBlock
+  {
+    grid-area: print;
+    margin: auto;
+  }
