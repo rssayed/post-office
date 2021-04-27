@@ -151,7 +151,6 @@ const lookup_data = [
 //     }
 // }
 
-
 class Profile extends React.Component {
     
     constructor(props) {
@@ -167,15 +166,7 @@ class Profile extends React.Component {
             email: "",
             customer_password: ""
         }
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleSubmit = (event) => {
-        event.preventDefault();
-        // return this.setState({
-        //     username: this.state.username,
-        //     password: this.state.password
-        // });
+        //this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     // handleLoad = (event) => {
@@ -268,7 +259,7 @@ class Profile extends React.Component {
                     label='Update'
                     name='updateButton'
                     size='medium'
-                    onClick={() => handleSubmit}
+                    onClick = {this.handleSubmit}
                     style={buttonContainerStyle}
                 />
 
