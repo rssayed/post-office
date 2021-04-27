@@ -12,6 +12,24 @@ import CreateUser from '../components/createUser'
 
 export default [
    {
+      component: CreateUser,
+      path: '/CreateUser',
+      title: 'Create New User',
+      permission: [
+      Roles.Worker,
+      Roles.Manager,
+      ],
+    },
+   {
+   component: GetUserId,
+   path: '/getUserId',
+   title: 'Get User Id',
+   permission: [
+   Roles.Worker,
+   Roles.Manager,
+   ],
+ },
+   {
       component: CreatePackage,
       path: '/CreatePackage',
       title: 'Create',
@@ -40,15 +58,6 @@ export default [
          Roles.Customer,
          Roles.Worker,
          Roles.Manager
-      ],
-   },
-   {
-      component: GetUserId,
-      path: '/getUserId',
-      title: 'Get User Id',
-      permission: [
-         Roles.Worker,
-         Roles.Manager,
       ],
    },
    {
