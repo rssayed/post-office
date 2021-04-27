@@ -43,7 +43,7 @@ def getProfile():
         #email = request.form.get('email')
         #customer_password = request.form.get('customer_password')
         cur.execute('''SELECT fname, lname, street_address, city, state, zipcode, 
-        customer_password, email,customer_id FROM customers WHERE email=%s AND customer_password=%s''',
+        customer_password, email,customer_id FROM customer WHERE email=%s AND customer_password=%s''',
                     (email, customer_password))
         mysql.connection.commit()
 
