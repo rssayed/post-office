@@ -68,14 +68,12 @@
     width: 270px;
     height: 100px;
   }
-
-  .text_box5
+/* 
+   .text_box5
   {
     margin: auto;
     grid-area:text_box5;
-    width: 270px;
-    height: 100px;
-  }
+  } */
 
   .button_update
   {

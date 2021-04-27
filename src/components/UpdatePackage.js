@@ -1,41 +1,62 @@
 import React from 'react';
 import Textarea from 'react-rainbow-components/components/Textarea';
-import styles from "./css_folder/update_package-styles.css";
+import "./css_folder/update_package-styles.css";
 import Button from 'react-rainbow-components/components/Button';
+import Select from 'react-rainbow-components/components/Select';
 
+const is_deliveredData = [
+        {label: 'No'},
+        {label: 'Yes'}
+]
 class UpdatePackage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {  //initialize state properties to empty strings
-            input: ""
-        };
+            tracking_id: "",
+            facility_id: "",
+            time_in: "",
+            time_out: "",
+            is_delivered: "",
+            status: ""
+        }
+        this.handleSubmit= this.handleSubmit.bind(this);
+    }
+
+    handleSubmit = (event) => {
+
     }
 
     render() {
         return (
-            <div>
+            <React.Fragment>
                 <div className="container_update">
                     <h1 className="header_update"> Update Tracking History</h1>
                 </div>
 
-                <div className="text_grid">
+                <form className="text_grid" id="updateForm">
                     <Textarea
                         className="text_box1"
-                        id="box 1"
+                        onChange= {e => this.setState({tracking_id: e.target.value})}
+                        id="tracking_id"
+                        name="tracking_id"
                         label="Tracking number"
                         rows={1}
                     />
 
                     <Textarea
                         className="text_box2"
-                        id="box 2"
+                        onChange= {e => this.setState({facility_id: e.target.value})}
+                        id="facility_id"
+                        name="facility_id"
                         label="Post office ID"
                         rows={1}
-
                     />
+                    
                     <Textarea
                         className="text_box3"
-                        id="box 3"
+                        onChange= {e => this.setState({time_in: e.target.value})}
+                        id="time_in"
+                        name="time_in"
                         label="Time in"
                         rows={1}
 
@@ -43,26 +64,37 @@ class UpdatePackage extends React.Component {
 
                     <Textarea
                         className="text_box4"
-                        id="box 4"
+                        onChange= {e => this.setState({time_out: e.target.value})}
+                        id="time_out"
+                        name="time_out"
                         label="Time out"
                         rows={1}
                     />
 
-                    <Textarea
-                        className="text_box5"
-                        id="box 5"
+                    <Select
+                        //className= 'text_box5'
+                        id= "id_delivered"
                         label="Delivery Status"
-                        rows={1}
+                        name="is_delivered"
+                        options={is_deliveredData}
                     />
 
                     <Button
                         className="button_update"
-                        label="Track"
+                        label="Update"
                         variant="base"
+                        type='submit'
+                        onClick={this.handleSubmit}
                     />
+                </form>
 
+                <div className="printBlock">
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    {this.state.status}
                 </div>
-            </div>
+            </React.Fragment>
         )
     }
 }
