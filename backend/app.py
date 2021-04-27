@@ -250,22 +250,26 @@ def login():
 @app.route('/backend/delete', methods=['GET', 'POST'])
 def delete():
     if request.method == 'POST':
-        try:
-            cur = mysql.connection.cursor()
-            tracking_id = request.form.get('tracking_id')
-            cur.execute ('''SELECT tracking_id FROM orders''')
-            orders = [item[0] for item in cur.fetchall()]
-            for i in orders:
-                if tracking_id == i:
-                    cur.execute ('''DELETE FROM package WHERE tracking_id=%s''', (tracking_id))
-                    mysql.connection.commit()
-                    return ('Sucessfully Deleted Package')
-                else:
-                    return ('Package Not Found')
+        cur = mysql.connection.cursor()
+        tracking_id = request.form.get('tracking_id')
+        cur.execute ('''SELECT tracking_id FROM orders''')
+        orders = [item[0] for item in cur.fetchall()]
+        for i in orders:
+            if tracking_id == i:
+                cur.execute ('''DELETE FROM package WHERE tracking_id=%s''', (tracking_id))
+                mysql.connection.commit()
+                output = 'Sucessfully Deleted Package'
+                return jsonify(output)
+            else:
+                output = 'Package Not Found'
+                return jsonify(output)
 
-            return ('Tracking ID Not Found')
-        except:
-            return ('Unable to get tracking_id request')
+        output = 'Tracking ID Not Found'
+        return jsonify(output)
+        
+    else:
+        output = 'Unable to get tracking_id request'
+        return (output)
 
 
 @app.route('/')
