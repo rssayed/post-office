@@ -1,29 +1,24 @@
 .container_track
 {
     display: grid;
-    grid-template-rows: 45px 100px 80px 46px;
+    justify-content: center;
+    align-content: center;
+    display: grid;
+    grid-template-rows: 105px 46px 150px 150px;
     grid-template-columns: auto auto auto auto;
     grid-template-areas: 
-    " sp_track sp_track sp_track sp_track sp_track"
-    ". . header_track . ."
+    ". . h1 . ."
     ". . delete_box_track . ."
     ". . button_2_track . ."
+    ". . print . ."
 }
-
-.sp_track
-{
-    grid-area: sp
-}
-
-.header_track {
-    margin:auto;
-    grid-area: header_track;
-    text-align: center;
-    font-size:35px;
-    width: 500px;
+  .h1{
+    margin-top:25px;
+    grid-area: h1;
+    margin: auto;
+    font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
   }
-
- 
   .delete_box_track
   {
     margin:auto;
@@ -55,5 +50,6 @@
 
   .printBlock
   {
+    grid-area: print;
     margin: auto;
   }

@@ -2,6 +2,66 @@ import React from 'react';
 import Textarea from 'react-rainbow-components/components/Textarea';
 import styles from "./css_folder/createpackage-styles.css";
 import Button from 'react-rainbow-components/components/Button';
+import Select from 'react-rainbow-components/components/Select';
+const lookup_data = [
+    { label: 'AL' },
+    { label: 'AK' },
+    { label: 'AZ' },
+    { label: 'AR' },
+    { label: 'CA' },
+    { label: 'CO' },
+    { label: 'CT' },
+    { label: 'DE' },  
+    { label: 'FL' },
+    { label: 'GA' },
+    { label: 'HI' },
+    { label: 'ID' },
+    { label: 'IL' },
+    { label: 'IN' },
+    { label: 'IA' },
+    { label: 'KS' },
+    { label: 'KY' },
+    { label: 'LA' },
+    { label: 'ME' },
+    { label: 'MD' },
+    { label: 'MA' },
+    { label: 'MI' },
+    { label: 'MN' },
+    { label: 'MS' },
+    { label: 'MO' },
+    { label: 'MT' },
+    { label: 'NE' },
+    { label: 'NV' },
+    { label: 'NH' },
+    { label: 'NJ' },
+    { label: 'NM' },
+    { label: 'NY' },
+    { label: 'NC' },
+    { label: 'ND' },
+    { label: 'OH' },
+    { label: 'OK' },
+    { label: 'OR' },
+    { label: 'PA' },
+    { label: 'RI' },
+    { label: 'SC' },
+    { label: 'SD' },
+    { label: 'TN' },
+    { label: 'TX' },
+    { label: 'UT' },
+    { label: 'VT' },
+    { label: 'VA' },
+    { label: 'WA' },
+    { label: 'WV' },
+    { label: 'WI' },
+    { label: 'WY' }
+];
+const dropdown_shipping =
+[
+    { label: 'priority' },
+    { label: 'firstclass'},
+    { label: 'ground'},
+    { label: 'express'}
+]
 
 
 async function validateForm() {
@@ -56,12 +116,9 @@ class CreatePackage extends React.Component {
     render() {
         console.log("Do you get to the create package page..?")
         return (
-            <div>
                 <form className="container_login" /*onSubmit={this.handleSubmit}*/ id='form3'>
-                <div>
-                    <div className="containerCreate">
-                        <h1 className="header_create"> Create Package</h1>
-                    </div>
+                    <h1 align='center'>Create Package</h1>
+                    <div className="gridCreate">
 
                     <Textarea
                         className="textUp1"
@@ -74,10 +131,11 @@ class CreatePackage extends React.Component {
                         rows={1}
                     />
 
-                    <Textarea
+                    <Select
                         className="textUp2"
                         type='shipping_type'
                         name = "type"
+                        options={dropdown_shipping}
                         value={this.state.shipping_type}
                         onChange={e => this.setState({ shipping_type: e.target.value })}
                         id="box 2"
@@ -140,15 +198,16 @@ class CreatePackage extends React.Component {
                         rows={1}
                     />
 
-                    <Textarea
-                        className="textUp8"
-                        type='state'
-                        value={this.state.state}
+                    
+                    <Select
+                        className = "textUp8"
+                        label='State'
+                        name='return_state'
+                        options={lookup_data}
+                        value={this.state.entity}
                         onChange={e => this.setState({ state: e.target.value })}
-                        id="up8"
-                        label="State"
-                        rows={1}
-                        name = "return_state"
+                        id='entity'
+                        autofocus
                     />
 
                     <Textarea
@@ -166,7 +225,6 @@ class CreatePackage extends React.Component {
 
                 </div>
                 </form>
-            </div>
         )
         console.log("Do you get to the create package page..?")
     }

@@ -99,7 +99,9 @@ class Trackinghistory extends React.Component {
         return (
             <React.Fragment>
                 <form className="container_track" /*onSubmit={this.handleSubmit}*/ id='form1'>
-                    <h1 className="header_track" align='center'>Tracking History</h1>
+                    <div className="h1" align='center'>
+                        <h1> Tracking History</h1>
+                    </div>
 
                     <Textarea
                         className="delete_box_track"
@@ -113,18 +115,16 @@ class Trackinghistory extends React.Component {
                         required
                     />
 
-                    <div>
-                        <strong>The typed value is:</strong><span>{this.state.tracking_value}</span>
-                    </div>
                     <Button className="button_2_track" label="Track" disabled={!this.validateForm()} onClick={this.handleSubmit} variant="base" type='submit'></Button>
-                </form>
 
-                <div className="printBlock">
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    {this.state.tracking_history.map(this.renderHistory)}
-                </div>
+                    <div className="printBlock">
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        {this.state.tracking_history.map(this.renderHistory)}
+
+                    </div>
+                </form>
             </React.Fragment>
         )
     }

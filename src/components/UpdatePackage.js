@@ -47,11 +47,14 @@ class UpdatePackage extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div className="container_update">
-                    <h1 className="header_update"> Update Tracking History</h1>
-                </div>
+                
+                <form className="container_update" id="updateForm">
+                <div className="h1" align='center'>
+                        <h1> Update Tracking History</h1>
+                    </div>
+                <div className="text_grid">
 
-                <form className="text_grid" id="updateForm">
+                
                     <Textarea
                         className="text_box1"
                         onChange= {e => this.setState({tracking_id: e.target.value})}
@@ -92,7 +95,7 @@ class UpdatePackage extends React.Component {
                     />
 
                     <Select
-                        //className= 'text_box5'
+                        className= 'text_box5'
                         id= "id_delivered"
                         label="Delivery Status"
                         name="is_delivered"
@@ -106,12 +109,16 @@ class UpdatePackage extends React.Component {
                         type='submit'
                         onClick={this.handleSubmit}
                     />
-                </form>
-
-                <div className="printBlock">
-                    <p align='center'>{this.state.status}hola</p>
+                     <div className="printBlock">
+                    <p align='center'>{this.state.status}</p>
                     <br></br>
                 </div>
+                </div>
+                </form>
+                
+
+    
+                
             </React.Fragment>
         )
     }

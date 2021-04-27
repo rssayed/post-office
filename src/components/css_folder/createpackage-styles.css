@@ -18,23 +18,28 @@
 {
     margin:auto;
     text-align:center;
-    grid-area:header_create;
-    font-size:35px;
+    font-size:45px;
     width: 500px;   
+    top:25px;
 }
 
 .gridCreate 
 {
     display: grid;
     justify-content: center;
-    align-content: center;  
+    align-content: center;
+    margin-top:25px;  
     grid-template-areas: 
-    " textUp1 . textUp5 "
-    " textUp2 . textUp6 "
-    " textUp3 . textUp7 "
-    " textUp4 . textUp8 "
-    "    .    . textUp9 "
-    " buttonCreate buttonCreate buttonCreate";
+    " textUp1"
+    " textUp2"
+    " textUp3"
+    " textUp4"
+    " textUp5"
+    " textUp6"
+    " textUp7"
+    " textUp8" 
+    " textUp9"
+    " buttonCreate";
   gap: 5px;
   grid-template-columns: repeat(2, 150px);
   grid-template-rows: repeat(6, 100px);
@@ -42,7 +47,7 @@
 
 .textUp1
 { 
-  width: 260px;
+  width: 300px;
   height: 100px;
   grid-area:textUp1;
 }
@@ -51,7 +56,7 @@
   {
     margin:auto;
     grid-area:textUp2;
-    width: 200px;
+    width: 300px;
     height: 100px;
   }
 
@@ -59,7 +64,7 @@
   {
     margin:auto;
     grid-area:textUp3;
-    width: 260px;
+    width: 300px;
     height: 100px;
   }
 
@@ -67,7 +72,7 @@
   {
     margin:auto;
     grid-area:textUp4;
-    width: 260px;
+    width: 300px;
     height: 100px;
   }
    
@@ -91,7 +96,7 @@
   {
     margin:auto;
     grid-area:textUp7;
-    width: 260px;
+    width: 300px;
     height: 100px;
   }
 
@@ -99,7 +104,7 @@
   {
     margin:auto;
     grid-area:textUp8;
-    width: 200px;
+    width: 300px;
     height: 100px;
   }
 
@@ -107,13 +112,14 @@
   {
     margin:auto;
     grid-area:textUp9;
-    width: 260px;
+    width: 300px;
     height: 100px;
   }
 
   .buttonCreate
   {
     margin:auto;
+    text-align:center;
     grid-area: buttonCreate;
     background: #0645AE;
     border: #0645AE;
