@@ -160,10 +160,6 @@ class Profile extends React.Component {
             });
 
         alert("Tracking Successful!");
-        return this.setState({
-            username: this.state.username,
-            password: this.state.password
-        });
     }
 
     render() {
